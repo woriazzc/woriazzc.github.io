@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+
+
+
+<head>
+	
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+	<meta name="HandheldFriendly" content="True">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<meta name="theme-color" content="#3c484e">
+	
+	<title>hexo | WORIA</title>
+	<meta name="description" content>
+	<meta name="generator" content="WORIA">
+	
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	
+	<link rel="stylesheet" href="/css/screen.min.css">
+	<link rel="stylesheet" href="/css/style.min.css"> 
+	
+	<script src="/js/jquery.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	
+	
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+	</script>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Queue(function() {
+			var all = MathJax.Hub.getAllJax(), i;
+			for(i=0; i < all.length; i += 1) {
+				all[i].SourceElement().parentNode.className += ' has-jax';
+			}
+		});
+	</script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+	
+</head>
+<body class="post-template">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
+        
+
+
+
+
+<header class="site-header outer" style="z-index: 999">
+    <div class="inner">
+        
+
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/" title="Home">Home</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="About">About</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="Archives">Archives</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    <div class="site-nav-right">
+        
+<div class="social-links">
+    
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <article class="post-full no-image">
+            
+            <h1 class="post-full-title">hexo</h1>
+            <section class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-06-04T14:59:28.549Z" itemprop="datePublished">
+                    2019-06-4
+                </time>
+                
+            </section>
+            <section class="post-full-content">
+                <div id="lightgallery" class="markdown-body">
+                    <p>**</p>
+<blockquote>
+<p>找博客主题时逛了一圈发现还是ghost的默认casper主题最好用，但ghost是动态部署，github只支持静态网页，而我又懒得搞ghost，所以只好找静态移植版的casper。</p>
+</blockquote>
+<p>**</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>先附上<a href="https://ghost.org/" target="_blank" rel="noopener">ghost</a>链接。<br>其实github支持的jekyll和hexo都有casper的移植。<br>先是Jekyll版：<a href="https://github.com/rosario/kasper" target="_blank" rel="noopener">Kasper</a><br>还有hexo版：<a href="https://github.com/xzhih/hexo-theme-casper" target="_blank" rel="noopener">capser</a><br>hexo版的 <a href="https://xzhih.github.io/hexo-theme-casper/" target="_blank" rel="noopener">demo</a><br>安装方法参考   <a href="https://zhih.me/hexo-casper-usage/" target="_blank" rel="noopener">底噪</a>    </p>
+<h2 id="以下是安装过程中遇到的一些问题："><a href="#以下是安装过程中遇到的一些问题：" class="headerlink" title="以下是安装过程中遇到的一些问题："></a>以下是安装过程中遇到的一些问题：</h2><ul>
+<li>由于我使用了自己购买的域名，所以与github绑定时会自动添加一个CNAME文件，但在hexo每次<code>hexo g -d</code>时删除原有文件，CNAME就没了，又要重新设置，所以查了一下，发现放在<code>source</code>文件夹里的文件不会被删除，因此把CNAME文件剪切到<code>source</code>文件夹（<strong>主题内文件夹即theme内的source，而非hexo的文件夹</strong>）就解决问题了。</li>
+<li>虽然<code>source</code>中有<code>image</code>文件夹，但如果使用文件夹中图片可能会出现无法显示到网页上的情况，所以最好还是上传到图床上，再用URL。附<a href="https://sm.ms/" target="_blank" rel="noopener">SM图床</a></li>
+<li>直接用<code>hexo new [filename]</code> 默认在<code>post</code>文件夹下新建.md文件<br>用<code>hexo new [文件夹名] [filename]</code>在指定文件夹下新建.md文件<br><strong>.md支持markdown</strong></li>
+<li><code>hexo g -d</code> 部署网页</li>
+<li>添加统一的模板参数时将</li>
+</ul>
+<blockquote>
+<p>cover_img:     # 在文章摘要上显示<br>feature_img:   # 在文章详细页面上置顶<br>description:   # 文章描述<br>keywords:      # 关键字</p>
+<p>复制到hexo文件夹下的scaffolds/post.md内，在两条<code>-------</code>分割线之间。</p>
+</blockquote>
+<p><strong>还有很好用的图片网站 ：<a href="https://unsplash.com/t/wallpapers" target="_blank" rel="noopener">Wallpapers|Unsplash</a></strong></p>
+
+                </div>
+            </section>
+        </article>
+    </div>
+    
+<nav class="pagination">
+    
+    
+    <a class="prev-post" href="/2019/06/08/python/">
+        ← python
+    </a>
+    
+    <span class="prev-next-post">•</span>
+    
+    <a class="next-post" href="/2019/06/04/SAA/">
+        SAA →
+    </a>
+    
+    
+</nav>
+    
+</main>
+
+<div class="t-g-control">
+    <div class="gotop">
+        <svg class="icon" width="32px" height="32px" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z" fill="#8a8a8a"/></svg>
+    </div>
+    <div class="toc-control">
+        <svg class="icon toc-icon" width="32px" height="32.00px" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64" fill="#8a8a8a"/></svg>
+        <svg class="icon toc-close" style="display: none;" width="32px" height="32.00px" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z" fill="#8a8a8a"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z" fill="#8a8a8a"/></svg>
+    </div>
+    <div class="gobottom">
+        <svg class="icon" width="32px" height="32.00px" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z" fill="#8a8a8a"/></svg>
+    </div>
+</div>
+<div class="toc-main" style="right: -100%">
+    <div class="post-toc">
+        <span>TOC</span>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以下是安装过程中遇到的一些问题："><span class="toc-text">以下是安装过程中遇到的一些问题：</span></a></li></ol>
+    </div>
+</div>
+
+
+
+        
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+  <article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+    <header class="read-next-card-header">
+      <small class="read-next-card-header-sitetitle">&mdash; WORIA &mdash;</small>
+      <h3 class="read-next-card-header-title">Recent Posts</h3>
+    </header>
+    <div class="read-next-divider">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+            <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+        </svg>
+    </div>
+    <div class="read-next-card-content">
+      <ul>
+        
+        
+        
+        <li>
+          <a href="/2019/06/19/正则化/"></a>
+        </li>
+        
+        
+        
+        <li>
+          <a href="/2019/06/16/ml3/">机器学习基石第三次作业20</a>
+        </li>
+        
+        
+        
+        <li>
+          <a href="/2019/06/16/error/">cross-entropy</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+    <footer class="read-next-card-footer">
+      <a href="/archives">  MORE  → </a>
+    </footer>
+  </article>
+
+            
+            
+            
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+	<header class="read-next-card-header" style="padding-bottom: 20px">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/tags/machine-learning/" style="font-size: 19px;">machine-learning</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<section class="copyright">
+			<a href="/">WORIA</a>
+			&copy;
+			
+			2017 -
+			
+			2019
+		</section>
+		<section class="footer-text">
+			
+		</section>
+		<nav class="site-footer-nav">
+			<a href="//hexo.io/">Powered by Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper">Theme Casper</a>
+		</nav>
+	</div>
+</footer>
+
+
+<div class="floating-header">
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+<script src="/js/script.min.js"></script>
+
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+<script src="/js/lightgallery.min.js"></script>
+<script>
+	$(function () {
+		var postImg = $('#lightgallery').find('img');
+		postImg.addClass('post-img');
+		postImg.each(function () {
+			var imgSrc = $(this).attr('src');
+			$(this).attr('data-src', imgSrc);
+		});
+		$('#lightgallery').lightGallery({selector: '.post-img'});
+	});
+</script>
+
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
