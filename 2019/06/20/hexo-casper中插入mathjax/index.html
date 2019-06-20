@@ -126,6 +126,7 @@
 </li>
 <li><p>如果还不行的话，可能是因为博客地址是https，而github项目中引用的js是http资源，因此会被block。解决方法是在需要使用mathjax的 .html中加入</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"upgrade-insecure-requests"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>更彻底的办法是在”\themes\hexo-casper\layout_partials\head.swig”中把mathjax部分的”&lt;script type=”text/javascript” src=””中的链接改为<a href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML也就是和第2步中的更新为一样的地址，是https。" target="_blank" rel="noopener">https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML也就是和第2步中的更新为一样的地址，是https。</a></p>
 </li>
 </ol>
 
