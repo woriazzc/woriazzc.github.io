@@ -137,7 +137,7 @@
 cost =  -\frac{1}{N}\sum_{i=1}^{N}{\ln(h(x_i) )}    ------①</script><p>对于 $Sigmoid$ 函数，由于其特性 $1-\theta(x)=\theta(-x)$,<br>我们的function给出了$h(x| 1)$, 且是经过了$Sigmoid$之后的结果相当于$\theta(wx)$,则<br>对于应为1的点<script type="math/tex">h(x)=h(x| 1)=\theta(wx)</script>,<br>应为-1的点$x,h(x)=h(x| -1)=1-h(x| 1)$.</p>
 <script type="math/tex; mode=display">h(x)=h(x| -1)=1-h(x |1)=1-\theta(wx)=\theta(-wx)</script><p>得到，对于label y=-1的点,$h(x)=\theta(y*wx)$<br>发现该式对label y=1的点同样适用。<br>则最终确定</p>
 <script type="math/tex; mode=display">h(x)=\theta(y*wx)------②</script><p>将其代入①式<br>得</p>
-<script type="math/tex; mode=display">cost =  -\frac{1}{N}\sum_{i=1}^{N}{\ln(\theta(y*wx) )}</script><h2 id="多元分类"><a href="#多元分类" class="headerlink" title="多元分类"></a>多元分类</h2><p>同样的思想，要使每个点正确的概率 $h(x)$ 的连乘 $\prod$ 最大,由于每个点经过的几个不同的分类器分类，产生了多个$h(x| y)$,  而正确的分类$labely<em>n=y_n$，所以对于一个点$x_n,h(x_n)=h(x_n| y_n)$则要使$\prod</em>{n=1}^{N}{h(x_n|y_n)}$最大, 同样取$\ln$, 加负号，求最小值</p>
+<script type="math/tex; mode=display">cost =  -\frac{1}{N}\sum_{i=1}^{N}{\ln(\theta(y*wx) )}</script><h2 id="多元分类"><a href="#多元分类" class="headerlink" title="多元分类"></a>多元分类</h2><p>同样的思想，要使每个点正确的概率 $h(x)$ 的连乘 $\prod$ 最大,由于每个点经过的几个不同的分类器分类，产生了多个$h(x| y)$,  而正确的分类$labely_n=y_n$，所以对于一个点$x_n,h(x_n)=h(x_n| y_n)$则要使$\prod_{n=1}^{N}{h(x_n|y_n)}$最大, 同样取$\ln$, 加负号，求最小值</p>
 <script type="math/tex; mode=display">
 cost =  -\frac{1}{N}\sum_{n=1}^{N}{\ln(h(x_n|y_n) )}    ------①</script>
                 </div>

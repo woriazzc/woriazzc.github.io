@@ -110,7 +110,7 @@
             </section>
             <section class="post-full-content">
                 <div id="lightgallery" class="markdown-body">
-                    <p><em><font color="red">几种无法用常见博弈树解答的题型，寻找必败态。</font></em><br><a id="more"></a></p>
+                    <p>_<font color="red">几种无法用常见博弈树解答的题型，寻找必败态。</font>_<br><a id="more"></a></p>
 <h2 id="1-巴什博弈"><a href="#1-巴什博弈" class="headerlink" title="1.巴什博弈"></a>1.巴什博弈</h2><ol>
 <li><strong>问题模型：</strong> 有一个堆物品，物品数量为n个，两个人轮流从这堆物品中取物品，规定每次至少取一个，最多取m个，最后取光者得胜。</li>
 <li><strong>解决思路：</strong> 当n=m+1时，无论先手者取多少个，后手者都能一次性取完剩下的，即先手必败。故可推得当面对<code>n%(m+1)=0</code>时，<strong>先手必败</strong>。当面对<code>n=r*(m+1)+s</code>时，先手取s，后手者取一定量设为a，先手者再取(m+1)-a，···，每次先手者取完后手者的m+1中剩余量，使后手者始终面对<code>n%(m+1)=0</code>的必败态，先手必胜。</li>
