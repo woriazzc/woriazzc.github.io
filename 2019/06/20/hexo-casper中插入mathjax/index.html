@@ -16,7 +16,7 @@
 	
 	<meta name="theme-color" content="#3c484e">
 	
-	<title>python | WORIA</title>
+	<title>hexo | WORIA</title>
 	<meta name="description" content>
 	<meta name="generator" content="WORIA">
 	
@@ -107,26 +107,27 @@
     <div class="inner">
         <article class="post-full no-image">
             
-            <h1 class="post-full-title">python</h1>
+            <h1 class="post-full-title">hexo</h1>
             <section class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-08T09:49:32.374Z" itemprop="datePublished">
-                    2019-06-8
+                <time class="post-full-meta-date" datetime="2019-06-20T13:10:52.606Z" itemprop="datePublished">
+                    2019-06-20
                 </time>
                 
             </section>
             <section class="post-full-content">
                 <div id="lightgallery" class="markdown-body">
-                    <blockquote>
-<p>太久不用Python，记一下易错的点。</p>
-</blockquote>
-<ul>
-<li>Python传参数时，兼具传值与传引用，当参数为可变数据类型，如列表时，传引用，可直接在函数内改变参数的值；当参数为不可变类型时，传值。</li>
-</ul>
-<ul>
-<li>list+=与=+有差别，+=是在原列表上改动，因此=+地址会改变。<br>若要在函数内改动list，建议用+=。</li>
-<li>narray与list类型不同，使用时注意转换。</li>
-<li>列表[:-1]表示正向取到最后一个数，最后一个数不要；<br>[::-1]表示逆序取完所有数</li>
-</ul>
+                    <h1 id="hexo-casper中插入mathjax"><a href="#hexo-casper中插入mathjax" class="headerlink" title="hexo-casper中插入mathjax"></a>hexo-casper中插入mathjax</h1><p>casper美中不足的就是为了追求轻便，而放弃了mathjax。但由于我有时会用到数学公式，因此决定折腾一下。</p>
+<ol>
+<li><p>首先在hexo-casper的github项目中，已经有人加入了mathjax，但并未被整合进主项目中，因此首先要做的就是clone下已经有mathjax的git。如果对其他没有需要的话，就只需要修改“add mathjax support”部分即可。<a href="https://github.com/xzhih/hexo-theme-casper/pull/2" target="_blank" rel="noopener">地址</a></p>
+</li>
+<li><p>完整下完之后，由于markdown与mathjax语法存在冲突，所以还需要修改一些文件。<a href="https://www.jianshu.com/p/e8d433a2c5b7" target="_blank" rel="noopener">参考地址</a>   注意把themes/_config.yml中的“<strong>mathjax: false</strong>” 改为“<strong>mathjax: true</strong>”。</p>
+</li>
+<li><p>到这一步可以试一下，如果成功了就ok。。</p>
+</li>
+<li><p>如果还不行的话，可能是因为博客地址是https，而github项目中引用的js是http资源，因此会被block。解决方法是在需要使用mathjax的 .md中加入</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"upgrade-insecure-requests"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
                 </div>
             </section>
@@ -136,14 +137,10 @@
 <nav class="pagination">
     
     
-    <a class="prev-post" href="/2019/06/10/cha-fen/">
-        ← 差分与前缀和
-    </a>
-    
     <span class="prev-next-post">•</span>
     
-    <a class="next-post" href="/2019/06/04/hexo/">
-        hexo →
+    <a class="next-post" href="/2019/06/19/正则化/">
+         →
     </a>
     
     
@@ -166,7 +163,7 @@
 <div class="toc-main" style="right: -100%">
     <div class="post-toc">
         <span>TOC</span>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-casper中插入mathjax"><span class="toc-text">hexo-casper中插入mathjax</span></a></li></ol>
     </div>
 </div>
 
