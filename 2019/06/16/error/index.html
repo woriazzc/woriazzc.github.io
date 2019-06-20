@@ -16,7 +16,7 @@
 	
 	<meta name="theme-color" content="#3c484e">
 	
-	<title>python | WORIA</title>
+	<title>cross-entropy | WORIA</title>
 	<meta name="description" content>
 	<meta name="generator" content="WORIA">
 	
@@ -105,29 +105,47 @@
 
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
-        <article class="post-full no-image">
+        <article class="post-full ">
             
-            <h1 class="post-full-title">python</h1>
+            <figure class="post-full-image" style="background-image: url(https://images.unsplash.com/photo-1557231146-afde25e6598f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1089&q=80)">
+            </figure>
+            
+            <h1 class="post-full-title">cross-entropy</h1>
             <section class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-08T09:49:32.374Z" itemprop="datePublished">
-                    2019-06-8
+                <time class="post-full-meta-date" datetime="2019-06-16T08:51:06.576Z" itemprop="datePublished">
+                    2019-06-16
                 </time>
                 
             </section>
             <section class="post-full-content">
                 <div id="lightgallery" class="markdown-body">
-                    <blockquote>
-<p>太久不用Python，记一下易错的点。</p>
-</blockquote>
+                    <p><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><br><strong>若公式显示错误</strong></p>
+<p>见<a href="https://blog.csdn.net/weixin_43948638/article/details/92407477" target="_blank" rel="noopener"><a href="https://blog.csdn.net/weixin_43948638/article/details/92407477" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43948638/article/details/92407477</a></a></p>
+<p>求$cost -function$：</p>
+<h2 id="二元分类"><a href="#二元分类" class="headerlink" title="二元分类"></a>二元分类</h2><p>将每一个数据看作一个点。<br>设正确分类的概率为p(x).<br>实际得到的某点被分为1的概率为p(x|1),<br>则</p>
 <ul>
-<li>Python传参数时，兼具传值与传引用，当参数为可变数据类型，如列表时，传引用，可直接在函数内改变参数的值；当参数为不可变类型时，传值。</li>
+<li>若该点为1，则$p(x)=p(x| 1),$</li>
 </ul>
 <ul>
-<li>list+=与=+有差别，+=是在原列表上改动，因此=+地址会改变。<br>若要在函数内改动list，建议用+=。</li>
-<li>narray与list类型不同，使用时注意转换。</li>
-<li>列表[:-1]表示正向取到最后一个数，最后一个数不要；<br>[::-1]表示逆序取完所有数</li>
+<li>若该点为-1，则$p(x)=p(x| -1)=1-p(x| 1)$</li>
 </ul>
-
+<p>设F为给定点出现在指定位置且<strong>target function</strong>分类正确的概率<br>已知 <code>f</code> 为target function，即f始终为正确分类，<code>f(x)==1</code><br>则对于f来说，产生给定分布的点集，且分类正确的概率</p>
+<script type="math/tex; mode=display">F=P(A)f(A)*P(B)f(B) ···=P(A)*P(B)···</script><p>即只与产生该分布情况的几率有关</p>
+<p>再设H为给定点出现在指定位置且<strong>我的分类器</strong>分类正确的概率<br>设h为my function，则</p>
+<ul>
+<li><p>若该点为1，则$h(x)=h(x| 1),$</p>
+</li>
+<li><p>若该点为-1，则$h(x)=h(x| -1)=1-h(x| 1)$</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">H=P(A)h(A)*P(B)h(B)···</script><p><strong>注意区分h(x)与h(x| 1), h(x| -1)</strong><br><strong>h(x)为分类正确的概率，h(x| 1), h(x| -1)仅为分类为1或-1的概率。</strong><br>由于P(A),P(B)无法改变，且对所有分类器都相等，所以可以忽略。<br>故要使分类正确的概率最大，即H最大，就要使$h(A)*h(B)···$最大<br>由于连乘不好算，所以取  $\ln$ ，变为连加，使连加最大，同样不够好，再加符号，使得最后变为求最小值。</p>
+<script type="math/tex; mode=display">
+cost =  -\frac{1}{N}\sum_{i=1}^{N}{\ln(h(x_i) )}    ------①</script><p>对于 $Sigmoid$ 函数，由于其特性 $1-\theta(x)=\theta(-x)$,<br>我们的function给出了$h(x| 1)$, 且是经过了$Sigmoid$之后的结果相当于$\theta(wx)$,则<br>对于应为1的点<script type="math/tex">h(x)=h(x| 1)=\theta(wx)</script>,<br>应为-1的点$x,h(x)=h(x| -1)=1-h(x| 1)$.</p>
+<script type="math/tex; mode=display">h(x)=h(x| -1)=1-h(x |1)=1-\theta(wx)=\theta(-wx)</script><p>得到，对于label y=-1的点,$h(x)=\theta(y*wx)$<br>发现该式对label y=1的点同样适用。<br>则最终确定</p>
+<script type="math/tex; mode=display">h(x)=\theta(y*wx)------②</script><p>将其代入①式<br>得</p>
+<script type="math/tex; mode=display">cost =  -\frac{1}{N}\sum_{i=1}^{N}{\ln(\theta(y*wx) )}</script><h2 id="多元分类"><a href="#多元分类" class="headerlink" title="多元分类"></a>多元分类</h2><p>同样的思想，要使每个点正确的概率 $h(x)$ 的连乘 $\prod$ 最大,由于每个点经过的几个不同的分类器分类，产生了多个$h(x| y)$,  而正确的分类$labely_n=y_n$，所以对于一个点$x_n,h(x_n)=h(x_n| y_n)$则要使$\prod_{n=1}^{N}{h(x_n|y_n)}$最大, 同样取$\ln$, 加负号，求最小值</p>
+<script type="math/tex; mode=display">
+cost =  -\frac{1}{N}\sum_{n=1}^{N}{\ln(h(x_n|y_n) )}    ------①</script>
                 </div>
             </section>
         </article>
@@ -136,14 +154,14 @@
 <nav class="pagination">
     
     
-    <a class="prev-post" href="/2019/06/10/cha-fen/">
-        ← 差分与前缀和
+    <a class="prev-post" href="/2019/06/16/ml3/">
+        ← 机器学习基石第三次作业20
     </a>
     
     <span class="prev-next-post">•</span>
     
-    <a class="next-post" href="/2019/06/04/hexo/">
-        hexo →
+    <a class="next-post" href="/2019/06/10/cha-fen/">
+        差分与前缀和 →
     </a>
     
     
@@ -166,7 +184,7 @@
 <div class="toc-main" style="right: -100%">
     <div class="post-toc">
         <span>TOC</span>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#二元分类"><span class="toc-text">二元分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多元分类"><span class="toc-text">多元分类</span></a></li></ol>
     </div>
 </div>
 
