@@ -29,6 +29,9 @@
 	<script src="/js/jquery.js"></script>
 	<script src="/js/highlight.min.js"></script>
 	
+	<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js "></script>
+	
 	
 	<script type="text/x-mathjax-config">
     MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
@@ -147,6 +150,10 @@
     
     
 </nav>
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
     
 </main>
 
@@ -300,6 +307,19 @@
 			$(this).attr('data-src', imgSrc);
 		});
 		$('#lightgallery').lightGallery({selector: '.post-img'});
+	});
+</script>
+
+<script>
+	new Valine({
+		el: '#comment' ,
+		verify: true,
+		notify: true,
+		appId: 'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
+		appKey: 'reWNaUPPWMXJhmx3CYSlF3w9',
+		placeholder: 'Say Something!!!',
+		pageSize: 10,
+		avatar:'wavatar',
 	});
 </script>
 
