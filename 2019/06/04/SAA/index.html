@@ -9,7 +9,16 @@
 
 <head>
 	
-	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXXX-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-XXXXXXXXXX-1');
+	</script>
+	
+	<meta charset="UTF-8">
 	<meta name="HandheldFriendly" content="True">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -125,8 +134,8 @@
             <section class="post-full-content">
                 <div id="lightgallery" class="markdown-body">
                     <h1 id="模拟退火算法"><a href="#模拟退火算法" class="headerlink" title="模拟退火算法"></a>模拟退火算法</h1><h2 id="命名："><a href="#命名：" class="headerlink" title="命名："></a>命名：</h2><p><strong>模拟退火算法来源于固体退火原理，将固体加温至充分高，再让其徐徐冷却，加温时，固体内部粒子随温升变为无序状，内能增大，而徐徐冷却时粒子渐趋有序，在每个温度都达到平衡态，最后在常温时达到基态，内能减为最小。</strong></p>
-<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p><img src="https://i.loli.net/2019/06/04/5cf67876b227030643.png" alt="在这里插入图片描述" class="post-img" href="https://i.loli.net/2019/06/04/5cf67876b227030643.png"><br>如上图所示，从A点开始下降，寻找最低点，若经过B点，由于B点的梯度为0，故在此点可能误将极值点作为最指点，退火算法正是为了解决这一问题。<br>算法中规定了有限次的循环上限，在每一次循环中，更新当前点的位置并获得下一次点的坐标,新旧两点坐标将满足以下一种关系：<br>① 若下一点的函数值E~new~<e~old~，即de<0，则当前点比不是最值点，则更新点的几率 `p="1`." ② 若e~new~>E~old~，即dE&gt;0，则可能当前点位于B点或C点，此时以一定几率P继续更新。</e~old~，即de<0，则当前点比不是最值点，则更新点的几率></p>
-<p>即<strong>P满足：</strong><br><img src="https://i.loli.net/2019/06/04/5cf67bbe2dbdb76625.png" alt="在这里插入图片描述" class="post-img" href="https://i.loli.net/2019/06/04/5cf67bbe2dbdb76625.png"><br><strong>注意设定初始温度T在一较高值，设定结束温度，并且每次不要忘记更应温度t=t*r，r为降低率。</strong><br>由该式可看出，随着T增大，P越来越小，最终达到平衡，也符合自然规律。<br>下贴上伪代码：<br><img src="https://i.loli.net/2019/06/04/5cf67d1034fbd49032.png" alt="在这里插入图片描述" class="post-img" href="https://i.loli.net/2019/06/04/5cf67d1034fbd49032.png"></p>
+<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p><img alt="在这里插入图片描述" class="post-img b-lazy" href="https://i.loli.net/2019/06/04/5cf67876b227030643.png" data-src="https://i.loli.net/2019/06/04/5cf67876b227030643.png"><br>如上图所示，从A点开始下降，寻找最低点，若经过B点，由于B点的梯度为0，故在此点可能误将极值点作为最指点，退火算法正是为了解决这一问题。<br>算法中规定了有限次的循环上限，在每一次循环中，更新当前点的位置并获得下一次点的坐标,新旧两点坐标将满足以下一种关系：<br>① 若下一点的函数值E~new~<e~old~，即de<0，则当前点比不是最值点，则更新点的几率 `p="1`." ② 若e~new~>E~old~，即dE&gt;0，则可能当前点位于B点或C点，此时以一定几率P继续更新。</e~old~，即de<0，则当前点比不是最值点，则更新点的几率></p>
+<p>即<strong>P满足：</strong><br><img alt="在这里插入图片描述" class="post-img b-lazy" href="https://i.loli.net/2019/06/04/5cf67bbe2dbdb76625.png" data-src="https://i.loli.net/2019/06/04/5cf67bbe2dbdb76625.png"><br><strong>注意设定初始温度T在一较高值，设定结束温度，并且每次不要忘记更应温度t=t*r，r为降低率。</strong><br>由该式可看出，随着T增大，P越来越小，最终达到平衡，也符合自然规律。<br>下贴上伪代码：<br><img alt="在这里插入图片描述" class="post-img b-lazy" href="https://i.loli.net/2019/06/04/5cf67d1034fbd49032.png" data-src="https://i.loli.net/2019/06/04/5cf67d1034fbd49032.png"></p>
 
                 </div>
             </section>
@@ -294,6 +303,21 @@
 		</nav>
 	</div>
 </footer>
+
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+</script>
 
 
 <div class="floating-header">

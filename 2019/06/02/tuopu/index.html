@@ -9,7 +9,16 @@
 
 <head>
 	
-	<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXXX-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-XXXXXXXXXX-1');
+	</script>
+	
+	<meta charset="UTF-8">
 	<meta name="HandheldFriendly" content="True">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -125,7 +134,7 @@
             <section class="post-full-content">
                 <div id="lightgallery" class="markdown-body">
                     <h1 id="拓扑序"><a href="#拓扑序" class="headerlink" title="拓扑序"></a>拓扑序</h1><p><strong>有向无环图</strong>DAG，对每一个顶点给一个编号，第i号顶点叫做v，那么存在顶点 v~i~ 到顶点<kbd>v~j~</kbd>的边时，就有<strong>i&lt;j</strong>成立，这样的编号方式叫做<strong>拓扑序</strong>。<br><a id="more"></a></p>
-<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p> <img src="https://img-blog.csdnimg.cn/20190331155113375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0ODYzOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" class="post-img" href="https://img-blog.csdnimg.cn/20190331155113375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0ODYzOA==,size_16,color_FFFFFF,t_70"><br>如果把图（a）中的顶点按照拓扑序从右到左排列，那么所有的边都是从左指向右的。求解拓扑序的算法叫做<strong>拓扑排序</strong>。</p>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p> <img alt="在这里插入图片描述" class="post-img b-lazy" href="https://img-blog.csdnimg.cn/20190331155113375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0ODYzOA==,size_16,color_FFFFFF,t_70" data-src="https://img-blog.csdnimg.cn/20190331155113375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0ODYzOA==,size_16,color_FFFFFF,t_70"><br>如果把图（a）中的顶点按照拓扑序从右到左排列，那么所有的边都是从左指向右的。求解拓扑序的算法叫做<strong>拓扑排序</strong>。</p>
 <h3 id="DFS算法"><a href="#DFS算法" class="headerlink" title="DFS算法"></a>DFS算法</h3><p><strong><em>使用栈以使结果为正向排序，由于每个顶点和每条边都只访问了一次，因此复杂度时O(|V|+|E|).</em></strong></p>
 <h4 id="已知为DAG的情况"><a href="#已知为DAG的情况" class="headerlink" title="已知为DAG的情况"></a>已知为DAG的情况</h4><p>对每一个节点设置属性visited为0或1，未访问过为0，访问过为1.<br><code>dfs(u)</code>其中n为节点，不断深入递归，当其所有子节点都已被访问过之后才会退出。<br>所以可以知道最先被访问的必定是拓扑序最大的，则先将其<code>push</code>至栈中，最后从栈中取出时即为正序。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> to, next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">10010</span>;</span><br><span class="line"><span class="keyword">int</span> head[maxn] = &#123;&#125;;</span><br><span class="line"><span class="keyword">int</span> n, m, cnt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[maxn] = &#123;&#125;;</span><br><span class="line">Edge edge[maxn];</span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge[cnt].to = v;</span><br><span class="line">    edge[cnt].next = head[u];</span><br><span class="line">    head[u] = cnt++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vis[u] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = edge[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = edge[i].to;</span><br><span class="line">        <span class="keyword">if</span> (!vis[v]) dfs(v);</span><br><span class="line">    &#125;</span><br><span class="line">    S.push(u);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> u, v;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v;</span><br><span class="line">        add(u, v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (vis[i] == <span class="number">0</span>) dfs(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!S.empty()) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; S.top() &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        S.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -301,6 +310,21 @@
 		</nav>
 	</div>
 </footer>
+
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+</script>
 
 
 <div class="floating-header">
