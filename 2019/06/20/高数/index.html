@@ -16,7 +16,7 @@
 	
 	<meta name="theme-color" content="#3c484e">
 	
-	<title>SAA | WORIA</title>
+	<title>WORIA | WORIA</title>
 	<meta name="description" content>
 	<meta name="generator" content="WORIA">
 	
@@ -110,18 +110,26 @@
     <div class="inner">
         <article class="post-full no-image">
             
-            <h1 class="post-full-title">SAA</h1>
+            <h1 class="post-full-title"></h1>
             <section class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-04T14:18:38.728Z" itemprop="datePublished">
-                    2019-06-4
+                <time class="post-full-meta-date" datetime="2019-06-20T15:41:51.001Z" itemprop="datePublished">
+                    2019-06-20
                 </time>
                 
             </section>
             <section class="post-full-content">
                 <div id="lightgallery" class="markdown-body">
-                    <h1 id="模拟退火算法"><a href="#模拟退火算法" class="headerlink" title="模拟退火算法"></a>模拟退火算法</h1><h2 id="命名："><a href="#命名：" class="headerlink" title="命名："></a>命名：</h2><p><strong>模拟退火算法来源于固体退火原理，将固体加温至充分高，再让其徐徐冷却，加温时，固体内部粒子随温升变为无序状，内能增大，而徐徐冷却时粒子渐趋有序，在每个温度都达到平衡态，最后在常温时达到基态，内能减为最小。</strong></p>
-<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p><img src="https://i.loli.net/2019/06/04/5cf67876b227030643.png" alt="在这里插入图片描述" class="post-img" href="https://i.loli.net/2019/06/04/5cf67876b227030643.png"><br>如上图所示，从A点开始下降，寻找最低点，若经过B点，由于B点的梯度为0，故在此点可能误将极值点作为最指点，退火算法正是为了解决这一问题。<br>算法中规定了有限次的循环上限，在每一次循环中，更新当前点的位置并获得下一次点的坐标,新旧两点坐标将满足以下一种关系：<br>① 若下一点的函数值E~new~<e~old~，即de<0，则当前点比不是最值点，则更新点的几率 `p="1`." ② 若e~new~>E~old~，即dE&gt;0，则可能当前点位于B点或C点，此时以一定几率P继续更新。</e~old~，即de<0，则当前点比不是最值点，则更新点的几率></p>
-<p>即<strong>P满足：</strong><br><img src="https://i.loli.net/2019/06/04/5cf67bbe2dbdb76625.png" alt="在这里插入图片描述" class="post-img" href="https://i.loli.net/2019/06/04/5cf67bbe2dbdb76625.png"><br><strong>注意设定初始温度T在一较高值，设定结束温度，并且每次不要忘记更应温度t=t*r，r为降低率。</strong><br>由该式可看出，随着T增大，P越来越小，最终达到平衡，也符合自然规律。<br>下贴上伪代码：<br><img src="https://i.loli.net/2019/06/04/5cf67d1034fbd49032.png" alt="在这里插入图片描述" class="post-img" href="https://i.loli.net/2019/06/04/5cf67d1034fbd49032.png"></p>
+                    <ol>
+<li><h2 id="第一型曲线积分-int-L-f-x-y-rm-d-s-："><a href="#第一型曲线积分-int-L-f-x-y-rm-d-s-：" class="headerlink" title="第一型曲线积分$\int_L f(x,y){\rm d}s$："></a>第一型曲线积分$\int_L f(x,y){\rm d}s$：</h2><h3 id="解法："><a href="#解法：" class="headerlink" title="解法："></a>解法：</h3><p>① 参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</p>
+<p>$=\int ^a_b f(\phi(t),\varphi(t))\sqrt{\phi(t)^2+\varphi(t)^2}{\rm d}t$</p>
+<p>② 非参数方程：将x作为参数，同理。</p>
+</li>
+</ol>
+<ol>
+<li><h2 id="第二型曲线积分-int-L-P-x-y-rm-d-x-Q-x-y-rm-d-y-："><a href="#第二型曲线积分-int-L-P-x-y-rm-d-x-Q-x-y-rm-d-y-：" class="headerlink" title="第二型曲线积分$\int_L P(x,y){\rm d}x+Q(x,y){\rm d}y$："></a>第二型曲线积分$\int_L P(x,y){\rm d}x+Q(x,y){\rm d}y$：</h2><h3 id="解法：-1"><a href="#解法：-1" class="headerlink" title="解法："></a>解法：</h3><p>① 参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</p>
+<p>$=\int ^a_b [P[\phi(t),\varphi(t)]\phi’(t)+Q[\phi(t),\varphi(t)]\varphi’(t)]{\rm d}t$</p>
+</li>
+</ol>
 
                 </div>
             </section>
@@ -131,14 +139,10 @@
 <nav class="pagination">
     
     
-    <a class="prev-post" href="/2019/06/04/hexo/">
-        ← hexo
-    </a>
-    
     <span class="prev-next-post">•</span>
     
-    <a class="next-post" href="/2019/06/02/tuopu/">
-        拓扑排序 →
+    <a class="next-post" href="/2019/06/20/hexo-casper中插入mathjax/">
+        mathjax →
     </a>
     
     
@@ -165,7 +169,7 @@
 <div class="toc-main" style="right: -100%">
     <div class="post-toc">
         <span>TOC</span>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#模拟退火算法"><span class="toc-text">模拟退火算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命名："><span class="toc-text">命名：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理："><span class="toc-text">原理：</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一型曲线积分-int-L-f-x-y-rm-d-s-："><span class="toc-text">第一型曲线积分$\int_L f(x,y){\rm d}s$：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解法："><span class="toc-text">解法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二型曲线积分-int-L-P-x-y-rm-d-x-Q-x-y-rm-d-y-："><span class="toc-text">第二型曲线积分$\int_L P(x,y){\rm d}x+Q(x,y){\rm d}y$：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解法：-1"><span class="toc-text">解法：</span></a></li></ol></li></ol>
     </div>
 </div>
 
