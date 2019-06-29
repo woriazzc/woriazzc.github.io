@@ -199,11 +199,10 @@
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><ul>
-<li><p><font color="red">目的</font>：从高维降到低维，以降低$overfitting$的可能。</p>
-</li>
-<li><p><font color="red">方法</font>：从所有$w$中取 $||w||^{2}\leq{c}$的，从中选$Error$最小者。</p>
-</li>
+                    <h1 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h1><ul>
+<li><font color="red">目的</font>：从高维降到低维，以降低$overfitting$的可能。</li>
+<li><font color="red">方法</font>：从所有$w$中取 $||w||^{2}\leq{c}$的，从中选$Error$最小者。</li>
+<li>L2正则化后的$w$ 可能为0的项个数较少，但总的长度固定。</li>
 </ul>
 <p>即满足$w$ 在半径为$\sqrt{c}$ 的球内。由于要使$w$ 最终达到$w_{lin}$ ，$w_{lin}$常常在某凸多边形的中心。</p>
 <p>类似如图情况：</p>
@@ -236,7 +235,14 @@
 <p>一部分勒让德多项式：</p>
 <p><img alt="2" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png" data-src="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png"></p>
 <p>更多正交多项式见<a href="https://blog.zmyme.com/archives/118" target="_blank" rel="noopener">https://blog.zmyme.com/archives/118</a></p>
-
+<h1 id="L1正则化"><a href="#L1正则化" class="headerlink" title="L1正则化"></a>L1正则化</h1><ul>
+<li><p>取$\sum w_i=C$ 的 $w$</p>
+</li>
+<li><p>用于快速取得结果，因为满足条件的$w$必定有规定个数的项为 0 .</p>
+</li>
+</ul>
+<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d17409e236ae63450.png" data-src="https://i.loli.net/2019/06/29/5d17409e236ae63450.png"></p>
+<h1 id="对L1与L2正则化，nosie越多，-lambda-越大。"><a href="#对L1与L2正则化，nosie越多，-lambda-越大。" class="headerlink" title="对L1与L2正则化，nosie越多，$\lambda$ 越大。"></a>对L1与L2正则化，nosie越多，$\lambda$ 越大。</h1>
                 </article>
                 <ul class="tags-postTags">
                     
@@ -285,7 +291,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#正则化"><span class="toc-text">正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#拉格朗日乘数法"><span class="toc-text">拉格朗日乘数法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#证明："><span class="toc-text">证明：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#勒让德多项式"><span class="toc-text">勒让德多项式</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#L2正则化"><span class="toc-text">L2正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#拉格朗日乘数法"><span class="toc-text">拉格朗日乘数法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#证明："><span class="toc-text">证明：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#勒让德多项式"><span class="toc-text">勒让德多项式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#L1正则化"><span class="toc-text">L1正则化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对L1与L2正则化，nosie越多，-lambda-越大。"><span class="toc-text">对L1与L2正则化，nosie越多，$\lambda$ 越大。</span></a></li></ol>
     </div>
 </div>
 
