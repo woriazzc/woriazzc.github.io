@@ -211,7 +211,8 @@
 <p>即所求极值点常在球面上，故可将条件 $||w||^{2}\leq{c}$变为$||w||^{2}={c}$ </p>
 <h2 id="拉格朗日乘数法"><a href="#拉格朗日乘数法" class="headerlink" title="拉格朗日乘数法"></a>拉格朗日乘数法</h2><p>  问题转化为求$f(w)=E_{in}$在$g(w)=w^2-C=0$ 的条件下的条件极值。</p>
 <p>拉格朗日乘数法将求  $f(w)$在$w$ 满足一定条件下的极值问题转化为求$F(w)$ 在无约束条件下的极值。</p>
-<script type="math/tex; mode=display">F(w,\lambda)=f(w)+\lambda g(w)</script><p>接着就可以用regression方法逼近。</p>
+<script type="math/tex; mode=display">F(w,\lambda)=f(w)+\lambda g(w)</script><p>其中$\lambda \propto \frac{1}{C}$</p>
+<p>接着就可以用regression方法逼近。</p>
 <h3 id="证明："><a href="#证明：" class="headerlink" title="证明："></a>证明：</h3><p>假设点$(x,y)$满足$\left\{<br>\begin{aligned}<br>f(x,y)&amp;=k,(k为f极值) \\<br>g(x,y)&amp;=0<br>\end{aligned}<br>\right.$，则</p>
 <script type="math/tex; mode=display">\left\{
 \begin{aligned}
