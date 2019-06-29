@@ -515,6 +515,24 @@ cost =  -\frac{1}{N}\sum_{n=1}^{N}{\ln(h(x_n|y_n) )}    ------①</script>
       r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
       a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂) 你别走啊' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 你来了嗷' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
