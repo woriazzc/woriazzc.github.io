@@ -211,7 +211,7 @@
 <p>即所求极值点常在球面上，故可将条件 $||w||^{2}\leq{c}$变为$||w||^{2}={c}$ </p>
 <h2 id="拉格朗日乘数法"><a href="#拉格朗日乘数法" class="headerlink" title="拉格朗日乘数法"></a>拉格朗日乘数法</h2><p>  问题转化为求$f(w)=E_{in}$在$g(w)=w^2-C=0$ 的条件下的条件极值。</p>
 <p>拉格朗日乘数法将求  $f(w)$在$w$ 满足一定条件下的极值问题转化为求$F(w)$ 在无约束条件下的极值。</p>
-<script type="math/tex; mode=display">F(w,\lambda)=f(w)+\lambda g(w)</script><p>其中$\lambda \propto \frac{1}{C}$</p>
+<script type="math/tex; mode=display">F(w,\lambda)=f(w)+\lambda g(w)</script><p>其中$\lambda \propto \frac{1}{C}$，即$\lambda$ 越小，对$w$ 的筛选作用越大。</p>
 <p>接着就可以用regression方法逼近。</p>
 <h3 id="证明："><a href="#证明：" class="headerlink" title="证明："></a>证明：</h3><p>假设点$(x,y)$满足$\left\{<br>\begin{aligned}<br>f(x,y)&amp;=k,(k为f极值) \\<br>g(x,y)&amp;=0<br>\end{aligned}<br>\right.$，则</p>
 <script type="math/tex; mode=display">\left\{
@@ -226,13 +226,16 @@
 \frac{\partial f}{\partial y}+\lambda \frac{\partial g}{\partial y}&=0
 \end{aligned}
 \right.</script><p>全微分积分得</p>
-<script type="math/tex; mode=display">L(x,y,\lambda)=f(x,y)+\lambda g(x,y)</script><h2 id="勒让德多项式"><a href="#勒让德多项式" class="headerlink" title="勒让德多项式"></a>勒让德多项式</h2><p>在 $|x|&lt;1$时，会造成w变大。</p>
+<script type="math/tex; mode=display">L(x,y,\lambda)=f(x,y)+\lambda g(x,y)</script><h2 id="勒让德多项式"><a href="#勒让德多项式" class="headerlink" title="勒让德多项式"></a>勒让德多项式</h2><font color="red">定义在$\langle p,q\rangle=\int_{-1}^1 p(x)q(x)$ 内积上的正交多项式</font>
+
+<p>在 $|x|&lt;1$时，会造成w变大。</p>
 <p>将x正交化。</p>
 <script type="math/tex; mode=display">(1,x,x^2,x^3,\cdots,x^Q)\Rightarrow(1,x,\frac{1}{2}(3x^2-1),\frac{1}{2}(5x^3-3x),\cdots)</script><p>箭头右边的就是勒让德多项式，这是一系列两两正交的向量。</p>
 <p>而推导勒让德多项式的一种方法就是对$(1,x,x^2,\cdots)$ <a href="https://zh.wikipedia.org/wiki/格拉姆-施密特正交化" target="_blank" rel="noopener"><strong>Gram-Schmidt正交化</strong></a>。</p>
 <p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1727207cf3d43682.png" data-src="https://i.loli.net/2019/06/29/5d1727207cf3d43682.png"></p>
 <p>一部分勒让德多项式：</p>
 <p><img alt="2" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png" data-src="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png"></p>
+<p>更多正交多项式见<a href="https://blog.zmyme.com/archives/118" target="_blank" rel="noopener">https://blog.zmyme.com/archives/118</a></p>
 
                 </article>
                 <ul class="tags-postTags">
