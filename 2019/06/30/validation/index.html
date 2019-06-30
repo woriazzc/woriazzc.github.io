@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>拓扑排序 | WORIA</title>
+	<title>validation | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content>
+	<meta name="keywords" content="machine-learning">
 	
 
 	
@@ -50,12 +50,12 @@
 
 	<meta property="og:site_name" content="WORIA">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="拓扑排序 | WORIA">
+	<meta property="og:title" content="validation | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-06-02T14:06:86+08:00"> 
+	<meta property="article:published_time" content="2019-06-30T15:06:00+08:00"> 
 	<meta property="article:author" content="woria">
 	<meta property="article:published_first" content="WORIA, ">
 	
@@ -67,7 +67,7 @@
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/06/02/tuopu/">
+<link rel="canonical" href="https://www.woria.xyz/2019/06/30/validation/">
 
 
 
@@ -177,8 +177,8 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-02T06:44:17.865Z">
-                    2019-06-2
+                <time class="post-full-meta-date" datetime="2019-06-30T07:47:45.000Z">
+                    2019-06-30
                 </time>
                 
                 <span class="date-divider">/</span>
@@ -187,28 +187,38 @@
                 
                 
             </div>
-            <h1 class="post-full-title">拓扑排序</h1>
+            <h1 class="post-full-title">validation</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <h1 id="拓扑序"><a href="#拓扑序" class="headerlink" title="拓扑序"></a>拓扑序</h1><p><strong>有向无环图</strong>DAG，对每一个顶点给一个编号，第i号顶点叫做v，那么存在顶点 v~i~ 到顶点<kbd>v~j~</kbd>的边时，就有<strong>i&lt;j</strong>成立，这样的编号方式叫做<strong>拓扑序</strong>。<br><a id="more"></a></p>
-<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p> <img alt="在这里插入图片描述" class="post-img b-lazy" href="https://img-blog.csdnimg.cn/20190331155113375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0ODYzOA==,size_16,color_FFFFFF,t_70" data-src="https://img-blog.csdnimg.cn/20190331155113375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzk0ODYzOA==,size_16,color_FFFFFF,t_70"><br>如果把图（a）中的顶点按照拓扑序从右到左排列，那么所有的边都是从左指向右的。求解拓扑序的算法叫做<strong>拓扑排序</strong>。</p>
-<h3 id="DFS算法"><a href="#DFS算法" class="headerlink" title="DFS算法"></a>DFS算法</h3><p><strong><em>使用栈以使结果为正向排序，由于每个顶点和每条边都只访问了一次，因此复杂度时O(|V|+|E|).</em></strong></p>
-<h4 id="已知为DAG的情况"><a href="#已知为DAG的情况" class="headerlink" title="已知为DAG的情况"></a>已知为DAG的情况</h4><p>对每一个节点设置属性visited为0或1，未访问过为0，访问过为1.<br><code>dfs(u)</code>其中n为节点，不断深入递归，当其所有子节点都已被访问过之后才会退出。<br>所以可以知道最先被访问的必定是拓扑序最大的，则先将其<code>push</code>至栈中，最后从栈中取出时即为正序。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> to, next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">10010</span>;</span><br><span class="line"><span class="keyword">int</span> head[maxn] = &#123;&#125;;</span><br><span class="line"><span class="keyword">int</span> n, m, cnt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[maxn] = &#123;&#125;;</span><br><span class="line">Edge edge[maxn];</span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge[cnt].to = v;</span><br><span class="line">    edge[cnt].next = head[u];</span><br><span class="line">    head[u] = cnt++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vis[u] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = edge[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = edge[i].to;</span><br><span class="line">        <span class="keyword">if</span> (!vis[v]) dfs(v);</span><br><span class="line">    &#125;</span><br><span class="line">    S.push(u);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> u, v;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v;</span><br><span class="line">        add(u, v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (vis[i] == <span class="number">0</span>) dfs(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!S.empty()) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; S.top() &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        S.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="判环"><a href="#判环" class="headerlink" title="判环"></a>判环</h4><p>那么，如何判环呢？判环只是在<code>dfs</code>函数上稍做些修改，其中最主要的是<code>vis</code>数组的含义有所扩展，以及对下一结点进行<code>dfs</code>的条件判断。</p>
-<p>不判环的拓扑排序，<code>vis</code>只代表某一结点有没有被放问过，而现在，<code>vis</code>有三个值，-1，0，1。<br><strong>-1</strong>代表已访问过，但不是从当前系列<code>dfs</code>访问来的，<strong>0</strong>代表未访问过，<strong>1</strong>代表访问过，且是当前系列访问过的（意味着有环，如<code>u-&gt;v</code>,<code>v-&gt;t</code>,<code>t-&gt;u</code>）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vis[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = edge[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = edge[i].to;</span><br><span class="line">        <span class="keyword">if</span> (vis[v] == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (vis[v] == <span class="number">0</span> &amp;&amp; !dfs(v)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    vis[u] = <span class="number">-1</span>;</span><br><span class="line">    S.push(u);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Kahn算法"><a href="#Kahn算法" class="headerlink" title="Kahn算法"></a>Kahn算法</h3><p><strong>其实就是不断的寻找有向图中没有前驱(入度为0)的顶点，将之输出。然后从有向图中删除所有以此顶点为尾的弧。重复操作，直至图空，或者找不到没有前驱的顶点为止。</strong></p>
-<p><strong>该算法还可以判断有向图是否存在环(存在环的有向图肯定没有拓扑序列)，通过一个count记录找出的顶点个数，如果少于N则说明存在环使剩余的顶点的入度不为0。（degree数组记录每个点的入度数）</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">505</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> v, next;</span><br><span class="line">&#125;edge[maxn*maxn];</span><br><span class="line"><span class="keyword">int</span> degree[maxn], head[maxn];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; ans; </span><br><span class="line"><span class="keyword">int</span> n, m, no;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	no = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty()) q.pop();</span><br><span class="line">	<span class="built_in">memset</span>(degree, <span class="number">0</span>, <span class="keyword">sizeof</span> degree);</span><br><span class="line">	<span class="built_in">memset</span>(head, <span class="number">-1</span>, <span class="keyword">sizeof</span> head);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	edge[no].v = v;</span><br><span class="line">	edge[no].next = head[u];</span><br><span class="line">	head[u] = no++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Kahn</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> tp = q.front(); q.pop();</span><br><span class="line">		++count; ans.push_back(tp);	<span class="comment">//加入链表中，加入数组或者vector或者queue都无所谓 </span></span><br><span class="line">		<span class="keyword">int</span> k = head[tp];</span><br><span class="line">		<span class="keyword">while</span>(k != <span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			--degree[edge[k].v];</span><br><span class="line">			<span class="keyword">if</span>(!degree[edge[k].v]) q.push(edge[k].v);</span><br><span class="line">			k = edge[k].next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(count == n) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> u, v;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m); init();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;u, &amp;v);</span><br><span class="line">		add(u, v); ++degree[v];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!degree[i]) q.push(i);</span><br><span class="line">	&#125;</span><br><span class="line">	Kahn();</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span>(it = ans.begin(); it != ans.end(); ++it)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                    <h2 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a>Cross Validation</h2><ol>
+<li><h3 id="什么是Cross-Validation？"><a href="#什么是Cross-Validation？" class="headerlink" title="什么是Cross Validation？"></a>什么是Cross Validation？</h3><p>假设目前已有的数据集全集为D，从中选出一部分作为交叉验证集。</p>
+<p>其余集作为训练集，将已有的模型$A_1$在训练集上训练，在验证集上得到$Error_1$，再轮换选出另一部分作为验证集，重复。得到$\overline{E(A_1)}$，对模型$A_2$同样操作，得到$\overline{E(A_2)}$，最终选出$\overline{E}$最小的模型A，在全集上训练，得到最终的矩 g 。</p>
+</li>
+</ol>
+<ol>
+<li><h3 id="为什么需要Cross-Validation？"><a href="#为什么需要Cross-Validation？" class="headerlink" title="为什么需要Cross Validation？"></a>为什么需要Cross Validation？</h3><p>我们已经有了很多的机器学习模型，linear regression，PLA，Pocket，Logistic，同时每种模型又有各种超参数，是否加regularization，learning-rate，Logistic的维数，从中如何选择合适的模型成了重点，因此需要一种评判优劣的标准，如果都在全集上训练，测试，可能无法做到泛化。而留出一部分未被污染的数据作为测试，更客观。</p>
+</li>
+<li><h3 id="如何使用Cross-Validation"><a href="#如何使用Cross-Validation" class="headerlink" title="如何使用Cross Validation?"></a>如何使用Cross Validation?</h3><ol>
+<li>将全集分为几部分，常常分为5或10.</li>
+<li>选出一部分作为验证集，取一个模型在其余数据上训练。</li>
+<li>在验证集上得到 $Error_1$</li>
+<li>轮流去其余部分作为验证集，重复 b，c</li>
+<li>得到对应于该模型的 $\overline {E(A_i)}=\frac{1}{N}\sum_{n=1}^N Error_n$</li>
+<li>对于其余模型，重复a, b, c, d, e</li>
+<li>比较所有模型的 $\overline {E(A)}$ 选出最小的作为最终模型 $A^*$.</li>
+<li>在全集上训练$A^*$，得到合适的参数。确定最终的矩 g .</li>
+</ol>
+</li>
+</ol>
+
                 </article>
                 <ul class="tags-postTags">
                     
                     <li>
-                        <a href="../../../../tags/Algorithm/" rel="tag"># Algorithm</a>
+                        <a href="../../../../tags/machine-learning/" rel="tag"># machine-learning</a>
                     </li>
                     
                 </ul>
@@ -219,14 +229,10 @@
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="SAA" href="../../04/SAA/">
-            ← SAA
-        </a>
-        
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="博弈" href="../te/">
-            博弈 →
+        <a class="next-post" title="大物" href="../../26/大物/">
+            大物 →
         </a>
         
     </nav>
@@ -252,7 +258,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#拓扑序"><span class="toc-text">拓扑序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#拓扑排序"><span class="toc-text">拓扑排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DFS算法"><span class="toc-text">DFS算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#已知为DAG的情况"><span class="toc-text">已知为DAG的情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#判环"><span class="toc-text">判环</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kahn算法"><span class="toc-text">Kahn算法</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Validation"><span class="toc-text">Cross Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Cross-Validation？"><span class="toc-text">什么是Cross Validation？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么需要Cross-Validation？"><span class="toc-text">为什么需要Cross Validation？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何使用Cross-Validation"><span class="toc-text">如何使用Cross Validation?</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -284,7 +290,7 @@
       
       
       <li>
-        <a href="../../30/validation/">validation</a>
+        <a href>validation</a>
       </li>
       
       
