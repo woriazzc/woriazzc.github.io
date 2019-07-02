@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>Tag: 高数 | WORIA</title>
+	<title>空间中一点到超平面的距离推导 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content="hexo, casper, ghost, theme">
+	<meta name="keywords" content="感知机">
 	
 
 	
@@ -49,20 +49,28 @@
 	
 
 	<meta property="og:site_name" content="WORIA">
-	<meta property="og:type" content="blog">
-	<meta property="og:title" content="Tag: 高数 | WORIA">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="空间中一点到超平面的距离推导 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
+	<meta property="article:published_time" content="2019-06-30T15:06:00+08:00"> 
+	<meta property="article:author" content="woria">
+	<meta property="article:published_first" content="WORIA, ">
+	
 
 	
 	
-	<link rel="stylesheet" href="../../css/allinonecss.min.css">
+	<link rel="stylesheet" href="../../../../css/allinonecss.min.css">
 
 	
 	
 	
+<link rel="canonical" href="https://www.woria.xyz/2019/06/30/点到平面/">
+
+
+
 
 
 	
@@ -85,17 +93,15 @@
 	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 	
 </head>
-<body class="tag-template">
+<body class="post-template">
 	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
-		 
+		
 
 
 
 
-<header class="site-header outer " style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+<header class="site-header post-site-header outer">
     <div class="inner">
-        
-        
         
 <nav class="site-nav"> 
     <div class="site-nav-left">
@@ -163,90 +169,89 @@
 </div>
     </div>
 </nav>
-        
-        <div class="site-header-content">
-            
-            <h1 class="site-title">
-                Tag: 高数
-            </h1>
-            <h2 class="site-description">Tags</h2>
-        </div>
-        
-        
     </div>
 </header>
 
 
 <div id="site-main" class="site-main outer" role="main">
-	<div class="inner">
-		<div class="post-feed">
-			
-			<article class="post-card post ">
-				
-				<a class="post-card-image-link" title="高数" href="../../2019/06/20/高数/">
-					<div class="post-card-image b-lazy" data-src="https://i.loli.net/2019/06/22/5d0de000305b647937.jpg"></div>
-				</a>
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="高数" href="../../2019/06/20/高数/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								
-								考试
-								| 
-								
-								<time datetime="2019-06-20T15:41:51.001Z">
-									2019-06-20
-								</time>
-							</span>
-							<h2 class="post-card-title">高数</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								仅为考试复习，非笔记！
-曲线积分
-第一型曲线积分$\int_L f(x,y){\rm d}s$：解法：
-参数方程：x=$\phi(t)$ , y=$\varph
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">woria</div>
-								
-								<a href="/about" class="static-avatar">
-									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							8
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-		</div>
-	</div>
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-06-30T07:47:45.000Z">
+                    2019-06-30
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="../../../../categories/学习/">学习</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">空间中一点到超平面的距离推导</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="lightgallery" class="markdown-body">
+                    <p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p>
+<p>$w$为超平面的法向量，b为截距。</p>
+<p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p>
+<p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p>
+<p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p>
+<p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p>
+<p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p>
+<p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="../../../../tags/感知机/" rel="tag"># 感知机</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="kd树" href="../../../07/02/kd-tree/">
+            ← kd树
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="贝叶斯公式" href="../贝叶斯/">
+            贝叶斯公式 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
 </div>
 
-
-
-<div class="outer">
-	<nav class="pagination">
-		
-	</nav>
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        
+    </div>
 </div>
 
 
@@ -277,19 +282,19 @@
       
       
       <li>
-        <a href="../../2019/07/02/kd-tree/">kd树</a>
+        <a href="../../../07/02/kd-tree/">kd树</a>
       </li>
       
       
       
       <li>
-        <a href="../../2019/06/30/点到平面/">空间中一点到超平面的距离推导</a>
+        <a href>空间中一点到超平面的距离推导</a>
       </li>
       
       
       
       <li>
-        <a href="../../2019/06/30/贝叶斯/">贝叶斯公式</a>
+        <a href="../贝叶斯/">贝叶斯公式</a>
       </li>
       
       
@@ -328,7 +333,7 @@
     </ul>
   </div>
   <footer class="read-next-card-footer">
-    <a href="../../archives">  MORE  → </a>
+    <a href="../../../../archives">  MORE  → </a>
   </footer>
 </article>
 
@@ -341,7 +346,7 @@
         <h3 class="read-next-card-header-title">Categories</h3>
     </header>
     <div class="read-next-card-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/考试/">考试</a></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/考试/">考试</a></li></ul>
     </div>
 </article>
 
@@ -355,7 +360,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../hexo/" style="font-size: 17.33px;">hexo</a> <a href="../kd/" style="font-size: 14px;">kd</a> <a href="../machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../overfit/" style="font-size: 14px;">overfit</a> <a href="../python/" style="font-size: 14px;">python</a> <a href="../感知机/" style="font-size: 14px;">感知机</a> <a href="../物理/" style="font-size: 14px;">物理</a> <a href="../线代/" style="font-size: 14px;">线代</a> <a href="../贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href style="font-size: 14px;">高数</a>
+		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/hexo/" style="font-size: 17.33px;">hexo</a> <a href="../../../../tags/kd/" style="font-size: 14px;">kd</a> <a href="../../../../tags/machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
@@ -388,7 +393,10 @@
 <script>if(window.navigator && navigator.serviceWorker) {navigator.serviceWorker.getRegistrations().then(function(registrations) {for(let registration of registrations) {registration.unregister()}})}</script>
 
 
-<script async src="../../js/allinone.min.js" id="scriptLoad"></script>
+<script async src="../../../../js/allinone.min.js" id="scriptLoad"></script>
+
+
+
 
 
 
@@ -404,11 +412,34 @@
 
 
 
+<script src="../../../../js/lightgallery.min.js"></script>
+<link rel="stylesheet" href="../../../../css/lightgallery.min.css">
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: '.post-img'
+    });
+</script>
 
 
 
 
-
+<script async src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script async src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+<script>
+    window.addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: true,
+            appId: 'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
+            appKey: 'reWNaUPPWMXJhmx3CYSlF3w9',
+            placeholder: 'Say Something!!!',
+            pageSize: 10,
+            avatar: 'wavatar',
+            visitor: true,
+        })
+    });
+</script>
 
 
 

@@ -202,7 +202,7 @@
 <li><p>到这一步可以试一下，如果成功了就ok。。</p>
 </li>
 <li><p>如果还不行的话，可能是因为博客地址是https，而github项目中引用的js是http资源，因此会被block。解决方法是在需要使用mathjax的 .html中加入</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"upgrade-insecure-requests"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"upgrade-insecure-requests"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>更彻底的办法是在”\themes\hexo-casper\layout_partials\head.swig”中把mathjax部分的”&lt;script type=”text/javascript” src=””中的链接改为<a href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" target="_blank" rel="noopener">https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML</a> 也就是和第2步中的更新为一样的地址，是https。</p>
 </li>
 </ol>
@@ -287,20 +287,26 @@
       
       
       <li>
-        <a href="../../30/validation/">validation</a>
+        <a href="../../../07/02/kd-tree/">kd树</a>
       </li>
       
       
       
       <li>
-        <a href="../../26/大物/">大物</a>
+        <a href="../../30/点到平面/">空间中一点到超平面的距离推导</a>
       </li>
       
       
       
       <li>
-        <a href="../../22/None/">Locked</a>
+        <a href="../../30/贝叶斯/">贝叶斯公式</a>
       </li>
+      
+      
+      
+      
+      
+      
       
       
       
@@ -359,7 +365,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/hexo/" style="font-size: 17.33px;">hexo</a> <a href="../../../../tags/machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
+		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/hexo/" style="font-size: 17.33px;">hexo</a> <a href="../../../../tags/kd/" style="font-size: 14px;">kd</a> <a href="../../../../tags/machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
