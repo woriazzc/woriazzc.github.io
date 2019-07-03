@@ -193,7 +193,10 @@
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <h2 id="构造kd树"><a href="#构造kd树" class="headerlink" title="构造kd树"></a>构造kd树</h2><p>kd树用于搜索与规定点空间距离最小的点。</p>
+                    <h2 id="K-近邻法"><a href="#K-近邻法" class="headerlink" title="K-近邻法"></a>K-近邻法</h2><p>距离度量标准：欧式距离或更一般的 $L_p$ 距离。</p>
+<p>k 值的选择：k 值小时，k 近邻模型更复杂；k 值大时，模型更简单（当 k=N 时，最简单）；用交叉验证法取得最合适的 k 值。</p>
+<p>分类决策原则：多数表决。</p>
+<h2 id="构造kd树"><a href="#构造kd树" class="headerlink" title="构造kd树"></a>构造kd树</h2><p>kd树用于搜索与规定点空间距离最小的点。</p>
 <p>kd树与线段树类似，线段树存某一区间，kd树存某一k维空间。</p>
 <p>构造kd树的方法也是从一整个空间开始，递归往下分配空间。</p>
 <p><strong>每个节点存其所在维度，父子节点，以便之后搜索。</strong></p>
@@ -231,8 +234,8 @@
         
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="贝叶斯公式" href="../../../06/30/贝叶斯/">
-            贝叶斯公式 →
+        <a class="next-post" title="validation" href="../../../06/30/validation/">
+            validation →
         </a>
         
     </nav>
@@ -258,7 +261,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造kd树"><span class="toc-text">构造kd树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索kd树"><span class="toc-text">搜索kd树</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#K-近邻法"><span class="toc-text">K-近邻法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造kd树"><span class="toc-text">构造kd树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索kd树"><span class="toc-text">搜索kd树</span></a></li></ol>
     </div>
 </div>
 
@@ -296,14 +299,16 @@
       
       
       <li>
-        <a href="../../../06/30/贝叶斯/">贝叶斯公式</a>
+        <a href="../../../06/30/validation/">validation</a>
       </li>
       
       
       
       <li>
-        <a href="../../../06/30/点到平面/">空间中一点到超平面的距离推导</a>
+        <a href="../../../06/30/贝叶斯/">贝叶斯估计</a>
       </li>
+      
+      
       
       
       
@@ -368,7 +373,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/hexo/" style="font-size: 17.33px;">hexo</a> <a href="../../../../tags/kd/" style="font-size: 14px;">kd</a> <a href="../../../../tags/machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
+		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/hexo/" style="font-size: 17.33px;">hexo</a> <a href="../../../../tags/kd/" style="font-size: 14px;">kd</a> <a href="../../../../tags/machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/决策树/" style="font-size: 14px;">决策树</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 

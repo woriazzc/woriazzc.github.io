@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>贝叶斯估计 | WORIA</title>
+	<title>Tag: 决策树 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content="machine-learning">
+	<meta name="keywords" content="hexo, casper, ghost, theme">
 	
 
 	
@@ -49,28 +49,20 @@
 	
 
 	<meta property="og:site_name" content="WORIA">
-	<meta property="og:type" content="article">
-	<meta property="og:title" content="贝叶斯估计 | WORIA">
+	<meta property="og:type" content="blog">
+	<meta property="og:title" content="Tag: 决策树 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-06-30T15:06:00+08:00"> 
-	<meta property="article:author" content="woria">
-	<meta property="article:published_first" content="WORIA, ">
-	
 
 	
 	
-	<link rel="stylesheet" href="../../../../css/allinonecss.min.css">
+	<link rel="stylesheet" href="../../css/allinonecss.min.css">
 
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/06/30/贝叶斯/">
-
-
-
 
 
 	
@@ -93,15 +85,17 @@
 	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 	
 </head>
-<body class="post-template">
+<body class="tag-template">
 	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
-		
+		 
 
 
 
 
-<header class="site-header post-site-header outer">
+<header class="site-header outer " style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
     <div class="inner">
+        
+        
         
 <nav class="site-nav"> 
     <div class="site-nav-left">
@@ -169,105 +163,91 @@
 </div>
     </div>
 </nav>
+        
+        <div class="site-header-content">
+            
+            <h1 class="site-title">
+                Tag: 决策树
+            </h1>
+            <h2 class="site-description">Tags</h2>
+        </div>
+        
+        
     </div>
 </header>
 
 
 <div id="site-main" class="site-main outer" role="main">
-    <div class="inner">
-        <header class="post-full-header">
-            <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-30T07:47:45.000Z">
-                    2019-06-30
-                </time>
-                
-                <span class="date-divider">/</span>
-                
-                <a href="../../../../categories/学习/">学习</a>&nbsp;&nbsp;
-                
-                
-            </div>
-            <h1 class="post-full-title">贝叶斯估计</h1>
-        </header>
-        <div class="post-full no-image">
-            
-            <div class="post-full-content">
-                <article id="lightgallery" class="markdown-body">
-                    <h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p>
-<p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p>
-<p>$P(B|A)$：发生A的条件下发生B的概率。</p>
-<p>先验概率越小，误判可能性越大。</p>
-<p>似然性：由结果推出规律的可能性。</p>
-<p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p>
-<p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p>
-<p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p>
-<p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p>
-<p>条件概率——在条件A的基础上，发生B的概率。</p>
-<p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p>
-<p>先验概率通常是我们通过已有数据已知的。</p>
-<p>后验概率一般是我们需要求的结果。</p>
-<p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p>
-<h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p>
-<script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p>
-<script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font>
-
-<script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p>
-<p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p>
-<p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p>
-<p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p>
-<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p>
-<p>缺点：分类性能不一定很高</p>
-
-                </article>
-                <ul class="tags-postTags">
-                    
-                    <li>
-                        <a href="../../../../tags/贝叶斯/" rel="tag"># 贝叶斯</a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    
-    <nav id="gobottom" class="pagination">
-        
-        <a class="prev-post" title="validation" href="../validation/">
-            ← validation
-        </a>
-        
-        <span class="prev-next-post">·</span>
-        
-        <a class="next-post" title="空间中一点到超平面的距离推导" href="../点到平面/">
-            空间中一点到超平面的距离推导 →
-        </a>
-        
-    </nav>
-
-    
-    <div class="inner">
-        <div id="comment"></div>
-    </div>
-    
+	<div class="inner">
+		<div class="post-feed">
+			
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="决策树" href="../../2019/06/30/决策树/">
+					<div class="post-card-image b-lazy" data-src="https://i.loli.net/2019/07/03/5d1cccf60ac7c10755.png"></div>
+				</a>
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="决策树" href="../../2019/06/30/决策树/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								
+								学习
+								| 
+								
+								<time datetime="2019-06-30T07:47:45.000Z">
+									2019-06-30
+								</time>
+							</span>
+							<h2 class="post-card-title">决策树</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								特征选择
+信息增益1.1 熵
+​    随机变量 X ，其分布概率为 $P(X=x_i)=p_i , i=1,2,\cdots,n$
+​    熵定义为 :
+​
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">woria</div>
+								
+								<a href="/about" class="static-avatar">
+									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							0
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+		</div>
+	</div>
 </div>
 
-<div class="toc-bar">
-    <div class="toc-btn-bar">
-        <a href="#site-main" class="toc-btn">
-            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
-        </a>
-        <div class="toc-btn toc-switch">
-            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
-            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
-        </div>
-        <a href="#gobottom" class="toc-btn">
-            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
-        </a>
-    </div>
-    <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#贝叶斯公式"><span class="toc-text">贝叶斯公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#朴素贝叶斯算法的极大似然估计"><span class="toc-text">朴素贝叶斯算法的极大似然估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贝叶斯估计（拉普拉斯平滑）"><span class="toc-text">贝叶斯估计（拉普拉斯平滑）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优缺点"><span class="toc-text">优缺点</span></a></li></ol>
-    </div>
+
+
+<div class="outer">
+	<nav class="pagination">
+		
+	</nav>
 </div>
 
 
@@ -298,19 +278,19 @@
       
       
       <li>
-        <a href="../../../07/02/kd-tree/">kd树</a>
+        <a href="../../2019/07/02/kd-tree/">kd树</a>
       </li>
       
       
       
       <li>
-        <a href="../validation/">validation</a>
+        <a href="../../2019/06/30/validation/">validation</a>
       </li>
       
       
       
       <li>
-        <a href>贝叶斯估计</a>
+        <a href="../../2019/06/30/贝叶斯/">贝叶斯估计</a>
       </li>
       
       
@@ -351,7 +331,7 @@
     </ul>
   </div>
   <footer class="read-next-card-footer">
-    <a href="../../../../archives">  MORE  → </a>
+    <a href="../../archives">  MORE  → </a>
   </footer>
 </article>
 
@@ -364,7 +344,7 @@
         <h3 class="read-next-card-header-title">Categories</h3>
     </header>
     <div class="read-next-card-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/考试/">考试</a></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/考试/">考试</a></li></ul>
     </div>
 </article>
 
@@ -378,7 +358,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/hexo/" style="font-size: 17.33px;">hexo</a> <a href="../../../../tags/kd/" style="font-size: 14px;">kd</a> <a href="../../../../tags/machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/决策树/" style="font-size: 14px;">决策树</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
+		<a href="../Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../hexo/" style="font-size: 17.33px;">hexo</a> <a href="../kd/" style="font-size: 14px;">kd</a> <a href="../machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../overfit/" style="font-size: 14px;">overfit</a> <a href="../python/" style="font-size: 14px;">python</a> <a href style="font-size: 14px;">决策树</a> <a href="../感知机/" style="font-size: 14px;">感知机</a> <a href="../物理/" style="font-size: 14px;">物理</a> <a href="../线代/" style="font-size: 14px;">线代</a> <a href="../贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
@@ -411,10 +391,7 @@
 <script>if(window.navigator && navigator.serviceWorker) {navigator.serviceWorker.getRegistrations().then(function(registrations) {for(let registration of registrations) {registration.unregister()}})}</script>
 
 
-<script async src="../../../../js/allinone.min.js" id="scriptLoad"></script>
-
-
-
+<script async src="../../js/allinone.min.js" id="scriptLoad"></script>
 
 
 
@@ -430,34 +407,11 @@
 
 
 
-<script src="../../../../js/lightgallery.min.js"></script>
-<link rel="stylesheet" href="../../../../css/lightgallery.min.css">
-<script>
-    lightGallery(document.getElementById('lightgallery'), {
-        selector: '.post-img'
-    });
-</script>
 
 
 
 
-<script async src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script async src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
-<script>
-    window.addEventListener("load", function() {
-        new Valine({
-            el: '#comment' ,
-            verify: false,
-            notify: true,
-            appId: 'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
-            appKey: 'reWNaUPPWMXJhmx3CYSlF3w9',
-            placeholder: 'Say Something!!!',
-            pageSize: 10,
-            avatar: 'wavatar',
-            visitor: true,
-        })
-    });
-</script>
+
 
 
 
