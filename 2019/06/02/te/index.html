@@ -183,7 +183,7 @@
                 
                 <span class="date-divider">/</span>
                 
-                <a href="../../../../categories/学习/">学习</a>&nbsp;&nbsp;
+                <a href="../../../../categories/oj/">oj</a>&nbsp;&nbsp;
                 
                 
             </div>
@@ -203,8 +203,8 @@
 <h2 id="2-威佐夫博弈"><a href="#2-威佐夫博弈" class="headerlink" title="2.威佐夫博弈"></a>2.威佐夫博弈</h2><ol>
 <li><strong>问题模型</strong>：有<strong>两堆</strong>各若干个物品，两个人轮流<strong>从某一堆</strong>或<strong>同时从两堆中取同样多的物品</strong>，规定每次至少取一个，多者不限，最后取光者得胜。</li>
 <li>解决思路: 设(a~i~,b~i~) (a~i~ ≤b~i~  ,$n\in\mathbb N$)表示两堆物品的数量并称其为局势，如果甲面对(0,0)，那么甲已经输了，这种局势我们称为<strong>奇异局势</strong>。前几个奇异局势是：(0,0)、(1,2)、(3,5)、(4,7)、(6,10)、(8,13)、(9,15)、(11,18)、(12,20)。任给一个局势(a,b)，如下公式判断它是不是奇异局势：<strong>a~k~=$[\frac{k*(1+\sqrt{5})}{2}]$</strong>，b~k~=a~k~+k ($n\in\mathbb N$,方括号表示取整函数)。</li>
-<li><strong>满足上公式的局势性质：</strong><br>（1）<font color="red">任何自然数都包含在一个且仅有一个奇异局势中。</font><pre><code> 假设a~k~是未在前面出现过的最小自然数，所以有a~k~&gt;a~k-1~，而b~k~=a~k~+k&gt;a~k-1~+k-1=b~k-1~&gt;a~k-1~，故成立。
-</code></pre>（2）<font color="red">任意操作都可将奇异局势变为非奇异局势。</font><pre><code> 若只改变奇异局势(a~k~，b~k~)的某一个分量，那么另一个分量不可能在其他奇异局势中，所以必然是非奇异局势。如果使(a~k~，b~k~)的两个分量同时减少，则由于其差不变，且不可能是其他奇异局势的差，因此也是非奇异局势
+<li><strong>满足上公式的局势性质：</strong><br>（1）<font color="red">任何自然数都包含在一个且仅有一个奇异局势中。</font><pre><code>     假设a~k~是未在前面出现过的最小自然数，所以有a~k~&gt;a~k-1~，而b~k~=a~k~+k&gt;a~k-1~+k-1=b~k-1~&gt;a~k-1~，故成立。
+</code></pre>（2）<font color="red">任意操作都可将奇异局势变为非奇异局势。</font><pre><code>     若只改变奇异局势(a~k~，b~k~)的某一个分量，那么另一个分量不可能在其他奇异局势中，所以必然是非奇异局势。如果使(a~k~，b~k~)的两个分量同时减少，则由于其差不变，且不可能是其他奇异局势的差，因此也是非奇异局势
 </code></pre>（3）<font color="red">采用适当的方法，可以将非奇异局势变为奇异局势。</font><br>  假设面对的局势是（a,b），若 b = a，则同时从两堆中取走 a 个物体，就变为了奇异局势（0，0）；如果a = a~k~ ，b &gt; b~k~，那么，取走b  – bk个物体，即变为奇异局势；如果 a = a~k~,b &lt; b~k~ ,则同时从两堆中拿走 a~k~ – ab – a~k~个物体,变为奇异局势（ ab – a~k~ , ab – a~k~+ b – a~k~）；如果a &gt; a~k~,b= a~k~ + k,则从第一堆中拿走多余的数量a – a~k~ 即可；如果a &lt; a~k~ ，b= a~k~ + k,分两种情况，第一种，a=a~j~，(j &lt; k),从第二堆里面拿走 b – b~j~ 即可； 第二种，a=b~j~ ，(j&lt;k),从第二堆里面拿走 b – a~j~ 即可。 </li>
 <li><strong>结论：</strong> 两个人如果都采用正确操作，那么面对非奇异局势，先拿者必胜；反之，则后拿者取胜。</li>
 </ol>
@@ -215,8 +215,10 @@
 <p>（2）之后每次可以取的石子数介于1到对手刚取的石子数的2倍之间（包含1和对手刚取的石子数的2倍）。 <font color="red">约定取走最后一个石子的人为赢家。</font></p>
 </li>
 <li><p><strong>解决思路：</strong> </p>
-<pre><code>     &lt;font color=red&gt;当n为斐波那契数时，先手必败。&lt;/font&gt;
-</code></pre><p> <strong>证明：</strong><br> 根据“Zeckendorf定理”（齐肯多夫定理）：<strong>任何非斐波那契正整数可以表示为若干个不连续的Fibonacci数之和。</strong><br>假设共83个，n=83=55+21+5+2，先手者取<code>2</code>个，后手者无法取到5个，只能取<code>a</code>个(a&lt;5)，先手者再取 <code>5-a</code> 个，同理，后手者再取<code>b</code>个，先手者再取<code>21-b</code>个，最终必然是先手者取完。</p>
+<pre><code>         &lt;font color=red&gt;当n为斐波那契数时，先手必败。&lt;/font&gt;
+ **证明：** 
+ 根据“Zeckendorf定理”（齐肯多夫定理）：**任何非斐波那契正整数可以表示为若干个不连续的Fibonacci数之和。**
+</code></pre><p>假设共83个，n=83=55+21+5+2，先手者取<code>2</code>个，后手者无法取到5个，只能取<code>a</code>个(a&lt;5)，先手者再取 <code>5-a</code> 个，同理，后手者再取<code>b</code>个，先手者再取<code>21-b</code>个，最终必然是先手者取完。</p>
 </li>
 <li><p><strong>结论：</strong> 面对斐波那契数者必败。</p>
 </li>
@@ -318,20 +320,26 @@
       
       
       <li>
-        <a href="../../../07/02/kd-tree/">kd树</a>
+        <a href="../../../07/07/eoj3306/">eoj3306 有钱人买钻石</a>
       </li>
       
       
       
       <li>
-        <a href="../../30/决策树/">决策树</a>
+        <a href="../../../07/07/eoj3364/">eoj3364 吉吉木坐地铁</a>
       </li>
       
       
       
       <li>
-        <a href="../../30/贝叶斯/">贝叶斯估计</a>
+        <a href="../../../07/07/eoj3633/">eoj3633 双人旋转赛车</a>
       </li>
+      
+      
+      
+      
+      
+      
       
       
       
@@ -384,7 +392,7 @@
         <h3 class="read-next-card-header-title">Categories</h3>
     </header>
     <div class="read-next-card-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/考试/">考试</a></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/ml/">ml</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/oj/">oj</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/考试/">考试</a></li></ul>
     </div>
 </article>
 
@@ -398,7 +406,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/hexo/" style="font-size: 17.33px;">hexo</a> <a href="../../../../tags/kd/" style="font-size: 14px;">kd</a> <a href="../../../../tags/machine-learning/" style="font-size: 20.67px;">machine-learning</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/决策树/" style="font-size: 14px;">决策树</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
+		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/error/" style="font-size: 14px;">error</a> <a href="../../../../tags/graph/" style="font-size: 14px;">graph</a> <a href="../../../../tags/greedy/" style="font-size: 19px;">greedy</a> <a href="../../../../tags/hexo/" style="font-size: 19px;">hexo</a> <a href="../../../../tags/homework/" style="font-size: 14px;">homework</a> <a href="../../../../tags/model/" style="font-size: 19px;">model</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/validation/" style="font-size: 14px;">validation</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/超平面/" style="font-size: 14px;">超平面</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
