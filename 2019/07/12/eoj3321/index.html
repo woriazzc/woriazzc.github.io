@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>Tag: Algorithm | WORIA</title>
+	<title>EOJ3321 坏掉的里程表 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content="hexo, casper, ghost, theme">
+	<meta name="keywords" content="binary-search">
 	
 
 	
@@ -49,20 +49,28 @@
 	
 
 	<meta property="og:site_name" content="WORIA">
-	<meta property="og:type" content="blog">
-	<meta property="og:title" content="Tag: Algorithm | WORIA">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="EOJ3321 坏掉的里程表 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
+	<meta property="article:published_time" content="2019-07-12T19:07:00+08:00"> 
+	<meta property="article:author" content="woria">
+	<meta property="article:published_first" content="WORIA, ">
+	
 
 	
 	
-	<link rel="stylesheet" href="../../css/allinonecss.min.css">
+	<link rel="stylesheet" href="../../../../css/allinonecss.min.css">
 
 	
 	
 	
+<link rel="canonical" href="https://www.woria.xyz/2019/07/12/eoj3321/">
+
+
+
 
 
 	
@@ -85,17 +93,15 @@
 	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 	
 </head>
-<body class="tag-template">
+<body class="post-template">
 	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
-		 
+		
 
 
 
 
-<header class="site-header outer " style="background-image: url(https://i.loli.net/2019/07/07/5d21b388503c339900.jpg)">
+<header class="site-header post-site-header outer">
     <div class="inner">
-        
-        
         
 <nav class="site-nav"> 
     <div class="site-nav-left">
@@ -163,245 +169,88 @@
 </div>
     </div>
 </nav>
-        
-        <div class="site-header-content">
-            
-            <h1 class="site-title">
-                Tag: Algorithm
-            </h1>
-            <h2 class="site-description">Tags</h2>
-        </div>
-        
-        
     </div>
 </header>
 
 
 <div id="site-main" class="site-main outer" role="main">
-	<div class="inner">
-		<div class="post-feed">
-			
-			<article class="post-card post ">
-				
-				<a class="post-card-image-link" title="差分与前缀和" href="../../2019/06/10/cha-fen/">
-					<div class="post-card-image b-lazy" data-src="https://i.loli.net/2019/06/10/5cfe6f27d46c878879.jpg"></div>
-				</a>
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="差分与前缀和" href="../../2019/06/10/cha-fen/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								
-								oj
-								| 
-								
-								<time datetime="2019-06-10T14:48:16.897Z">
-									2019-06-10
-								</time>
-							</span>
-							<h2 class="post-card-title">差分与前缀和</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								差分与前缀和这两个常常一起用，所以记在一起。
-差分：设原数组为a[i].维护一个数组A[i],使得A[i]=a[i]-a[i-1];前缀和中a[i]=A[i]-
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">woria</div>
-								
-								<a href="/about" class="static-avatar">
-									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							1
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-			<article class="post-card post ">
-				
-				<a class="post-card-image-link" title="SAA" href="../../2019/06/04/SAA/">
-					<div class="post-card-image b-lazy" data-src="https://images.unsplash.com/photo-1557180770-52f941329121?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"></div>
-				</a>
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="SAA" href="../../2019/06/04/SAA/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								
-								oj
-								| 
-								
-								<time datetime="2019-06-04T14:18:38.728Z">
-									2019-06-04
-								</time>
-							</span>
-							<h2 class="post-card-title">SAA</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								模拟退火算法命名：模拟退火算法来源于固体退火原理，将固体加温至充分高，再让其徐徐冷却，加温时，固体内部粒子随温升变为无序状，内能增大，而徐徐冷却时粒子渐趋有序，在每个温度都达到平衡态，最后在常温时达到
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">woria</div>
-								
-								<a href="/about" class="static-avatar">
-									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							1
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-			<article class="post-card post ">
-				
-				<a class="post-card-image-link" title="拓扑排序" href="../../2019/06/02/tuopu/">
-					<div class="post-card-image b-lazy" data-src="https://i.loli.net/2019/06/05/5cf74f883793752505.jpg"></div>
-				</a>
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="拓扑排序" href="../../2019/06/02/tuopu/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								
-								oj
-								| 
-								
-								<time datetime="2019-06-02T06:44:17.865Z">
-									2019-06-02
-								</time>
-							</span>
-							<h2 class="post-card-title">拓扑排序</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								拓扑序有向无环图DAG，对每一个顶点给一个编号，第i号顶点叫做v，那么存在顶点 v~i~ 到顶点v~j~的边时，就有i&lt;j成立，这样的编号方式叫做拓扑序。
-拓扑排序 如果把图（a）中的顶点按照拓
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">woria</div>
-								
-								<a href="/about" class="static-avatar">
-									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							7
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-			<article class="post-card post ">
-				
-				<a class="post-card-image-link" title="博弈" href="../../2019/06/02/te/">
-					<div class="post-card-image b-lazy" data-src="https://images.unsplash.com/photo-1549558549-415fe4c37b60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1930&q=80"></div>
-				</a>
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="博弈" href="../../2019/06/02/te/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								
-								oj
-								| 
-								
-								<time datetime="2019-06-02T06:36:06.165Z">
-									2019-06-02
-								</time>
-							</span>
-							<h2 class="post-card-title">博弈</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								_几种无法用常见博弈树解答的题型，寻找必败态。_
-1.巴什博弈
-问题模型： 有一个堆物品，物品数量为n个，两个人轮流从这堆物品中取物品，规定每次至少取一个，最多取m个，最后取光者得胜。
-解决思路： 当
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">woria</div>
-								
-								<a href="/about" class="static-avatar">
-									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							8
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-		</div>
-	</div>
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-07-12T11:06:59.000Z">
+                    2019-07-12
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="../../../../categories/oj/">oj</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">EOJ3321 坏掉的里程表</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="lightgallery" class="markdown-body">
+                    <p>注意几点：</p>
+<ul>
+<li><p>二分停止的条件是上下边界的差值小于 eps ，而非时间的值与t的差值小于 eps 。</p>
+</li>
+<li><p>cout的double只能输出小数点后 6 位，要输出更多需在输出语句前加</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; setprecision(t);</span><br></pre></td></tr></table></figure>
+<p>便可输出小数点后 t 位</p>
+</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">int</span> n, t;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-9</span>;</span><br><span class="line"><span class="keyword">double</span> c=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">double</span> ed, st;</span><br><span class="line"><span class="built_in">vector</span>&lt;pii&gt;vc;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ans = <span class="number">0.0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> it : vc) &#123;</span><br><span class="line">		ans += <span class="number">1.0</span>*it.first / (it.second + c);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; t;</span><br><span class="line">	<span class="keyword">int</span> mins=<span class="number">1e9</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> d, s;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; d &gt;&gt; s;</span><br><span class="line">		<span class="keyword">if</span> (s &lt;mins)mins = s;</span><br><span class="line">		vc.push_back(pii(d, s));</span><br><span class="line">	&#125;</span><br><span class="line">	st = <span class="number">0</span>-mins;</span><br><span class="line">	ed = <span class="number">1e9</span>;</span><br><span class="line">	c = (st + ed)*<span class="number">1.0</span> / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">double</span> tmp;</span><br><span class="line">	<span class="keyword">while</span> (ed-st&gt;=eps) &#123;</span><br><span class="line">		c = <span class="number">1.0</span>*(st + ed) / <span class="number">2</span>;</span><br><span class="line">		tmp = solve() - t;</span><br><span class="line">		<span class="keyword">if</span> (tmp &gt;=eps) &#123;</span><br><span class="line">			st = c;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			ed = c;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; setprecision(<span class="number">7</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; c;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="../../../../tags/binary-search/" rel="tag"># binary-search</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="EOJ2449 sunny的食品罐" href="../../09/eoj2449/">
+            EOJ2449 sunny的食品罐 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
 </div>
 
-
-
-<div class="outer">
-	<nav class="pagination">
-		
-	</nav>
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        
+    </div>
 </div>
 
 
@@ -432,19 +281,19 @@
       
       
       <li>
-        <a href="../../2019/07/12/eoj3321/">EOJ3321 坏掉的里程表</a>
+        <a href>EOJ3321 坏掉的里程表</a>
       </li>
       
       
       
       <li>
-        <a href="../../2019/07/09/eoj2449/">EOJ2449 sunny的食品罐</a>
+        <a href="../../09/eoj2449/">EOJ2449 sunny的食品罐</a>
       </li>
       
       
       
       <li>
-        <a href="../../2019/07/07/eoj3306/">EOJ3306 有钱人买钻石</a>
+        <a href="../../07/eoj3306/">EOJ3306 有钱人买钻石</a>
       </li>
       
       
@@ -495,7 +344,7 @@
     </ul>
   </div>
   <footer class="read-next-card-footer">
-    <a href="../../archives">  MORE  → </a>
+    <a href="../../../../archives">  MORE  → </a>
   </footer>
 </article>
 
@@ -508,7 +357,7 @@
         <h3 class="read-next-card-header-title">Categories</h3>
     </header>
     <div class="read-next-card-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/ml/">ml</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/oj/">oj</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/考试/">考试</a></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/ml/">ml</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/oj/">oj</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/考试/">考试</a></li></ul>
     </div>
 </article>
 
@@ -522,7 +371,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href style="font-size: 24px;">Algorithm</a> <a href="../binary-search/" style="font-size: 14px;">binary-search</a> <a href="../dfs/" style="font-size: 14px;">dfs</a> <a href="../error/" style="font-size: 14px;">error</a> <a href="../graph/" style="font-size: 14px;">graph</a> <a href="../greedy/" style="font-size: 19px;">greedy</a> <a href="../hexo/" style="font-size: 19px;">hexo</a> <a href="../homework/" style="font-size: 14px;">homework</a> <a href="../model/" style="font-size: 19px;">model</a> <a href="../overfit/" style="font-size: 14px;">overfit</a> <a href="../python/" style="font-size: 14px;">python</a> <a href="../validation/" style="font-size: 14px;">validation</a> <a href="../物理/" style="font-size: 14px;">物理</a> <a href="../线代/" style="font-size: 14px;">线代</a> <a href="../贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../超平面/" style="font-size: 14px;">超平面</a> <a href="../高数/" style="font-size: 14px;">高数</a>
+		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/binary-search/" style="font-size: 14px;">binary-search</a> <a href="../../../../tags/dfs/" style="font-size: 14px;">dfs</a> <a href="../../../../tags/error/" style="font-size: 14px;">error</a> <a href="../../../../tags/graph/" style="font-size: 14px;">graph</a> <a href="../../../../tags/greedy/" style="font-size: 19px;">greedy</a> <a href="../../../../tags/hexo/" style="font-size: 19px;">hexo</a> <a href="../../../../tags/homework/" style="font-size: 14px;">homework</a> <a href="../../../../tags/model/" style="font-size: 19px;">model</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/validation/" style="font-size: 14px;">validation</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/超平面/" style="font-size: 14px;">超平面</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
@@ -555,7 +404,10 @@
 <script>if(window.navigator && navigator.serviceWorker) {navigator.serviceWorker.getRegistrations().then(function(registrations) {for(let registration of registrations) {registration.unregister()}})}</script>
 
 
-<script async src="../../js/allinone.min.js" id="scriptLoad"></script>
+<script async src="../../../../js/allinone.min.js" id="scriptLoad"></script>
+
+
+
 
 
 
@@ -571,11 +423,34 @@
 
 
 
+<script src="../../../../js/lightgallery.min.js"></script>
+<link rel="stylesheet" href="../../../../css/lightgallery.min.css">
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: '.post-img'
+    });
+</script>
 
 
 
 
-
+<script async src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script async src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
+<script>
+    window.addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: true,
+            appId: 'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
+            appKey: 'reWNaUPPWMXJhmx3CYSlF3w9',
+            placeholder: 'Say Something!!!',
+            pageSize: 10,
+            avatar: 'wavatar',
+            visitor: true,
+        })
+    });
+</script>
 
 
 
