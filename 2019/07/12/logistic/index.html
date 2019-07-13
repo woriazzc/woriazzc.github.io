@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>logistic | WORIA</title>
+	<title>逻辑回归与最大熵 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -50,7 +50,7 @@
 
 	<meta property="og:site_name" content="WORIA">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="logistic | WORIA">
+	<meta property="og:title" content="逻辑回归与最大熵 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
@@ -187,57 +187,59 @@
                 
                 
             </div>
-            <h1 class="post-full-title">logistic</h1>
+            <h1 class="post-full-title">逻辑回归与最大熵</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <p>1.逻辑回归</p>
-<p>​    1.1 logistic分布</p>
-<p>​        定义 1.1：</p>
-<p>​            设有连续随机变量 X，X 服从logistic分布是指 X 有以下的分布函数和密度函            数：</p>
-<p>​            <script type="math/tex">F(x)=P(X\leq x)=\frac{1}{1+e^{-(x-\mu)/ \gamma}}</script></p>
-<p>​            <script type="math/tex">f(x)=F'(x)=\frac{e^{-(x-\mu)/\gamma}}{\gamma(1+e^{-(x-\mu)/\gamma})^2}</script></p>
-<p>​            式中，$\mu$ 为位置参数，$\gamma&gt;0$ 为形状参数。</p>
-<p>​    1.2 二项logistic回归模型</p>
-<p>​        定义 1.2：</p>
-<p>​            随机变量 Y 取值为1或0。</p>
-<p>​            <script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x+b)}{1+exp(w\cdot x+b)}</script></p>
-<p>​            <script type="math/tex">P(Y=0|x)=1-P(Y=1|x)</script></p>
-<p>​        将偏置 b 并入 w 中，得 $x=(1,x^{(1)},x^{(2)},\cdots,x^{(n)})$， $w=(b,w^{(1)},w^{(2)},\cdots,w^{(n)})$</p>
-<p>​        这时，模型为</p>
-<p>​            <script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x)}{1+exp(w\cdot x)}</script></p>
-<p>​            <script type="math/tex">P(Y=0|x)=1-P(Y=1|x)</script></p>
-<p>​        1.2.1</p>
-<p>​            现在考虑模型的特点</p>
-<p>​            已知定义：一个事件的几率(odds)是指该事件发生的概率与不发生的概率的            比值。若事件发生的概率为 p 。</p>
-<p>​            则该事件的对数几率为$logit(p)=log(\frac{p}{1-p})$</p>
-<p>​            对于逻辑回归模型，$log \frac{P(Y=1|x)}{1-P(Y=1|x)}=w\cdot x$</p>
-<p>​            这就是说，输出 Y=1 的对数几率是输入 x 的线性函数。</p>
-<p>​            通过定义式可以将线性函数转化为概率</p>
-<p>​            <script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x)}{1+exp(w\cdot x)}</script> </p>
-<p>​            这时，线性函数的值越接近正无穷，概率值就越接近 1；线性函数的值越接            近负无穷，概率值就越接近 0。呈现 S 型函数。</p>
-<p>​    1.3 模型参数估计</p>
-<p>​        1.3.1 伯努利分布</p>
-<p>​            定义：若随机变量 $X\in \{0,1\}$ ，且 $P(x=1)=p$，$P(x=0)=1-p$，则 X                 为 p 的伯努利分布。</p>
-<p>​            若 X 为伯努利分布，则 X 的密度函数为：$f(X)=p^x(1-p)^{(1-x)}$ ，$x\in \{0,1\}$</p>
-<p>​        1.3.2 模型的似然函数</p>
-<p>​            似然函数=密度函数在各点处值的乘积</p>
-<p>​            设$P(Y=1|x)=\pi(x), P(Y=0|x)=1-\pi(x)$</p>
-<p>​            似然函数为</p>
-<p>​                <script type="math/tex">\prod_{i=1}^N [\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}</script></p>
-<p>​            对数似然函数为</p>
-<p>​                <script type="math/tex">L(w)=\sum_{i=1}^N[y_i(w\cdot x_i)-\ln(1+\exp(w\cdot x_i))]</script>            </p>
-<p>​            对$L(w)$ 求最大值，得 w 。</p>
-<p>2最大熵模型</p>
-<p>​    2.1 最大熵原理</p>
-<p>​        熵：$H(P)=-\sum P(x)\log P(x)$</p>
-<p>​        熵满足 $0\leq H(P)\leq \log |X|$</p>
-<p>​        当概率均匀分布时，熵取到最大值。</p>
-<p>​        即当等可能时，不可知性最大。</p>
-<p>​    2.1 最大熵模型定义</p>
-
+                    <h2 id="1-逻辑回归"><a href="#1-逻辑回归" class="headerlink" title="1.逻辑回归"></a>1.逻辑回归</h2><p>&nbsp;</p>
+<h3 id="emsp-1-1-logistic分布"><a href="#emsp-1-1-logistic分布" class="headerlink" title="&emsp;1.1 logistic分布"></a>&emsp;<strong>1.1 logistic分布</strong></h3><p>​        &emsp;<font color="red">定义 1.1：</font></p>
+<p>​            &emsp;&emsp;设有连续随机变量 X，X 服从logistic分布是指 X 有以下的分布函数和密度函数：</p>
+<p>​            &emsp;&emsp;<script type="math/tex">F(x)=P(X\leq x)=\frac{1}{1+e^{-(x-\mu)/ \gamma}}</script></p>
+<p>​            &emsp;&emsp;<script type="math/tex">f(x)=F'(x)=\frac{e^{-(x-\mu)/\gamma}}{\gamma(1+e^{-(x-\mu)/\gamma})^2}</script></p>
+<p>​            &emsp;&emsp;式中，$\mu$ 为位置参数，$\gamma&gt;0$ 为形状参数。</p>
+<p>&nbsp;</p>
+<h3 id="emsp-1-2-二项logistic回归模型"><a href="#emsp-1-2-二项logistic回归模型" class="headerlink" title="&emsp;1.2 二项logistic回归模型"></a>&emsp;<strong>1.2 二项logistic回归模型</strong></h3><p>​        &emsp;&emsp;<font color="red">定义 1.2：</font></p>
+<p>​            &emsp;&emsp;&emsp;随机变量 Y 取值为1或0。</p>
+<p>​        &emsp;&emsp;&emsp;    <script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x+b)}{1+exp(w\cdot x+b)}</script></p>
+<p>​    &emsp;    &emsp;&emsp;    <script type="math/tex">P(Y=0|x)=1-P(Y=1|x)</script></p>
+<p>​    &emsp;&emsp;    &emsp;将偏置 b 并入 w 中，得 $x=(1,x^{(1)},x^{(2)},\cdots,x^{(n)})$， $w=(b,w^{(1)},w^{(2)},\cdots,w^{(n)})$</p>
+<p>​        &emsp;&emsp;&emsp;这时，模型为</p>
+<p>​            &emsp;&emsp;<script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x)}{1+exp(w\cdot x)}</script></p>
+<p>​        &emsp;&emsp;    <script type="math/tex">P(Y=0|x)=1-P(Y=1|x)</script></p>
+<p>&nbsp;</p>
+<h4 id="emsp-emsp-1-2-1-模型特点"><a href="#emsp-emsp-1-2-1-模型特点" class="headerlink" title="&emsp;&emsp;1.2.1 模型特点"></a>&emsp;&emsp;<strong>1.2.1 模型特点</strong></h4><p>​        &emsp;&emsp;    <strong>现在考虑模型的特点</strong></p>
+<p>​        &emsp;&emsp;    <font color="red">已知定义：</font>一个事件的几率(odds)是指该事件发生的概率与不发生的概率的比值。若事件发生的概率为 p 。</p>
+<p>​            &emsp;&emsp;则该事件的对数几率为$logit(p)=log(\frac{p}{1-p})$</p>
+<p>​            &emsp;&emsp;对于逻辑回归模型，$log \frac{P(Y=1|x)}{1-P(Y=1|x)}=w\cdot x$</p>
+<p>​            &emsp;&emsp;这就是说，输出 Y=1 的对数几率是输入 x 的线性函数。</p>
+<p>​            &emsp;&emsp;通过定义式可以将线性函数转化为概率</p>
+<p>​        &emsp;    &emsp;<script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x)}{1+exp(w\cdot x)}</script> </p>
+<p>​            &emsp;&emsp;这时，线性函数的值越接近正无穷，概率值就越接近 1；线性函数的值越接近负无穷，概率值就越接近 0。呈现 S 型函数。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4 id="emsp-1-3-模型参数估计"><a href="#emsp-1-3-模型参数估计" class="headerlink" title="&emsp;1.3 模型参数估计"></a>&emsp;<strong>1.3 模型参数估计</strong></h4><p>&nbsp;</p>
+<h4 id="emsp-emsp-1-3-1-伯努利分布"><a href="#emsp-emsp-1-3-1-伯努利分布" class="headerlink" title="&emsp;&emsp;1.3.1 伯努利分布"></a>&emsp;&emsp;<strong>1.3.1 伯努利分布</strong></h4><p>​            &emsp;&emsp;<font color="red">定义：</font>若随机变量 $X\in \{0,1\}$ ，且 $P(x=1)=p$，$P(x=0)=1-p$，则 X 为 p 的伯努利分布。</p>
+<p>​            &emsp;&emsp;若 X 为伯努利分布，则 X 的密度函数为：$f(X)=p^x(1-p)^{(1-x)}$ ，$x\in \{0,1\}$</p>
+<p>&nbsp;</p>
+<p>​        &emsp;&emsp;<strong>1.3.2 模型的似然函数</strong></p>
+<p>​            &emsp;&emsp;<strong>似然函数=密度函数在各点处值的乘积</strong></p>
+<p>​        &emsp;    &emsp;设$P(Y=1|x)=\pi(x), P(Y=0|x)=1-\pi(x)$</p>
+<p>​        &emsp;    &emsp;似然函数为</p>
+<p>&emsp;                <script type="math/tex">\prod_{i=1}^N [\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}</script></p>
+<p>​        &emsp;    &emsp;对数似然函数为</p>
+<p>​        &emsp;        <script type="math/tex">L(w)=\sum_{i=1}^N[y_i(w\cdot x_i)-\ln(1+\exp(w\cdot x_i))]</script>            </p>
+<p>​            &emsp;&emsp;对$L(w)$ 求最大值，得 w 。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2 id="2-最大熵模型"><a href="#2-最大熵模型" class="headerlink" title="2.最大熵模型"></a>2.最大熵模型</h2><p>&nbsp;</p>
+<h3 id="emsp-2-1-最大熵原理"><a href="#emsp-2-1-最大熵原理" class="headerlink" title="&emsp;2.1 最大熵原理"></a>&emsp;<strong>2.1 最大熵原理</strong></h3><p>​    &emsp;    &emsp;<font color="red">熵：</font>$H(P)=-\sum P(x)\log P(x)$</p>
+<p>​    &emsp;    &emsp;熵满足 $0\leq H(P)\leq \log |X|$</p>
+<p>&emsp;        &emsp;当概率均匀分布时，熵取到最大值。</p>
+<p>​    &emsp;    &emsp;即当等可能时，不可知性最大。</p>
+<p>&nbsp;</p>
+<h3 id="emsp-2-2-最大熵模型定义"><a href="#emsp-2-2-最大熵模型定义" class="headerlink" title="&emsp;2.2 最大熵模型定义"></a><strong>&emsp;2.2 最大熵模型定义</strong></h3>
                 </article>
                 <ul class="tags-postTags">
                     
@@ -282,7 +284,7 @@
         </a>
     </div>
     <div class="toc-main">
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-逻辑回归"><span class="toc-text">1.逻辑回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-1-1-logistic分布"><span class="toc-text"> 1.1 logistic分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-1-2-二项logistic回归模型"><span class="toc-text"> 1.2 二项logistic回归模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-2-1-模型特点"><span class="toc-text">  1.2.1 模型特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-1-3-模型参数估计"><span class="toc-text"> 1.3 模型参数估计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-3-1-伯努利分布"><span class="toc-text">  1.3.1 伯努利分布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-最大熵模型"><span class="toc-text">2.最大熵模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-2-1-最大熵原理"><span class="toc-text"> 2.1 最大熵原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-2-2-最大熵模型定义"><span class="toc-text"> 2.2 最大熵模型定义</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -314,7 +316,7 @@
       
       
       <li>
-        <a href>logistic</a>
+        <a href>逻辑回归与最大熵</a>
       </li>
       
       
