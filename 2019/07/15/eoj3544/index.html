@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>空间中一点到超平面的距离推导 | WORIA</title>
+	<title>EOJ3544 小迷妹在哪儿 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content="感知机">
+	<meta name="keywords" content>
 	
 
 	
@@ -50,12 +50,12 @@
 
 	<meta property="og:site_name" content="WORIA">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="空间中一点到超平面的距离推导 | WORIA">
+	<meta property="og:title" content="EOJ3544 小迷妹在哪儿 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-06-30T15:06:00+08:00"> 
+	<meta property="article:published_time" content="2019-07-15T20:07:00+08:00"> 
 	<meta property="article:author" content="woria">
 	<meta property="article:published_first" content="WORIA, ">
 	
@@ -67,7 +67,7 @@
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/06/30/点到平面/">
+<link rel="canonical" href="https://www.woria.xyz/2019/07/15/eoj3544/">
 
 
 
@@ -177,40 +177,63 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-30T07:47:45.000Z">
-                    2019-06-30
+                <time class="post-full-meta-date" datetime="2019-07-15T12:23:29.000Z">
+                    2019-07-15
                 </time>
                 
                 <span class="date-divider">/</span>
                 
-                <a href="../../../../categories/M-L/">M L</a>&nbsp;&nbsp;
+                <a href="../../../../categories/O-J/">O J</a>&nbsp;&nbsp;
                 
                 
             </div>
-            <h1 class="post-full-title">空间中一点到超平面的距离推导</h1>
+            <h1 class="post-full-title">EOJ3544 小迷妹在哪儿</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p>
-<p>$w$为超平面的法向量，b为截距。</p>
-<p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p>
-<p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p>
-<p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p>
-<p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p>
-<p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p>
-<p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>
+                    <p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/07/15/5d2c80087cc8814400.png" data-src="https://i.loli.net/2019/07/15/5d2c80087cc8814400.png"></p>
+<p>本题与背包问题有些不同，主要记一下不同之处。</p>
+<ul>
+<li><p>背包问题通常给出了物品的价值，我们要选择的只是选/不选。然而本题并未给出各个迷妹的价值，有人可能会认为这分数 $a_i$ 就是价值，但显然每个人的价值还会受到追她的时间影响，例如，有个迷妹 A 为(100,1100),即分数100，耗时1100；迷妹 B 为(100,11)，这两者分数相同，B的耗时更少，显然 B 的价值更大，换句话说，选B的收益更大。</p>
+<p>&nbsp;</p>
+</li>
+<li><p>另一点不同在于，<strong>背包问题，尤其是01背包，选择的先后顺序与最后结果无关，在01背包中，选总价值相同的一些物品，不管是什么顺序选，最后背包中的总和是一样的</strong>，而本题不同，<strong>本题先选价值高的比先选价值低的更赚</strong>，这就是本题需要贪心的地方。</p>
+</li>
+</ul>
+<p>因此，需要先确定一个评判价值的标准，根据价值判断是否选择，以及选择顺序先后。由经验知，价值应该与分数正比，与耗时反比，因此猜测： <font color="red">价值=分数/耗时</font>；</p>
+<p>以下证明：</p>
+<p>假设两人为$(a_1,t_1) , (a_2,t_2)$ , 假设她们的价值相同，也就是说先找A或先找B的得分相同。</p>
+<p>设找之前剩余时间 t 。</p>
+<p>则</p>
+<script type="math/tex; mode=display">(t-t_1)a_1+(t-t_1-t_2)a_2=(t-t_2)a_2+(t-t_2-t_1)a_1</script><p>化简得 </p>
+<script type="math/tex; mode=display">t_1a_2=t_2a_1</script><script type="math/tex; mode=display">\frac{a_1}{t_1}=\frac{a_2}{t_2}</script><p>即两人价值相同等价于两人分数/耗时相同，则价值可等价于分数/耗时。符合猜想。</p>
+<p>&nbsp;</p>
+<p>至此，价值确定了，排序就可以确定，确定顺序之后就是普通的背包问题。</p>
+<p>&nbsp;</p>
+<p><strong>总结一下：</strong></p>
+<p>&emsp;对于类似于背包的DP</p>
+<ol>
+<li><strong>若物品价值未明确，则应先确定价值value；</strong></li>
+<li><strong>若总价值与选择顺序，或时间有关，则又涉及到贪心，应先排序。</strong></li>
+</ol>
+<p>代码：</p>
+<p>&emsp;<strong>二维DP数组：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxt = <span class="number">305</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nd</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a, t;</span><br><span class="line">&#125;arr[maxn];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(nd u,nd v)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u.a*v.t &gt; u.t*v.a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxt];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, T;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; T;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; arr[i].a &gt;&gt; arr[i].t;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(arr+<span class="number">1</span>, arr + n+<span class="number">1</span>, cmp);</span><br><span class="line">	<span class="comment">//选完第i个后剩余时间j</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;=T-arr[i].t; j++) &#123;</span><br><span class="line">			dp[i][j] = max(dp[i<span class="number">-1</span>][j], dp[i<span class="number">-1</span>][j + arr[i].t]+j*arr[i].a);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = T - arr[i].t + <span class="number">1</span>; j &lt;= T; j++)dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = T; j &gt;=<span class="number">0</span>; j--) dp[i][j] = max(dp[i][j], dp[i][j + <span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= T; i++) &#123;</span><br><span class="line">		ans = max(ans, dp[n][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;<strong>一维DP数组：</strong></p>
+<p>&emsp;一维数组滚动时，注意更新的顺序，是从左往右还是从右往左，否则可能此轮更新时应使用上轮数据，却用了此轮的数据。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nd</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a, t;</span><br><span class="line">&#125;arr[maxn];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(nd u,nd v)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u.a*v.t &gt; u.t*v.a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">305</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, T;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; T;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; arr[i].a &gt;&gt; arr[i].t;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(arr+<span class="number">1</span>, arr + n+<span class="number">1</span>, cmp);</span><br><span class="line">	<span class="comment">//选完第i个后剩余时间j</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;=T-arr[i].t; j++) &#123;</span><br><span class="line">			dp[j] = max(dp[j], dp[j + arr[i].t]+j*arr[i].a);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = T; j &gt;=<span class="number">0</span>; j--) dp[j] = max(dp[j], dp[j + <span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; dp[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                 </article>
                 <ul class="tags-postTags">
                     
                     <li>
-                        <a href="../../../../tags/超平面/" rel="tag"># 超平面</a>
+                        <a href="../../../../tags/dp/" rel="tag"># dp</a>
                     </li>
                     
                     <li>
-                        <a href="../../../../tags/感知机/" rel="tag"># 感知机</a>
+                        <a href="../../../../tags/greedy/" rel="tag"># greedy</a>
                     </li>
                     
                 </ul>
@@ -221,14 +244,10 @@
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="validation" href="../validation/">
-            ← validation
-        </a>
-        
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="大物" href="../../26/大物/">
-            大物 →
+        <a class="next-post" title="比特币从入门到入土" href="../../14/bitcoin/">
+            比特币从入门到入土 →
         </a>
         
     </nav>
@@ -286,19 +305,19 @@
       
       
       <li>
-        <a href="../../../07/15/eoj3544/">EOJ3544 小迷妹在哪儿</a>
+        <a href>EOJ3544 小迷妹在哪儿</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/14/bitcoin/">比特币从入门到入土</a>
+        <a href="../../14/bitcoin/">比特币从入门到入土</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/12/logistic/">逻辑回归与最大熵</a>
+        <a href="../../12/logistic/">逻辑回归与最大熵</a>
       </li>
       
       
