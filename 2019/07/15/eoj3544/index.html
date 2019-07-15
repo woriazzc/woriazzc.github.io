@@ -194,30 +194,35 @@
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
                     <p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/07/15/5d2c80087cc8814400.png" data-src="https://i.loli.net/2019/07/15/5d2c80087cc8814400.png"></p>
+<p>&nbsp;</p>
 <p>本题与背包问题有些不同，主要记一下不同之处。</p>
 <ul>
-<li><p>背包问题通常给出了物品的价值，我们要选择的只是选/不选。然而本题并未给出各个迷妹的价值，有人可能会认为这分数 $a_i$ 就是价值，但显然每个人的价值还会受到追她的时间影响，例如，有个迷妹 A 为(100,1100),即分数100，耗时1100；迷妹 B 为(100,11)，这两者分数相同，B的耗时更少，显然 B 的价值更大，换句话说，选B的收益更大。</p>
+<li><p>背包问题通常<strong>直接</strong>给出了物品的价值，我们要选择的只是<strong>选/不选</strong>。然而本题并未给出各个迷妹的价值，有人可能会认为这分数 $a_i$ 就是价值，但显然每个人的价值还会受到追她的时间影响，例如，有个迷妹 A 为(100,1100),即分数100，耗时1100；迷妹 B 为(100,11)，这两者分数相同，B的耗时更少，显然 B 的价值更大，换句话说，选B的收益更大。</p>
+<p>&nbsp;</p>
+<font color="red">在本题中，还要考虑性价比的存在。</font>
+
 <p>&nbsp;</p>
 </li>
-<li><p>另一点不同在于，<strong>背包问题，尤其是01背包，选择的先后顺序与最后结果无关，在01背包中，选总价值相同的一些物品，不管是什么顺序选，最后背包中的总和是一样的</strong>，而本题不同，<strong>本题先选价值高的比先选价值低的更赚</strong>，这就是本题需要贪心的地方。</p>
+<li><p>另一点不同在于，<strong>背包问题，尤其是01背包，选择的先后顺序与最后结果无关，在01背包中，选总价值相同的一些物品，不管是什么顺序选，最后背包中的总和是一样的</strong>，而本题不同，<strong>本题先选性价比高的比先选性价比低的更赚</strong>，这就是本题需要贪心的地方。</p>
+<p>&nbsp;</p>
 </li>
 </ul>
-<p>因此，需要先确定一个评判价值的标准，根据价值判断是否选择，以及选择顺序先后。由经验知，价值应该与分数正比，与耗时反比，因此猜测： <font color="red">价值=分数/耗时</font>；</p>
+<p>因此，需要先确定一个评判价值的标准，根据价值判断是否选择，以及选择顺序先后。由经验知，价值应该与分数正比，与耗时反比，因此猜测： <font color="red">性价比=分数/耗时</font>；</p>
 <p>以下证明：</p>
-<p>假设两人为$(a_1,t_1) , (a_2,t_2)$ , 假设她们的价值相同，也就是说先找A或先找B的得分相同。</p>
+<p>假设两人为$(a_1,t_1) , (a_2,t_2)$ , 假设她们的性价比相同，也就是说先找A或先找B的得分相同。</p>
 <p>设找之前剩余时间 t 。</p>
 <p>则</p>
 <script type="math/tex; mode=display">(t-t_1)a_1+(t-t_1-t_2)a_2=(t-t_2)a_2+(t-t_2-t_1)a_1</script><p>化简得 </p>
-<script type="math/tex; mode=display">t_1a_2=t_2a_1</script><script type="math/tex; mode=display">\frac{a_1}{t_1}=\frac{a_2}{t_2}</script><p>即两人价值相同等价于两人分数/耗时相同，则价值可等价于分数/耗时。符合猜想。</p>
+<script type="math/tex; mode=display">t_1a_2=t_2a_1</script><p>&nbsp;</p>
+<script type="math/tex; mode=display">\frac{a_1}{t_1}=\frac{a_2}{t_2}</script><p>即两人性价比相同等价于两人（分数/耗时）相同，则性价比可等价于分数/耗时。符合猜想。</p>
 <p>&nbsp;</p>
 <p>至此，价值确定了，排序就可以确定，确定顺序之后就是普通的背包问题。</p>
 <p>&nbsp;</p>
 <p><strong>总结一下：</strong></p>
-<p>&emsp;对于类似于背包的DP</p>
-<ol>
-<li><strong>若物品价值未明确，则应先确定价值value；</strong></li>
-<li><strong>若总价值与选择顺序，或时间有关，则又涉及到贪心，应先排序。</strong></li>
-</ol>
+<p>&emsp;对于类似于背包的DP：</p>
+<font size="5"><ins>&emsp;若题中直接给出的 “价值” 与某种 “消耗” 有关，如相同的分数，不同的耗时，导致 实际价值 不同，则要考虑 性价比 。</ins></font>
+
+<p>&nbsp;</p>
 <p>代码：</p>
 <p>&emsp;<strong>二维DP数组：</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxt = <span class="number">305</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nd</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a, t;</span><br><span class="line">&#125;arr[maxn];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(nd u,nd v)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u.a*v.t &gt; u.t*v.a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxt];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, T;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; T;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; arr[i].a &gt;&gt; arr[i].t;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(arr+<span class="number">1</span>, arr + n+<span class="number">1</span>, cmp);</span><br><span class="line">	<span class="comment">//选完第i个后剩余时间j</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;=T-arr[i].t; j++) &#123;</span><br><span class="line">			dp[i][j] = max(dp[i<span class="number">-1</span>][j], dp[i<span class="number">-1</span>][j + arr[i].t]+j*arr[i].a);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = T - arr[i].t + <span class="number">1</span>; j &lt;= T; j++)dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = T; j &gt;=<span class="number">0</span>; j--) dp[i][j] = max(dp[i][j], dp[i][j + <span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= T; i++) &#123;</span><br><span class="line">		ans = max(ans, dp[n][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -229,11 +234,11 @@
                 <ul class="tags-postTags">
                     
                     <li>
-                        <a href="../../../../tags/dp/" rel="tag"># dp</a>
+                        <a href="../../../../tags/greedy/" rel="tag"># greedy</a>
                     </li>
                     
                     <li>
-                        <a href="../../../../tags/greedy/" rel="tag"># greedy</a>
+                        <a href="../../../../tags/dp/" rel="tag"># dp</a>
                     </li>
                     
                 </ul>
