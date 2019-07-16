@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>cross-entropy | WORIA</title>
+	<title>并查集C++实现 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -50,12 +50,12 @@
 
 	<meta property="og:site_name" content="WORIA">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="cross-entropy | WORIA">
+	<meta property="og:title" content="并查集C++实现 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-06-16T16:06:57+08:00"> 
+	<meta property="article:published_time" content="2019-07-16T11:07:00+08:00"> 
 	<meta property="article:author" content="woria">
 	<meta property="article:published_first" content="WORIA, ">
 	
@@ -67,7 +67,7 @@
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/06/16/error/">
+<link rel="canonical" href="https://www.woria.xyz/2019/07/16/bingcha/">
 
 
 
@@ -177,55 +177,29 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-16T08:51:06.576Z">
-                    2019-06-16
+                <time class="post-full-meta-date" datetime="2019-07-16T03:00:35.000Z">
+                    2019-07-16
                 </time>
                 
                 <span class="date-divider">/</span>
                 
-                <a href="../../../../categories/M-L/">M L</a>&nbsp;&nbsp;
+                <a href="../../../../categories/O-J/">O J</a>&nbsp;&nbsp;
                 
                 
             </div>
-            <h1 class="post-full-title">cross-entropy</h1>
+            <h1 class="post-full-title">并查集C++实现</h1>
         </header>
-        <div class="post-full ">
-            
-            <figure class="post-full-image" style="background-image: url(https://images.unsplash.com/photo-1557231146-afde25e6598f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1089&q=80)">
-            </figure>
+        <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <p>求$cost -function$：</p>
-<h2 id="二元分类"><a href="#二元分类" class="headerlink" title="二元分类"></a>二元分类</h2><p>将每一个数据看作一个点。<br>设正确分类的概率为p(x).<br>实际得到的某点被分为1的概率为p(x|1),<br>则</p>
-<ul>
-<li>若该点为1，则$p(x)=p(x| 1),$</li>
-</ul>
-<ul>
-<li>若该点为-1，则$p(x)=p(x| -1)=1-p(x| 1)$</li>
-</ul>
-<p>设F为给定点出现在指定位置且<strong>target function</strong>分类正确的概率<br>已知 <code>f</code> 为target function，即f始终为正确分类，<code>f(x)==1</code><br>则对于f来说，产生给定分布的点集，且分类正确的概率</p>
-<script type="math/tex; mode=display">F=P(A)f(A)*P(B)f(B) ···=P(A)*P(B)···</script><p>即只与产生该分布情况的几率有关</p>
-<p>再设H为给定点出现在指定位置且<strong>我的分类器</strong>分类正确的概率<br>设h为my function，则</p>
-<ul>
-<li><p>若该点为1，则$h(x)=h(x| 1),$</p>
-</li>
-<li><p>若该点为-1，则$h(x)=h(x| -1)=1-h(x| 1)$</p>
-</li>
-</ul>
-<script type="math/tex; mode=display">H=P(A)h(A)*P(B)h(B)···</script><p><strong>注意区分h(x)与h(x| 1), h(x| -1)</strong><br><strong>h(x)为分类正确的概率，h(x| 1), h(x| -1)仅为分类为1或-1的概率。</strong><br>由于P(A),P(B)无法改变，且对所有分类器都相等，所以可以忽略。<br>故要使分类正确的概率最大，即H最大，就要使$h(A)*h(B)···$最大<br>由于连乘不好算，所以取  $\ln$ ，变为连加，使连加最大，同样不够好，再加符号，使得最后变为求最小值。</p>
-<script type="math/tex; mode=display">
-cost =  -\frac{1}{N}\sum_{i=1}^{N}{\ln(h(x_i) )}    ------①</script><p>对于 $Sigmoid$ 函数，由于其特性 $1-\theta(x)=\theta(-x)$,<br>我们的function给出了$h(x| 1)$, 且是经过了$Sigmoid$之后的结果相当于$\theta(wx)$,则<br>对于应为1的点<script type="math/tex">h(x)=h(x| 1)=\theta(wx)</script>,<br>应为-1的点$x,h(x)=h(x| -1)=1-h(x| 1)$.</p>
-<script type="math/tex; mode=display">h(x)=h(x| -1)=1-h(x |1)=1-\theta(wx)=\theta(-wx)</script><p>得到，对于label y=-1的点,$h(x)=\theta(y*wx)$<br>发现该式对label y=1的点同样适用。<br>则最终确定</p>
-<script type="math/tex; mode=display">h(x)=\theta(y*wx)------②</script><p>将其代入①式<br>得</p>
-<script type="math/tex; mode=display">cost =  -\frac{1}{N}\sum_{i=1}^{N}{\ln(\theta(y*wx) )}</script><h2 id="多元分类"><a href="#多元分类" class="headerlink" title="多元分类"></a>多元分类</h2><p>同样的思想，要使每个点正确的概率 $h(x)$ 的连乘 $\prod$ 最大,由于每个点经过的几个不同的分类器分类，产生了多个$h(x| y)$,  而正确的分类$labely_n=y_n$，所以对于一个点$x_n,h(x_n)=h(x_n| y_n)$则要使$\prod_{n=1}^{N}{h(x_n|y_n)}$最大, 同样取$\ln$, 加负号，求最小值</p>
-<script type="math/tex; mode=display">
-cost =  -\frac{1}{N}\sum_{n=1}^{N}{\ln(h(x_n|y_n) )}    ------①</script>
+                    <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> par[MAX_N];<span class="comment">//每个节点的父节点</span></span><br><span class="line"><span class="keyword">int</span> rank[MAX_N];<span class="comment">//树的高度</span></span><br><span class="line"><span class="comment">//初始化n个元素</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        par[i] = i;<span class="comment">//初始时每个节点自成一树</span></span><br><span class="line">        rank[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询树的根</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (par[x] = x) &#123;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> par[x] = find(par[x]);<span class="comment">//递归向上查询，查询到之后直接连到根</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//合并x和y所属的集合</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    x = find(x);</span><br><span class="line">    y = find(y);</span><br><span class="line">    <span class="keyword">if</span> (x == y)<span class="keyword">return</span>;<span class="comment">//xy已经在一组</span></span><br><span class="line">    <span class="keyword">if</span> (rank[x] &lt; rank[y]) &#123;    <span class="comment">//x的高度小于y，则y作为新的根</span></span><br><span class="line">        par[x] = y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        par[y] = x;</span><br><span class="line">        <span class="keyword">if</span> (rank[x] == rank[y])rank[x]++;<span class="comment">//若两树高度相同，则取x为新根，高度+1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断x和y是否属于同一集合</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">same</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> find(x) == find(y);<span class="comment">//根相同</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
                 </article>
                 <ul class="tags-postTags">
                     
                     <li>
-                        <a href="../../../../tags/error/" rel="tag"># error</a>
+                        <a href="../../../../tags/Algorithm/" rel="tag"># Algorithm</a>
                     </li>
                     
                 </ul>
@@ -236,14 +210,10 @@ cost =  -\frac{1}{N}\sum_{n=1}^{N}{\ln(h(x_n|y_n) )}    ------①</script>
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="机器学习基石第三次作业20" href="../ml3/">
-            ← 机器学习基石第三次作业20
-        </a>
-        
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="差分与前缀和" href="../../10/cha-fen/">
-            差分与前缀和 →
+        <a class="next-post" title="EOJ3544 小迷妹在哪儿" href="../../15/eoj3544/">
+            EOJ3544 小迷妹在哪儿 →
         </a>
         
     </nav>
@@ -269,7 +239,7 @@ cost =  -\frac{1}{N}\sum_{n=1}^{N}{\ln(h(x_n|y_n) )}    ------①</script>
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#二元分类"><span class="toc-text">二元分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多元分类"><span class="toc-text">多元分类</span></a></li></ol>
+        
     </div>
 </div>
 
@@ -301,19 +271,19 @@ cost =  -\frac{1}{N}\sum_{n=1}^{N}{\ln(h(x_n|y_n) )}    ------①</script>
       
       
       <li>
-        <a href="../../../07/16/bingcha/">并查集C++实现</a>
+        <a href>并查集C++实现</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/15/eoj3544/">EOJ3544 小迷妹在哪儿</a>
+        <a href="../../15/eoj3544/">EOJ3544 小迷妹在哪儿</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/14/bitcoin/">比特币从入门到入土</a>
+        <a href="../../14/bitcoin/">比特币从入门到入土</a>
       </li>
       
       
