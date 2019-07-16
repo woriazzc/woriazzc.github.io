@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>逻辑回归与最大熵 | WORIA</title>
+	<title>cf263D.Cycle in Graph | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -50,12 +50,12 @@
 
 	<meta property="og:site_name" content="WORIA">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="逻辑回归与最大熵 | WORIA">
+	<meta property="og:title" content="cf263D.Cycle in Graph | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-07-12T23:07:00+08:00"> 
+	<meta property="article:published_time" content="2019-07-16T12:07:00+08:00"> 
 	<meta property="article:author" content="woria">
 	<meta property="article:published_first" content="WORIA, ">
 	
@@ -67,7 +67,7 @@
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/07/12/logistic/">
+<link rel="canonical" href="https://www.woria.xyz/2019/07/16/cf263D/">
 
 
 
@@ -177,77 +177,72 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-07-12T15:14:29.000Z">
-                    2019-07-12
+                <time class="post-full-meta-date" datetime="2019-07-16T04:48:59.000Z">
+                    2019-07-16
                 </time>
                 
                 <span class="date-divider">/</span>
                 
-                <a href="../../../../categories/M-L/">M L</a>&nbsp;&nbsp;
+                <a href="../../../../categories/oj/">oj</a>&nbsp;&nbsp;
                 
                 
             </div>
-            <h1 class="post-full-title">逻辑回归与最大熵</h1>
+            <h1 class="post-full-title">cf263D.Cycle in Graph</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <h2 id="1-逻辑回归"><a href="#1-逻辑回归" class="headerlink" title="1.逻辑回归"></a>1.逻辑回归</h2><p>&nbsp;</p>
-<h3 id="emsp-1-1-logistic分布"><a href="#emsp-1-1-logistic分布" class="headerlink" title="&emsp;1.1 logistic分布"></a>&emsp;<strong>1.1 logistic分布</strong></h3><p>​        &emsp;<font color="red">定义 1.1：</font></p>
-<p>​            &emsp;&emsp;设有连续随机变量 X，X 服从logistic分布是指 X 有以下的分布函数和密度函数：</p>
-<p>​            &emsp;&emsp;<script type="math/tex">F(x)=P(X\leq x)=\frac{1}{1+e^{-(x-\mu)/ \gamma}}</script></p>
-<p>​            &emsp;&emsp;<script type="math/tex">f(x)=F'(x)=\frac{e^{-(x-\mu)/\gamma}}{\gamma(1+e^{-(x-\mu)/\gamma})^2}</script></p>
-<p>​            &emsp;&emsp;式中，$\mu$ 为位置参数，$\gamma&gt;0$ 为形状参数。</p>
+                    <p><u>本题需要在图中找到一个长度大于给定值 k 的环。</u></p>
 <p>&nbsp;</p>
-<h3 id="emsp-1-2-二项logistic回归模型"><a href="#emsp-1-2-二项logistic回归模型" class="headerlink" title="&emsp;1.2 二项logistic回归模型"></a>&emsp;<strong>1.2 二项logistic回归模型</strong></h3><p>​        &emsp;&emsp;<font color="red">定义 1.2：</font></p>
-<p>​            &emsp;&emsp;&emsp;随机变量 Y 取值为1或0。</p>
-<p>​        &emsp;&emsp;&emsp;    <script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x+b)}{1+exp(w\cdot x+b)}</script></p>
-<p>​    &emsp;    &emsp;&emsp;    <script type="math/tex">P(Y=0|x)=1-P(Y=1|x)</script></p>
-<p>​    &emsp;&emsp;    &emsp;将偏置 b 并入 w 中，得 $x=(1,x^{(1)},x^{(2)},\cdots,x^{(n)})$， $w=(b,w^{(1)},w^{(2)},\cdots,w^{(n)})$</p>
-<p>​        &emsp;&emsp;&emsp;这时，模型为</p>
-<p>​            &emsp;&emsp;<script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x)}{1+exp(w\cdot x)}</script></p>
-<p>​        &emsp;&emsp;    <script type="math/tex">P(Y=0|x)=1-P(Y=1|x)</script></p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>&emsp;先将所有边存下来，画出图，再DFS找环，找到一个就计算它的长度，若长度满足条件，则跳出，否则继续。存图要用邻接表，矩阵会超内存。</p>
 <p>&nbsp;</p>
-<h4 id="emsp-emsp-1-2-1-模型特点"><a href="#emsp-emsp-1-2-1-模型特点" class="headerlink" title="&emsp;&emsp;1.2.1 模型特点"></a>&emsp;&emsp;<strong>1.2.1 模型特点</strong></h4><p>​        &emsp;&emsp;    <strong>现在考虑模型的特点</strong></p>
-<p>​        &emsp;&emsp;    <font color="red">已知定义：</font>一个事件的几率(odds)是指该事件发生的概率与不发生的概率的比值。若事件发生的概率为 p 。</p>
-<p>​            &emsp;&emsp;则该事件的对数几率为$logit(p)=log(\frac{p}{1-p})$</p>
-<p>​            &emsp;&emsp;对于逻辑回归模型，$log \frac{P(Y=1|x)}{1-P(Y=1|x)}=w\cdot x$</p>
-<p>​            &emsp;&emsp;这就是说，输出 Y=1 的对数几率是输入 x 的线性函数。</p>
-<p>​            &emsp;&emsp;通过定义式可以将线性函数转化为概率</p>
-<p>​        &emsp;    &emsp;<script type="math/tex">P(Y=1|x)=\frac{exp(w\cdot x)}{1+exp(w\cdot x)}</script> </p>
-<p>​            &emsp;&emsp;这时，线性函数的值越接近正无穷，概率值就越接近 1；线性函数的值越接近负无穷，概率值就越接近 0。呈现 S 型函数。</p>
+<h3 id="DFS找环的方法："><a href="#DFS找环的方法：" class="headerlink" title="DFS找环的方法："></a>DFS找环的方法：</h3><p>&nbsp;</p>
+<p>&emsp;首先要知道几个DFS中的概念：</p>
+<p>&emsp;在图的遍历中，往往设置了一个标记数组vis的bool值来记录顶点是否被访问过。但有些时候需要改变vis值的意义。令vis具有3种值并表示3种不同含义</p>
+<ol>
+<li>vis = 0,表示该顶点没没有被访问</li>
+<li>vis = 1,表示该顶点已经被访问，但其子孙后代还没被访问完，也就没从该点返回</li>
+<li>vis = 2,，表示该顶点已经被访问，其子孙后代也已经访问完，也已经从该顶点返回</li>
+</ol>
+<p>&emsp;vis的3种值表示的是一种顺序关系和时间关系</p>
 <p>&nbsp;</p>
+<p><strong>DFS过程中，对于一条边u-&gt;v</strong></p>
+<ol>
+<li>vis[v] = 0,说明v还没被访问，v是首次被发现，u-&gt;v是一条<strong>树边</strong></li>
+<li>vis[v] = 1,说明v已经被访问，但其子孙后代还没有被访问完（正在访问中），而u又指向v？说明u就是v的子孙后代，u-&gt;v是一条<strong>后向边</strong>，因此后向边又称返祖边</li>
+<li>vis[v] = 3,z说明v已经被访问，其子孙后代也已经全部访问完，u-&gt;v这条边可能是一条横叉边，或者<strong>前向边</strong></li>
+</ol>
+<p>在很多算法中，后向边都是有作用的，但是前向边和横叉边的作用往往被淡化，其实它们没有太大作用。</p>
 <p>&nbsp;</p>
-<h3 id="emsp-1-3-模型参数估计"><a href="#emsp-1-3-模型参数估计" class="headerlink" title="&emsp;1.3 模型参数估计"></a>&emsp;<strong>1.3 模型参数估计</strong></h3><p>&nbsp;</p>
-<h4 id="emsp-emsp-1-3-1-伯努利分布"><a href="#emsp-emsp-1-3-1-伯努利分布" class="headerlink" title="&emsp;&emsp;1.3.1 伯努利分布"></a>&emsp;&emsp;<strong>1.3.1 伯努利分布</strong></h4><p>​            &emsp;&emsp;<font color="red">定义：</font>若随机变量 $X\in \{0,1\}$ ，且 $P(x=1)=p$，$P(x=0)=1-p$，则 X 为 p 的伯努利分布。</p>
-<p>​            &emsp;&emsp;若 X 为伯努利分布，则 X 的密度函数为：$f(X)=p^x(1-p)^{(1-x)}$ ，$x\in \{0,1\}$</p>
+<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/07/16/5d2d599f8975696629.png" data-src="https://i.loli.net/2019/07/16/5d2d599f8975696629.png"></p>
 <p>&nbsp;</p>
-<h4 id="emsp-emsp-1-3-2-模型的似然函数"><a href="#emsp-emsp-1-3-2-模型的似然函数" class="headerlink" title="&emsp;&emsp;1.3.2 模型的似然函数"></a>&emsp;&emsp;<strong>1.3.2 模型的似然函数</strong></h4><p>​            &emsp;&emsp;<strong>似然函数=密度函数在各点处值的乘积</strong></p>
-<p>​        &emsp;    &emsp;设$P(Y=1|x)=\pi(x), P(Y=0|x)=1-\pi(x)$</p>
-<p>​        &emsp;    &emsp;似然函数为</p>
-<p>&emsp;                <script type="math/tex">\prod_{i=1}^N [\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}</script></p>
-<p>​        &emsp;    &emsp;对数似然函数为</p>
-<p>​        &emsp;        <script type="math/tex">L(w)=\sum_{i=1}^N[y_i(w\cdot x_i)-\ln(1+\exp(w\cdot x_i))]</script>            </p>
-<p>​            &emsp;&emsp;对$L(w)$ 求最大值，得 w 。</p>
+<p><strong>总的来说：</strong></p>
+<ul>
+<li><p><font color="red">前向边</font>指从点A到点B，其中<font color="red">B不是A</font>的祖宗节点。</p>
+</li>
+<li><p><font color="red">后向边</font>指从点A到点B，其中<font color="red">B是A</font>的祖宗节点。</p>
+</li>
+</ul>
 <p>&nbsp;</p>
+<p><strong>通常使用后向边找环。</strong></p>
 <p>&nbsp;</p>
-<h2 id="2-最大熵模型"><a href="#2-最大熵模型" class="headerlink" title="2.最大熵模型"></a>2.最大熵模型</h2><p>&nbsp;</p>
-<h3 id="emsp-2-1-最大熵原理"><a href="#emsp-2-1-最大熵原理" class="headerlink" title="&emsp;2.1 最大熵原理"></a>&emsp;<strong>2.1 最大熵原理</strong></h3><p>​    &emsp;    &emsp;<font color="red">熵：</font>$H(P)=-\sum P(x)\log P(x)$</p>
-<p>​    &emsp;    &emsp;熵满足 $0\leq H(P)\leq \log |X|$</p>
-<p>&emsp;        &emsp;当概率均匀分布时，熵取到最大值。</p>
-<p>​    &emsp;    &emsp;即当等可能时，不可知性最大。</p>
+<p>对图中任意节点开始访问，若访问其子孙节点的过程中，出现访问到的点vis=1，即该点正在被访问，说明该点是当前点的祖宗节点，即出现了后向边，此时就出现了环。</p>
 <p>&nbsp;</p>
-<h3 id="emsp-2-2-最大熵模型定义"><a href="#emsp-2-2-最大熵模型定义" class="headerlink" title="&emsp;2.2 最大熵模型定义"></a><strong>&emsp;2.2 最大熵模型定义</strong></h3>
+<p>若要输出环的路径，则对建立一个father数组，存每个点的父节点，访问过程中同时完善father数组；若发现后向边，则沿father数组向上找。</p>
+<p>&nbsp;</p>
+<p>本题代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> * <span class="title">newIntRaw</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> * <span class="title">newInt</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> init)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p = newIntRaw(n+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= n; ++i)</span><br><span class="line">		p[i] = init;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;to;</span><br><span class="line">&#125;nd[maxn];</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> e;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">&#125; Graph;</span><br><span class="line"></span><br><span class="line"><span class="function">Graph * <span class="title">newGraph</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, e;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">int</span> u,v;</span><br><span class="line">	Graph *g = (Graph *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Graph));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;n, &amp;e, &amp;k);</span><br><span class="line">	g-&gt;n = n;</span><br><span class="line">	g-&gt;e = e;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; e; ++i) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;u, &amp;v);</span><br><span class="line">		nd[u].to.push_back(v);</span><br><span class="line">		nd[v].to.push_back(u);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> g;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ---------------------------solve-----------------------</span></span><br><span class="line"><span class="keyword">int</span> *visited;</span><br><span class="line"><span class="keyword">int</span> *father;</span><br><span class="line"><span class="keyword">int</span> len;</span><br><span class="line"><span class="keyword">int</span> k;</span><br><span class="line"><span class="keyword">bool</span> ok=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Graph *g, <span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (ok)<span class="keyword">return</span>;</span><br><span class="line">	visited[s] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i:nd[s].to) &#123;</span><br><span class="line">		<span class="keyword">if</span> (ok)<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span> (visited[i] == <span class="number">0</span>) &#123;</span><br><span class="line">			father[i] = s;</span><br><span class="line">			dfs(g, i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (visited[i] == <span class="number">1</span> &amp;&amp; i != father[s]) &#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;vc;</span><br><span class="line">			<span class="keyword">int</span> tmp = s;</span><br><span class="line">			vc.push_back(i);</span><br><span class="line">			len = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (tmp != i) &#123;</span><br><span class="line">				len++;</span><br><span class="line">				vc.push_back(tmp);</span><br><span class="line">				tmp = father[tmp];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (len &gt; k&amp;&amp;!ok) &#123;</span><br><span class="line">				ok = <span class="number">1</span>;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, len);</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">auto</span> c : vc)</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%d "</span>, c);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	visited[s] = <span class="number">2</span>; <span class="comment">// 避免重复计算环</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">findRing</span><span class="params">(Graph *g)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	visited = newInt(g-&gt;n, <span class="number">0</span>);</span><br><span class="line">	father = newInt(g-&gt;n, <span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; g-&gt;n; ++i)</span><br><span class="line">		<span class="keyword">if</span> (ok)<span class="keyword">return</span>;</span><br><span class="line">		<span class="keyword">if</span> (visited[i] == <span class="number">0</span>)</span><br><span class="line">			dfs(g, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Graph *g = newGraph();</span><br><span class="line">	findRing(g);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
                 </article>
                 <ul class="tags-postTags">
                     
                     <li>
-                        <a href="../../../../tags/model/" rel="tag"># model</a>
+                        <a href="../../../../tags/graph/" rel="tag"># graph</a>
                     </li>
                     
                     <li>
-                        <a href="../../../../tags/lr/" rel="tag"># lr</a>
+                        <a href="../../../../tags/dfs/" rel="tag"># dfs</a>
                     </li>
                     
                 </ul>
@@ -258,14 +253,10 @@
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="比特币从入门到入土" href="../../14/bitcoin/">
-            ← 比特币从入门到入土
-        </a>
-        
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="EOJ3321 坏掉的里程表" href="../eoj3321/">
-            EOJ3321 坏掉的里程表 →
+        <a class="next-post" title="并查集C++实现" href="../bingcha/">
+            并查集C++实现 →
         </a>
         
     </nav>
@@ -291,7 +282,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-逻辑回归"><span class="toc-text">1.逻辑回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-1-1-logistic分布"><span class="toc-text"> 1.1 logistic分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-1-2-二项logistic回归模型"><span class="toc-text"> 1.2 二项logistic回归模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-2-1-模型特点"><span class="toc-text">  1.2.1 模型特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-1-3-模型参数估计"><span class="toc-text"> 1.3 模型参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-3-1-伯努利分布"><span class="toc-text">  1.3.1 伯努利分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-3-2-模型的似然函数"><span class="toc-text">  1.3.2 模型的似然函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-最大熵模型"><span class="toc-text">2.最大熵模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-2-1-最大熵原理"><span class="toc-text"> 2.1 最大熵原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-2-2-最大熵模型定义"><span class="toc-text"> 2.2 最大熵模型定义</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DFS找环的方法："><span class="toc-text">DFS找环的方法：</span></a></li></ol>
     </div>
 </div>
 
@@ -323,13 +314,13 @@
       
       
       <li>
-        <a href="../../16/cf263D/">cf263D.Cycle in Graph</a>
+        <a href>cf263D.Cycle in Graph</a>
       </li>
       
       
       
       <li>
-        <a href="../../16/bingcha/">并查集C++实现</a>
+        <a href="../bingcha/">并查集C++实现</a>
       </li>
       
       
