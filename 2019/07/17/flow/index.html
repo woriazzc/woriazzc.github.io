@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>overfit | WORIA</title>
+	<title>网络流 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content="ml,overfit">
+	<meta name="keywords" content>
 	
 
 	
@@ -50,12 +50,12 @@
 
 	<meta property="og:site_name" content="WORIA">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="overfit | WORIA">
+	<meta property="og:title" content="网络流 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-06-19T23:06:56+08:00"> 
+	<meta property="article:published_time" content="2019-07-17T15:07:00+08:00"> 
 	<meta property="article:author" content="woria">
 	<meta property="article:published_first" content="WORIA, ">
 	
@@ -67,7 +67,7 @@
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/06/19/正则化/">
+<link rel="canonical" href="https://www.woria.xyz/2019/07/17/flow/">
 
 
 
@@ -177,77 +177,87 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-19T15:31:04.568Z">
-                    2019-06-19
+                <time class="post-full-meta-date" datetime="2019-07-17T07:48:05.000Z">
+                    2019-07-17
                 </time>
                 
                 <span class="date-divider">/</span>
                 
-                <a href="../../../../categories/M-L/">M L</a>&nbsp;&nbsp;
+                <a href="../../../../categories/O-J/">O J</a>&nbsp;&nbsp;
                 
                 
             </div>
-            <h1 class="post-full-title">overfit</h1>
+            <h1 class="post-full-title">网络流</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <h1 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h1><ul>
-<li><font color="red">目的</font>：从高维降到低维，以降低$overfitting$的可能。</li>
-<li><font color="red">方法</font>：从所有 $\sum_{q=0}^Q w_q^2\leq C$即$||w||^{2}\leq{c}$的$w$中选$Error$最小者。</li>
-<li>L2正则化后的$w$ 可能为0的项个数较少，但总的长度固定。</li>
-</ul>
-<p>即满足$w$ 在半径为$\sqrt{c}$ 的球内。由于要使$w$ 最终达到$w_{lin}$ ，$w_{lin}$常常在某凸多边形的中心。</p>
-<p>类似如图情况：</p>
-<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1718836a0bb42636.png" data-src="https://i.loli.net/2019/06/29/5d1718836a0bb42636.png"></p>
-<p>即所求极值点常在球面上，故可将条件 $||w||^{2}\leq{c}$变为$||w||^{2}={c}$ </p>
-<h2 id="拉格朗日乘数法"><a href="#拉格朗日乘数法" class="headerlink" title="拉格朗日乘数法"></a>拉格朗日乘数法</h2><p>  问题转化为求$f(w)=E_{in}$在$g(w)=w^2-C=0$ 的条件下的条件极值。</p>
-<p>拉格朗日乘数法将求  $f(w)$在$w$ 满足一定条件下的极值问题转化为求$F(w)$ 在无约束条件下的极值。</p>
-<script type="math/tex; mode=display">F(w,\lambda)=f(w)+\lambda g(w)</script><p>$||w||^{2}\leq{c}$ 同样可写为$\sum_{q=0}^Q \lambda w_q^2 \leq 1$</p>
-<font color="red">其中$\lambda \propto \frac{1}{C}$，即$\lambda$ 越大，C越小，对$w$ 的筛选作用越大。</font>
-
-<p>接着就可以用regression方法逼近。</p>
-<h3 id="证明："><a href="#证明：" class="headerlink" title="证明："></a>证明：</h3><p>假设点$(x,y)$满足$\left\{<br>\begin{aligned}<br>f(x,y)&amp;=k,(k为f极值) \\<br>g(x,y)&amp;=0<br>\end{aligned}<br>\right.$，则</p>
-<script type="math/tex; mode=display">\left\{
-\begin{aligned}
-{\rm d}f(x,y)&=\frac{\partial f}{\partial x}{\rm d}x+\frac{\partial f}{\partial y}{\rm d}y=0 \\
-{\rm d}g(x,y)&=\frac{\partial g}{\partial x}{\rm d}x+\frac{\partial g}{\partial y}{\rm d}y=0
-\end{aligned}
-\right.</script><script type="math/tex; mode=display">\Downarrow</script><script type="math/tex; mode=display">\frac{\frac{\partial f}{\partial x}}{\frac{\partial g}{\partial x}}=\frac{\frac{\partial f}{\partial y}}{\frac{\partial g}{\partial y}}=-\lambda</script><p>即</p>
-<script type="math/tex; mode=display">\left\{
-\begin{aligned}
-\frac{\partial f}{\partial x}+\lambda \frac{\partial g}{\partial x}&=0\\
-\frac{\partial f}{\partial y}+\lambda \frac{\partial g}{\partial y}&=0
-\end{aligned}
-\right.</script><p>全微分积分得</p>
-<script type="math/tex; mode=display">L(x,y,\lambda)=f(x,y)+\lambda g(x,y)</script><h2 id="勒让德多项式"><a href="#勒让德多项式" class="headerlink" title="勒让德多项式"></a>勒让德多项式</h2><font color="red">定义在$\langle p,q\rangle=\int_{-1}^1 p(x)q(x)$ 内积上的正交多项式</font>
-
-<p>在 $|x|&lt;1$时，会造成w变大。</p>
-<p>将x正交化。</p>
-<script type="math/tex; mode=display">(1,x,x^2,x^3,\cdots,x^Q)\Rightarrow(1,x,\frac{1}{2}(3x^2-1),\frac{1}{2}(5x^3-3x),\cdots)</script><p>箭头右边的就是勒让德多项式，这是一系列两两正交的向量。</p>
-<p>而推导勒让德多项式的一种方法就是对$(1,x,x^2,\cdots)$ <a href="https://zh.wikipedia.org/wiki/格拉姆-施密特正交化" target="_blank" rel="noopener"><strong>Gram-Schmidt正交化</strong></a>。</p>
-<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1727207cf3d43682.png" data-src="https://i.loli.net/2019/06/29/5d1727207cf3d43682.png"></p>
-<p>一部分勒让德多项式：</p>
-<p><img alt="2" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png" data-src="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png"></p>
-<p>更多正交多项式见<a href="https://blog.zmyme.com/archives/118" target="_blank" rel="noopener">https://blog.zmyme.com/archives/118</a></p>
-<h1 id="L1正则化"><a href="#L1正则化" class="headerlink" title="L1正则化"></a>L1正则化</h1><ul>
-<li><p>取$\sum w_i=C$ 的 $w$</p>
+                    <h2 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h2><p>&nbsp;</p>
+<blockquote>
+<p>汇点 s，源点 t ，每条边有容量限制，求从 s 到 t 的最大流量，即最大流。</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>对于图$G(V,E)$，设每条边的实际流量$f(e)$，最大流量（容量）$c(e)$ .</p>
+<h3 id="emsp-Ford-Fulkerson算法"><a href="#emsp-Ford-Fulkerson算法" class="headerlink" title="&emsp;Ford-Fulkerson算法"></a>&emsp;Ford-Fulkerson算法</h3><p>&nbsp;</p>
+<p>&emsp;分两步求得最大流：</p>
+<ol>
+<li><p>找到一条从 s 到 t 的且只经过$f(e)&lt;c(e)$的边路径。沿着该路径尽可能增大$f(e)$，不断重复以上操作，直到不存在满足条件的路径。</p>
 </li>
-<li><p>用于快速取得结果，因为满足条件的$w$必定有规定个数的项为 0 .</p>
+<li><p>只利用满足$f(e)<c(e)$的边e或者$f(e)>0$的边e的反向边rev(e)，寻找一条 s 到 t 的路径，沿着该路径尽可能增加流，不断重复，直到找不到满足条件的路径。</c(e)$的边e或者$f(e)></p>
 </li>
-</ul>
-<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d17409e236ae63450.png" data-src="https://i.loli.net/2019/06/29/5d17409e236ae63450.png"></p>
-<h1 id="对L1与L2正则化，nosie越多，次数越大，-lambda-越大。"><a href="#对L1与L2正则化，nosie越多，次数越大，-lambda-越大。" class="headerlink" title="对L1与L2正则化，nosie越多，次数越大，$\lambda$ 越大。"></a>对L1与L2正则化，nosie越多，次数越大，$\lambda$ 越大。</h1>
+</ol>
+<p>&nbsp;</p>
+<p>&emsp;<strong>称由满足$f(e)<c(e)$的边以及满足$f(e)>0$ 的边的反向边rev(e)组成的图为<font color="red">残余网络</font>，称残余网络上的s-t路径为<font color="red">增广路</font>。</c(e)$的边以及满足$f(e)></strong></p>
+<p>&nbsp;</p>
+<h4 id="emsp-emsp-代码"><a href="#emsp-emsp-代码" class="headerlink" title="&emsp;&emsp;代码"></a>&emsp;&emsp;代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于表示边的结构体（终点，容量，反向边）</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> to, cap, rev;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;edge&gt;G[MAX_V];<span class="comment">//图的邻接表表示</span></span><br><span class="line"><span class="keyword">bool</span> used[MAX_V];<span class="comment">//DFS中用到的访问标记</span></span><br><span class="line"><span class="comment">//向图中增加一条从s到t容量为cap的边</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_edge</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to, <span class="keyword">int</span> cap)</span> </span>&#123;</span><br><span class="line">	G[from].push_back((edge) &#123; to, cap, G[to].size() &#125;);</span><br><span class="line">	G[to].push_back((edge) &#123; from, <span class="number">0</span>, G[from].size() - <span class="number">1</span> &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过DFS寻找增广路</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> t, <span class="keyword">int</span> f)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v == t)<span class="keyword">return</span> f;</span><br><span class="line">	used[v] = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G[v].size(); i++) &#123;</span><br><span class="line">		edge &amp;e = G[v][i];</span><br><span class="line">		<span class="keyword">if</span> (!used[e.to] &amp;&amp; e.cap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> d = dfs(e.to, t, min(f, e.cap));</span><br><span class="line">			<span class="keyword">if</span> (d &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				e.cap -= d;</span><br><span class="line">				G[e.to][e.rev].cap += d;</span><br><span class="line">				<span class="keyword">return</span> d;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求解从s到t的最大流</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_flow</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> flow = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="built_in">memset</span>(used, <span class="number">0</span>, <span class="keyword">sizeof</span>(used));</span><br><span class="line">		<span class="keyword">int</span> f = dfs(s, t, INF);</span><br><span class="line">		<span class="keyword">if</span> (f == <span class="number">0</span>)<span class="keyword">return</span> flow;</span><br><span class="line">		flow += f;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> to,cap,rev;&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h2><p>对于某个顶点集合$S\in V$，从S出发指向S外部的边的集合，记为割 (S,V\S).这些边的容量之和，被称为割的容量。</p>
+<p>如果$s\in S,t\in V$\S，那么此时的割又称为s-t割。</p>
+<p>如果将s-t割中的边都删去，就不会有s到t的路径了。</p>
+<p>割的最小容量就是最小割问题。</p>
+<p>有<strong><font size="4">定理：最大流等于最小割</font></strong></p>
+<p>&nbsp;</p>
+<h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><p>&nbsp;</p>
+<blockquote>
+<p>有一边的集合，集合中所有边两两之间没有公共端点，这样的集合M称为匹配。</p>
+</blockquote>
+<h3 id="emsp-二分图匹配"><a href="#emsp-二分图匹配" class="headerlink" title="&emsp;二分图匹配"></a>&emsp;二分图匹配</h3><p>&nbsp;</p>
+<p>&emsp;&emsp;设有图$G(U \cup V;E)$，为二分图。</p>
+<p>&emsp;&emsp;将匹配问题看成最大流问题的一种特殊情况。对原图作如下变形：</p>
+<p>&emsp;&emsp;将原图中的所有无向边改成有向边，方向从U到V，容量为1，增加源点s 和汇点t ，从s 向所有顶点u连一条容量为1的边，从所有顶点v向t 连一条容量为1的边。</p>
+<p>&emsp;&emsp;求新图最大流的结果就是原图最大匹配。</p>
+<p>&nbsp;</p>
+<h3 id="emsp-一般图匹配"><a href="#emsp-一般图匹配" class="headerlink" title="&emsp;一般图匹配"></a>&emsp;一般图匹配</h3><p>&emsp;&emsp;对于无向图G=(V,E)的每一条边随意赋予方向得到有向图$G’=(V,E’)$。并对每条边$e\in E’$都关联一个变量$x_e$。则Tutte矩阵是一个如下定义的V*V矩阵$T=(t_{u,v})$</p>
+<script type="math/tex; mode=display">t_{u,v}=\left\{
+\begin{aligned}
+x_{(u，v)},((u,v)\in E') \\
+-x_{(v,u)},(v,u\in E')\\0,(其他)
+\end{aligned}
+\right.</script><p>&nbsp;</p>
+<p>&emsp;&emsp;T的秩等于最大匹配的顶点数</p>
+<p>&nbsp;</p>
+<h2 id="匹配，边覆盖，独立集和顶点覆盖"><a href="#匹配，边覆盖，独立集和顶点覆盖" class="headerlink" title="匹配，边覆盖，独立集和顶点覆盖"></a>匹配，边覆盖，独立集和顶点覆盖</h2><p>&nbsp;</p>
+<p>&emsp;匹配   · · · · · · · · · · · · · · · · · · · · · · 在G中两两没有公共端点的边集合M</p>
+<p>&emsp;边覆盖  · · · · · · · · · · · · · · · · · · · · · G中的任意顶点都至少是F中某条边的端点的边集合F</p>
+<p>&emsp;独立集  · · · · · · · · · · · · · · · · · · · · · 在G中两两不相连的顶点集合S</p>
+<p>&emsp;顶点覆盖  · · · · · · · · · · · · · · · · · · · G中的任意边都至少有一个端点属于S的顶点集合S</p>
+<p>&nbsp;</p>
+<ol>
+<li>对于不存在孤立点的图，|最大匹配|+|最小边覆盖|=|V|</li>
+<li>有 |最大独立集|+|最小顶点覆盖|=|V| </li>
+<li>有|最大匹配|=|最小顶点覆盖|</li>
+</ol>
+
                 </article>
                 <ul class="tags-postTags">
                     
                     <li>
-                        <a href="../../../../tags/overfit/" rel="tag"># overfit</a>
+                        <a href="../../../../tags/Algorithm/" rel="tag"># Algorithm</a>
                     </li>
                     
                     <li>
-                        <a href="../../../../tags/正则化/" rel="tag"># 正则化</a>
+                        <a href="../../../../tags/网络流/" rel="tag"># 网络流</a>
                     </li>
                     
                 </ul>
@@ -258,14 +268,10 @@
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="mathjax" href="../../20/hexo-casper中插入mathjax/">
-            ← mathjax
-        </a>
-        
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="机器学习基石第三次作业20" href="../../16/ml3/">
-            机器学习基石第三次作业20 →
+        <a class="next-post" title="cf687A. NP-Hard Problem" href="../../16/cf687A/">
+            cf687A. NP-Hard Problem →
         </a>
         
     </nav>
@@ -291,7 +297,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#L2正则化"><span class="toc-text">L2正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#拉格朗日乘数法"><span class="toc-text">拉格朗日乘数法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#证明："><span class="toc-text">证明：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#勒让德多项式"><span class="toc-text">勒让德多项式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#L1正则化"><span class="toc-text">L1正则化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对L1与L2正则化，nosie越多，次数越大，-lambda-越大。"><span class="toc-text">对L1与L2正则化，nosie越多，次数越大，$\lambda$ 越大。</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最大流"><span class="toc-text">最大流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-Ford-Fulkerson算法"><span class="toc-text"> Ford-Fulkerson算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-代码"><span class="toc-text">  代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最小割"><span class="toc-text">最小割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配"><span class="toc-text">匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-二分图匹配"><span class="toc-text"> 二分图匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-一般图匹配"><span class="toc-text"> 一般图匹配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配，边覆盖，独立集和顶点覆盖"><span class="toc-text">匹配，边覆盖，独立集和顶点覆盖</span></a></li></ol>
     </div>
 </div>
 
@@ -323,19 +329,19 @@
       
       
       <li>
-        <a href="../../../07/17/flow/">网络流</a>
+        <a href>网络流</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/16/cf687A/">cf687A. NP-Hard Problem</a>
+        <a href="../../16/cf687A/">cf687A. NP-Hard Problem</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/16/cf707b/">cf707B.Bakery</a>
+        <a href="../../16/cf707b/">cf707B.Bakery</a>
       </li>
       
       

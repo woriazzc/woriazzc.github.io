@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>overfit | WORIA</title>
+	<title>Tag: 网络流 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content="ml,overfit">
+	<meta name="keywords" content="hexo, casper, ghost, theme">
 	
 
 	
@@ -49,28 +49,20 @@
 	
 
 	<meta property="og:site_name" content="WORIA">
-	<meta property="og:type" content="article">
-	<meta property="og:title" content="overfit | WORIA">
+	<meta property="og:type" content="blog">
+	<meta property="og:title" content="Tag: 网络流 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-06-19T23:06:56+08:00"> 
-	<meta property="article:author" content="woria">
-	<meta property="article:published_first" content="WORIA, ">
-	
 
 	
 	
-	<link rel="stylesheet" href="../../../../css/allinonecss.min.css">
+	<link rel="stylesheet" href="../../css/allinonecss.min.css">
 
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/06/19/正则化/">
-
-
-
 
 
 	
@@ -93,15 +85,17 @@
 	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 	
 </head>
-<body class="post-template">
+<body class="tag-template">
 	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
-		
+		 
 
 
 
 
-<header class="site-header post-site-header outer">
+<header class="site-header outer " style="background-image: url(https://i.loli.net/2019/07/07/5d21b388503c339900.jpg)">
     <div class="inner">
+        
+        
         
 <nav class="site-nav"> 
     <div class="site-nav-left">
@@ -169,130 +163,92 @@
 </div>
     </div>
 </nav>
+        
+        <div class="site-header-content">
+            
+            <h1 class="site-title">
+                Tag: 网络流
+            </h1>
+            <h2 class="site-description">Tags</h2>
+        </div>
+        
+        
     </div>
 </header>
 
 
 <div id="site-main" class="site-main outer" role="main">
-    <div class="inner">
-        <header class="post-full-header">
-            <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-06-19T15:31:04.568Z">
-                    2019-06-19
-                </time>
-                
-                <span class="date-divider">/</span>
-                
-                <a href="../../../../categories/M-L/">M L</a>&nbsp;&nbsp;
-                
-                
-            </div>
-            <h1 class="post-full-title">overfit</h1>
-        </header>
-        <div class="post-full no-image">
-            
-            <div class="post-full-content">
-                <article id="lightgallery" class="markdown-body">
-                    <h1 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h1><ul>
-<li><font color="red">目的</font>：从高维降到低维，以降低$overfitting$的可能。</li>
-<li><font color="red">方法</font>：从所有 $\sum_{q=0}^Q w_q^2\leq C$即$||w||^{2}\leq{c}$的$w$中选$Error$最小者。</li>
-<li>L2正则化后的$w$ 可能为0的项个数较少，但总的长度固定。</li>
-</ul>
-<p>即满足$w$ 在半径为$\sqrt{c}$ 的球内。由于要使$w$ 最终达到$w_{lin}$ ，$w_{lin}$常常在某凸多边形的中心。</p>
-<p>类似如图情况：</p>
-<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1718836a0bb42636.png" data-src="https://i.loli.net/2019/06/29/5d1718836a0bb42636.png"></p>
-<p>即所求极值点常在球面上，故可将条件 $||w||^{2}\leq{c}$变为$||w||^{2}={c}$ </p>
-<h2 id="拉格朗日乘数法"><a href="#拉格朗日乘数法" class="headerlink" title="拉格朗日乘数法"></a>拉格朗日乘数法</h2><p>  问题转化为求$f(w)=E_{in}$在$g(w)=w^2-C=0$ 的条件下的条件极值。</p>
-<p>拉格朗日乘数法将求  $f(w)$在$w$ 满足一定条件下的极值问题转化为求$F(w)$ 在无约束条件下的极值。</p>
-<script type="math/tex; mode=display">F(w,\lambda)=f(w)+\lambda g(w)</script><p>$||w||^{2}\leq{c}$ 同样可写为$\sum_{q=0}^Q \lambda w_q^2 \leq 1$</p>
-<font color="red">其中$\lambda \propto \frac{1}{C}$，即$\lambda$ 越大，C越小，对$w$ 的筛选作用越大。</font>
+	<div class="inner">
+		<div class="post-feed">
+			
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="网络流" href="../../2019/07/17/flow/">
+					<div class="post-card-image b-lazy" data-src="https://i.loli.net/2019/07/17/5d2ee3588ecbc82526.jpg"></div>
+				</a>
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="网络流" href="../../2019/07/17/flow/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								
+								O J
+								| 
+								
+								<time datetime="2019-07-17T07:48:05.000Z">
+									2019-07-17
+								</time>
+							</span>
+							<h2 class="post-card-title">网络流</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								最大流&nbsp;
 
-<p>接着就可以用regression方法逼近。</p>
-<h3 id="证明："><a href="#证明：" class="headerlink" title="证明："></a>证明：</h3><p>假设点$(x,y)$满足$\left\{<br>\begin{aligned}<br>f(x,y)&amp;=k,(k为f极值) \\<br>g(x,y)&amp;=0<br>\end{aligned}<br>\right.$，则</p>
-<script type="math/tex; mode=display">\left\{
-\begin{aligned}
-{\rm d}f(x,y)&=\frac{\partial f}{\partial x}{\rm d}x+\frac{\partial f}{\partial y}{\rm d}y=0 \\
-{\rm d}g(x,y)&=\frac{\partial g}{\partial x}{\rm d}x+\frac{\partial g}{\partial y}{\rm d}y=0
-\end{aligned}
-\right.</script><script type="math/tex; mode=display">\Downarrow</script><script type="math/tex; mode=display">\frac{\frac{\partial f}{\partial x}}{\frac{\partial g}{\partial x}}=\frac{\frac{\partial f}{\partial y}}{\frac{\partial g}{\partial y}}=-\lambda</script><p>即</p>
-<script type="math/tex; mode=display">\left\{
-\begin{aligned}
-\frac{\partial f}{\partial x}+\lambda \frac{\partial g}{\partial x}&=0\\
-\frac{\partial f}{\partial y}+\lambda \frac{\partial g}{\partial y}&=0
-\end{aligned}
-\right.</script><p>全微分积分得</p>
-<script type="math/tex; mode=display">L(x,y,\lambda)=f(x,y)+\lambda g(x,y)</script><h2 id="勒让德多项式"><a href="#勒让德多项式" class="headerlink" title="勒让德多项式"></a>勒让德多项式</h2><font color="red">定义在$\langle p,q\rangle=\int_{-1}^1 p(x)q(x)$ 内积上的正交多项式</font>
+汇点 s，源点 t ，每条边有容量限制，求从 s 到 t 的最大流量，即最大流。
 
-<p>在 $|x|&lt;1$时，会造成w变大。</p>
-<p>将x正交化。</p>
-<script type="math/tex; mode=display">(1,x,x^2,x^3,\cdots,x^Q)\Rightarrow(1,x,\frac{1}{2}(3x^2-1),\frac{1}{2}(5x^3-3x),\cdots)</script><p>箭头右边的就是勒让德多项式，这是一系列两两正交的向量。</p>
-<p>而推导勒让德多项式的一种方法就是对$(1,x,x^2,\cdots)$ <a href="https://zh.wikipedia.org/wiki/格拉姆-施密特正交化" target="_blank" rel="noopener"><strong>Gram-Schmidt正交化</strong></a>。</p>
-<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1727207cf3d43682.png" data-src="https://i.loli.net/2019/06/29/5d1727207cf3d43682.png"></p>
-<p>一部分勒让德多项式：</p>
-<p><img alt="2" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png" data-src="https://i.loli.net/2019/06/29/5d1726c5bdb7531992.png"></p>
-<p>更多正交多项式见<a href="https://blog.zmyme.com/archives/118" target="_blank" rel="noopener">https://blog.zmyme.com/archives/118</a></p>
-<h1 id="L1正则化"><a href="#L1正则化" class="headerlink" title="L1正则化"></a>L1正则化</h1><ul>
-<li><p>取$\sum w_i=C$ 的 $w$</p>
-</li>
-<li><p>用于快速取得结果，因为满足条件的$w$必定有规定个数的项为 0 .</p>
-</li>
-</ul>
-<p><img alt="1" class="post-img b-lazy" href="https://i.loli.net/2019/06/29/5d17409e236ae63450.png" data-src="https://i.loli.net/2019/06/29/5d17409e236ae63450.png"></p>
-<h1 id="对L1与L2正则化，nosie越多，次数越大，-lambda-越大。"><a href="#对L1与L2正则化，nosie越多，次数越大，-lambda-越大。" class="headerlink" title="对L1与L2正则化，nosie越多，次数越大，$\lambda$ 越大。"></a>对L1与L2正则化，nosie越多，次数越大，$\lambda$ 越大。</h1>
-                </article>
-                <ul class="tags-postTags">
-                    
-                    <li>
-                        <a href="../../../../tags/overfit/" rel="tag"># overfit</a>
-                    </li>
-                    
-                    <li>
-                        <a href="../../../../tags/正则化/" rel="tag"># 正则化</a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    
-    <nav id="gobottom" class="pagination">
-        
-        <a class="prev-post" title="mathjax" href="../../20/hexo-casper中插入mathjax/">
-            ← mathjax
-        </a>
-        
-        <span class="prev-next-post">·</span>
-        
-        <a class="next-post" title="机器学习基石第三次作业20" href="../../16/ml3/">
-            机器学习基石第三次作业20 →
-        </a>
-        
-    </nav>
-
-    
-    <div class="inner">
-        <div id="comment"></div>
-    </div>
-    
+&nbsp;
+对于图$G(V,E)$，设每条边的实际流
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">woria</div>
+								
+								<a href="/about" class="static-avatar">
+									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							5
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+		</div>
+	</div>
 </div>
 
-<div class="toc-bar">
-    <div class="toc-btn-bar">
-        <a href="#site-main" class="toc-btn">
-            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
-        </a>
-        <div class="toc-btn toc-switch">
-            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
-            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
-        </div>
-        <a href="#gobottom" class="toc-btn">
-            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
-        </a>
-    </div>
-    <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#L2正则化"><span class="toc-text">L2正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#拉格朗日乘数法"><span class="toc-text">拉格朗日乘数法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#证明："><span class="toc-text">证明：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#勒让德多项式"><span class="toc-text">勒让德多项式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#L1正则化"><span class="toc-text">L1正则化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对L1与L2正则化，nosie越多，次数越大，-lambda-越大。"><span class="toc-text">对L1与L2正则化，nosie越多，次数越大，$\lambda$ 越大。</span></a></li></ol>
-    </div>
+
+
+<div class="outer">
+	<nav class="pagination">
+		
+	</nav>
 </div>
 
 
@@ -323,19 +279,19 @@
       
       
       <li>
-        <a href="../../../07/17/flow/">网络流</a>
+        <a href="../../2019/07/17/flow/">网络流</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/16/cf687A/">cf687A. NP-Hard Problem</a>
+        <a href="../../2019/07/16/cf687A/">cf687A. NP-Hard Problem</a>
       </li>
       
       
       
       <li>
-        <a href="../../../07/16/cf707b/">cf707B.Bakery</a>
+        <a href="../../2019/07/16/cf707b/">cf707B.Bakery</a>
       </li>
       
       
@@ -402,7 +358,7 @@
     </ul>
   </div>
   <footer class="read-next-card-footer">
-    <a href="../../../../archives">  MORE  → </a>
+    <a href="../../archives">  MORE  → </a>
   </footer>
 </article>
 
@@ -415,7 +371,7 @@
         <h3 class="read-next-card-header-title">Categories</h3>
     </header>
     <div class="read-next-card-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/M-L/">M L</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/O-J/">O J</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/WEB/">WEB</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/oj/">oj</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/考试/">考试</a></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/M-L/">M L</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/O-J/">O J</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/WEB/">WEB</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/oj/">oj</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/考试/">考试</a></li></ul>
     </div>
 </article>
 
@@ -429,7 +385,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/bfs/" style="font-size: 16.5px;">bfs</a> <a href="../../../../tags/binary-search/" style="font-size: 14px;">binary-search</a> <a href="../../../../tags/bitcoin/" style="font-size: 14px;">bitcoin</a> <a href="../../../../tags/dfs/" style="font-size: 19px;">dfs</a> <a href="../../../../tags/dp/" style="font-size: 14px;">dp</a> <a href="../../../../tags/error/" style="font-size: 14px;">error</a> <a href="../../../../tags/graph/" style="font-size: 21.5px;">graph</a> <a href="../../../../tags/greedy/" style="font-size: 19px;">greedy</a> <a href="../../../../tags/hexo/" style="font-size: 16.5px;">hexo</a> <a href="../../../../tags/homework/" style="font-size: 14px;">homework</a> <a href="../../../../tags/kd-tree/" style="font-size: 14px;">kd-tree</a> <a href="../../../../tags/lr/" style="font-size: 14px;">lr</a> <a href="../../../../tags/mathjax/" style="font-size: 14px;">mathjax</a> <a href="../../../../tags/model/" style="font-size: 19px;">model</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/validation/" style="font-size: 14px;">validation</a> <a href="../../../../tags/决策树/" style="font-size: 14px;">决策树</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/机器学习基石/" style="font-size: 14px;">机器学习基石</a> <a href="../../../../tags/正则化/" style="font-size: 14px;">正则化</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/网络流/" style="font-size: 14px;">网络流</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/超平面/" style="font-size: 14px;">超平面</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
+		<a href="../Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../bfs/" style="font-size: 16.5px;">bfs</a> <a href="../binary-search/" style="font-size: 14px;">binary-search</a> <a href="../bitcoin/" style="font-size: 14px;">bitcoin</a> <a href="../dfs/" style="font-size: 19px;">dfs</a> <a href="../dp/" style="font-size: 14px;">dp</a> <a href="../error/" style="font-size: 14px;">error</a> <a href="../graph/" style="font-size: 21.5px;">graph</a> <a href="../greedy/" style="font-size: 19px;">greedy</a> <a href="../hexo/" style="font-size: 16.5px;">hexo</a> <a href="../homework/" style="font-size: 14px;">homework</a> <a href="../kd-tree/" style="font-size: 14px;">kd-tree</a> <a href="../lr/" style="font-size: 14px;">lr</a> <a href="../mathjax/" style="font-size: 14px;">mathjax</a> <a href="../model/" style="font-size: 19px;">model</a> <a href="../overfit/" style="font-size: 14px;">overfit</a> <a href="../python/" style="font-size: 14px;">python</a> <a href="../validation/" style="font-size: 14px;">validation</a> <a href="../决策树/" style="font-size: 14px;">决策树</a> <a href="../感知机/" style="font-size: 14px;">感知机</a> <a href="../机器学习基石/" style="font-size: 14px;">机器学习基石</a> <a href="../正则化/" style="font-size: 14px;">正则化</a> <a href="../物理/" style="font-size: 14px;">物理</a> <a href="../线代/" style="font-size: 14px;">线代</a> <a href style="font-size: 14px;">网络流</a> <a href="../贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../超平面/" style="font-size: 14px;">超平面</a> <a href="../高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
@@ -462,10 +418,7 @@
 <script>if(window.navigator && navigator.serviceWorker) {navigator.serviceWorker.getRegistrations().then(function(registrations) {for(let registration of registrations) {registration.unregister()}})}</script>
 
 
-<script async src="../../../../js/allinone.min.js" id="scriptLoad"></script>
-
-
-
+<script async src="../../js/allinone.min.js" id="scriptLoad"></script>
 
 
 
@@ -481,34 +434,11 @@
 
 
 
-<script src="../../../../js/lightgallery.min.js"></script>
-<link rel="stylesheet" href="../../../../css/lightgallery.min.css">
-<script>
-    lightGallery(document.getElementById('lightgallery'), {
-        selector: '.post-img'
-    });
-</script>
 
 
 
 
-<script async src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script async src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
-<script>
-    window.addEventListener("load", function() {
-        new Valine({
-            el: '#comment' ,
-            verify: false,
-            notify: true,
-            appId: 'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
-            appKey: 'reWNaUPPWMXJhmx3CYSlF3w9',
-            placeholder: 'Say Something!!!',
-            pageSize: 10,
-            avatar: 'wavatar',
-            visitor: true,
-        })
-    });
-</script>
+
 
 
 
