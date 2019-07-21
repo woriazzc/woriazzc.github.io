@@ -118,8 +118,14 @@
             
         </ul> 
     </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
      
     <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
          
         
 <div class="social-links">
@@ -875,7 +881,7 @@ cout的double只能输出小数点后 6 位，要输出更多需在输出语句�
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../tags/bfs/" style="font-size: 16.5px;">bfs</a> <a href="../../tags/binary-search/" style="font-size: 14px;">binary-search</a> <a href="../../tags/bitcoin/" style="font-size: 14px;">bitcoin</a> <a href="../../tags/dfs/" style="font-size: 19px;">dfs</a> <a href="../../tags/dp/" style="font-size: 14px;">dp</a> <a href="../../tags/error/" style="font-size: 14px;">error</a> <a href="../../tags/graph/" style="font-size: 21.5px;">graph</a> <a href="../../tags/greedy/" style="font-size: 19px;">greedy</a> <a href="../../tags/hexo/" style="font-size: 16.5px;">hexo</a> <a href="../../tags/homework/" style="font-size: 14px;">homework</a> <a href="../../tags/kd-tree/" style="font-size: 14px;">kd-tree</a> <a href="../../tags/lr/" style="font-size: 14px;">lr</a> <a href="../../tags/mathjax/" style="font-size: 14px;">mathjax</a> <a href="../../tags/model/" style="font-size: 19px;">model</a> <a href="../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../tags/python/" style="font-size: 14px;">python</a> <a href="../../tags/validation/" style="font-size: 14px;">validation</a> <a href="../../tags/决策树/" style="font-size: 14px;">决策树</a> <a href="../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../tags/机器学习基石/" style="font-size: 14px;">机器学习基石</a> <a href="../../tags/正则化/" style="font-size: 14px;">正则化</a> <a href="../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../tags/网络流/" style="font-size: 14px;">网络流</a> <a href="../../tags/训练/" style="font-size: 16.5px;">训练</a> <a href="../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../tags/超平面/" style="font-size: 14px;">超平面</a> <a href="../../tags/高数/" style="font-size: 14px;">高数</a>
+		<a href="../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../tags/bfs/" style="font-size: 16.5px;">bfs</a> <a href="../../tags/binary-search/" style="font-size: 14px;">binary-search</a> <a href="../../tags/bitcoin/" style="font-size: 14px;">bitcoin</a> <a href="../../tags/dfs/" style="font-size: 19px;">dfs</a> <a href="../../tags/dp/" style="font-size: 16.5px;">dp</a> <a href="../../tags/error/" style="font-size: 14px;">error</a> <a href="../../tags/graph/" style="font-size: 21.5px;">graph</a> <a href="../../tags/greedy/" style="font-size: 19px;">greedy</a> <a href="../../tags/hexo/" style="font-size: 16.5px;">hexo</a> <a href="../../tags/homework/" style="font-size: 14px;">homework</a> <a href="../../tags/kd-tree/" style="font-size: 14px;">kd-tree</a> <a href="../../tags/lr/" style="font-size: 14px;">lr</a> <a href="../../tags/mathjax/" style="font-size: 14px;">mathjax</a> <a href="../../tags/model/" style="font-size: 19px;">model</a> <a href="../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../tags/python/" style="font-size: 14px;">python</a> <a href="../../tags/validation/" style="font-size: 14px;">validation</a> <a href="../../tags/决策树/" style="font-size: 14px;">决策树</a> <a href="../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../tags/机器学习基石/" style="font-size: 14px;">机器学习基石</a> <a href="../../tags/正则化/" style="font-size: 14px;">正则化</a> <a href="../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../tags/网络流/" style="font-size: 14px;">网络流</a> <a href="../../tags/训练/" style="font-size: 16.5px;">训练</a> <a href="../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../tags/超平面/" style="font-size: 14px;">超平面</a> <a href="../../tags/高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
@@ -888,6 +894,17 @@ cout的double只能输出小数点后 6 位，要输出更多需在输出语句�
 
 
 
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <img class="search-overlay-logo" src="https://i.loli.net/2017/11/26/5a19c0b50432e.png" alt="WORIA">
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
 
 <footer class="site-footer outer">
 	<div class="site-footer-content inner">
@@ -931,6 +948,14 @@ cout的double只能输出小数点后 6 位，要输出更多需在输出语句�
 
 
 
+
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function(){
+        searchFunc("/")
+    });
+</script>
 
 
 
