@@ -22,7 +22,7 @@
 	<link rel="preconnect" href="//gravatar.loli.net">
 	<link rel="preload" href="https://pic.zhih.me/blog/header.jpg" as="image">
 
-	<title>cf687A. NP-Hard Problem | WORIA</title>
+	<title>Tag: 模板 | WORIA</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -31,7 +31,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content>
+	<meta name="keywords" content="hexo, casper, ghost, theme">
 	
 
 	
@@ -49,28 +49,20 @@
 	
 
 	<meta property="og:site_name" content="WORIA">
-	<meta property="og:type" content="article">
-	<meta property="og:title" content="cf687A. NP-Hard Problem | WORIA">
+	<meta property="og:type" content="blog">
+	<meta property="og:title" content="Tag: 模板 | WORIA">
 	<meta property="og:description" content>
 	<meta property="og:url" content="https://www.woria.xyz">
 
 	
-	<meta property="article:published_time" content="2019-07-16T20:07:00+08:00"> 
-	<meta property="article:author" content="woria">
-	<meta property="article:published_first" content="WORIA, ">
-	
 
 	
 	
-	<link rel="stylesheet" href="../../../../css/allinonecss.min.css">
+	<link rel="stylesheet" href="../../css/allinonecss.min.css">
 
 	
 	
 	
-<link rel="canonical" href="https://www.woria.xyz/2019/07/16/cf687A/">
-
-
-
 
 
 	
@@ -93,15 +85,17 @@
 	</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 	
 </head>
-<body class="post-template">
+<body class="tag-template">
 	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-wrapper">
-		
+		 
 
 
 
 
-<header class="site-header post-site-header outer">
+<header class="site-header outer " style="background-image: url(https://i.loli.net/2019/07/07/5d21b388503c339900.jpg)">
     <div class="inner">
+        
+        
         
 <nav class="site-nav"> 
     <div class="site-nav-left">
@@ -175,89 +169,91 @@
 </div>
     </div>
 </nav>
+        
+        <div class="site-header-content">
+            
+            <h1 class="site-title">
+                Tag: 模板
+            </h1>
+            <h2 class="site-description">Tags</h2>
+        </div>
+        
+        
     </div>
 </header>
 
 
 <div id="site-main" class="site-main outer" role="main">
-    <div class="inner">
-        <header class="post-full-header">
-            <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-07-16T12:44:21.000Z">
-                    2019-07-16
-                </time>
-                
-                <span class="date-divider">/</span>
-                
-                <a href="../../../../categories/O-J/">O J</a>&nbsp;&nbsp;
-                
-                
-            </div>
-            <h1 class="post-full-title">cf687A. NP-Hard Problem</h1>
-        </header>
-        <div class="post-full no-image">
-            
-            <div class="post-full-content">
-                <article id="lightgallery" class="markdown-body">
-                    <p><u>本题需要将一张图分为两个顶点覆盖（vertex cover），并不需要最小，较简单。</u></p>
-<p>&nbsp;</p>
-<p>dfs染色，任一点起，每个相连点染成不同颜色，若出现染过色，且该点颜色与当前应该染成的颜色不同，则出错。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> vised[maxn];</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;mp;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;to;</span><br><span class="line">&#125;nd[maxn];</span><br><span class="line"><span class="keyword">bool</span> flg = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">paint</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> color)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (vised[s] != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (vised[s] != color)</span><br><span class="line">			flg = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	vised[s] = color;</span><br><span class="line">	mp[color].push_back(s);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> c : nd[s].to) &#123;</span><br><span class="line">		paint(c, <span class="number">0</span> - color);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	mp[<span class="number">-1</span>] = &#123;&#125;;</span><br><span class="line">	mp[<span class="number">1</span>] = &#123;&#125;;</span><br><span class="line">	<span class="keyword">int</span> n, m;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> u, v;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; u&gt;&gt; v;</span><br><span class="line">		nd[u].to.push_back(v);</span><br><span class="line">		nd[v].to.push_back(u);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!vised[i])</span><br><span class="line">			paint(i,<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span> (flg == <span class="literal">false</span>) &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; mp[<span class="number">-1</span>].size()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> c : mp[<span class="number">-1</span>])</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; mp[<span class="number">1</span>].size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> c : mp[<span class="number">1</span>])</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-                </article>
-                <ul class="tags-postTags">
-                    
-                    <li>
-                        <a href="../../../../tags/graph/" rel="tag"># graph</a>
-                    </li>
-                    
-                    <li>
-                        <a href="../../../../tags/dfs/" rel="tag"># dfs</a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    
-    <nav id="gobottom" class="pagination">
-        
-        <a class="prev-post" title="网络流" href="../../17/flow/">
-            ← 网络流
-        </a>
-        
-        <span class="prev-next-post">·</span>
-        
-        <a class="next-post" title="cf707B.Bakery" href="../cf707b/">
-            cf707B.Bakery →
-        </a>
-        
-    </nav>
-
-    
-    <div class="inner">
-        <div id="comment"></div>
-    </div>
-    
+	<div class="inner">
+		<div class="post-feed">
+			
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="模板" href="../../2019/07/25/模板/">
+					<div class="post-card-image b-lazy" data-src="https://i.loli.net/2019/07/25/5d398e04270e726030.jpg"></div>
+				</a>
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="模板" href="../../2019/07/25/模板/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								
+								O J
+								| 
+								
+								<time datetime="2019-07-25T10:39:57.000Z">
+									2019-07-25
+								</time>
+							</span>
+							<h2 class="post-card-title">模板</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								数学&nbsp;
+&emsp;大数模板&nbsp;
+&emsp;加减乘除，取模，逻辑运算符，输入，输出，绝对值，BigInteger*10^n
+&nbsp;
+1
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">woria</div>
+								
+								<a href="/about" class="static-avatar">
+									<img class="author-profile-image" src="https://i.loli.net/2019/06/21/5d0cf33d5a33416856.jpeg" alt="woria">
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							34
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+		</div>
+	</div>
 </div>
 
-<div class="toc-bar">
-    <div class="toc-btn-bar">
-        <a href="#site-main" class="toc-btn">
-            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
-        </a>
-        <div class="toc-btn toc-switch">
-            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
-            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
-        </div>
-        <a href="#gobottom" class="toc-btn">
-            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
-        </a>
-    </div>
-    <div class="toc-main">
-        
-    </div>
+
+
+<div class="outer">
+	<nav class="pagination">
+		
+	</nav>
 </div>
 
 
@@ -288,19 +284,19 @@
       
       
       <li>
-        <a href="../../25/模板/">模板</a>
+        <a href="../../2019/07/25/模板/">模板</a>
       </li>
       
       
       
       <li>
-        <a href="../../22/Day3/">Day 3</a>
+        <a href="../../2019/07/22/Day3/">Day 3</a>
       </li>
       
       
       
       <li>
-        <a href="../../21/Day2/">Day 2</a>
+        <a href="../../2019/07/21/Day2/">Day 2</a>
       </li>
       
       
@@ -377,7 +373,7 @@
     </ul>
   </div>
   <footer class="read-next-card-footer">
-    <a href="../../../../archives">  MORE  → </a>
+    <a href="../../archives">  MORE  → </a>
   </footer>
 </article>
 
@@ -390,7 +386,7 @@
         <h3 class="read-next-card-header-title">Categories</h3>
     </header>
     <div class="read-next-card-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/M-L/">M L</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/O-J/">O J</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/WEB/">WEB</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/oj/">oj</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/考试/">考试</a></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/M-L/">M L</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/O-J/">O J</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/WEB/">WEB</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/oj/">oj</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/乱搞/">乱搞</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/考试/">考试</a></li></ul>
     </div>
 </article>
 
@@ -404,7 +400,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="../../../../tags/Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../../../../tags/bfs/" style="font-size: 16.5px;">bfs</a> <a href="../../../../tags/binary-search/" style="font-size: 14px;">binary-search</a> <a href="../../../../tags/bitcoin/" style="font-size: 14px;">bitcoin</a> <a href="../../../../tags/data-structure/" style="font-size: 14px;">data structure</a> <a href="../../../../tags/dfs/" style="font-size: 19px;">dfs</a> <a href="../../../../tags/dp/" style="font-size: 19px;">dp</a> <a href="../../../../tags/error/" style="font-size: 14px;">error</a> <a href="../../../../tags/graph/" style="font-size: 21.5px;">graph</a> <a href="../../../../tags/greedy/" style="font-size: 19px;">greedy</a> <a href="../../../../tags/hexo/" style="font-size: 16.5px;">hexo</a> <a href="../../../../tags/homework/" style="font-size: 14px;">homework</a> <a href="../../../../tags/kd-tree/" style="font-size: 14px;">kd-tree</a> <a href="../../../../tags/lr/" style="font-size: 14px;">lr</a> <a href="../../../../tags/mathjax/" style="font-size: 14px;">mathjax</a> <a href="../../../../tags/model/" style="font-size: 19px;">model</a> <a href="../../../../tags/overfit/" style="font-size: 14px;">overfit</a> <a href="../../../../tags/python/" style="font-size: 14px;">python</a> <a href="../../../../tags/validation/" style="font-size: 14px;">validation</a> <a href="../../../../tags/决策树/" style="font-size: 14px;">决策树</a> <a href="../../../../tags/感知机/" style="font-size: 14px;">感知机</a> <a href="../../../../tags/机器学习基石/" style="font-size: 14px;">机器学习基石</a> <a href="../../../../tags/模板/" style="font-size: 14px;">模板</a> <a href="../../../../tags/正则化/" style="font-size: 14px;">正则化</a> <a href="../../../../tags/物理/" style="font-size: 14px;">物理</a> <a href="../../../../tags/线代/" style="font-size: 14px;">线代</a> <a href="../../../../tags/网络流/" style="font-size: 14px;">网络流</a> <a href="../../../../tags/训练/" style="font-size: 19px;">训练</a> <a href="../../../../tags/贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../../../../tags/超平面/" style="font-size: 14px;">超平面</a> <a href="../../../../tags/高数/" style="font-size: 14px;">高数</a>
+		<a href="../Algorithm/" style="font-size: 24px;">Algorithm</a> <a href="../bfs/" style="font-size: 16.5px;">bfs</a> <a href="../binary-search/" style="font-size: 14px;">binary-search</a> <a href="../bitcoin/" style="font-size: 14px;">bitcoin</a> <a href="../data-structure/" style="font-size: 14px;">data structure</a> <a href="../dfs/" style="font-size: 19px;">dfs</a> <a href="../dp/" style="font-size: 19px;">dp</a> <a href="../error/" style="font-size: 14px;">error</a> <a href="../graph/" style="font-size: 21.5px;">graph</a> <a href="../greedy/" style="font-size: 19px;">greedy</a> <a href="../hexo/" style="font-size: 16.5px;">hexo</a> <a href="../homework/" style="font-size: 14px;">homework</a> <a href="../kd-tree/" style="font-size: 14px;">kd-tree</a> <a href="../lr/" style="font-size: 14px;">lr</a> <a href="../mathjax/" style="font-size: 14px;">mathjax</a> <a href="../model/" style="font-size: 19px;">model</a> <a href="../overfit/" style="font-size: 14px;">overfit</a> <a href="../python/" style="font-size: 14px;">python</a> <a href="../validation/" style="font-size: 14px;">validation</a> <a href="../决策树/" style="font-size: 14px;">决策树</a> <a href="../感知机/" style="font-size: 14px;">感知机</a> <a href="../机器学习基石/" style="font-size: 14px;">机器学习基石</a> <a href style="font-size: 14px;">模板</a> <a href="../正则化/" style="font-size: 14px;">正则化</a> <a href="../物理/" style="font-size: 14px;">物理</a> <a href="../线代/" style="font-size: 14px;">线代</a> <a href="../网络流/" style="font-size: 14px;">网络流</a> <a href="../训练/" style="font-size: 19px;">训练</a> <a href="../贝叶斯/" style="font-size: 14px;">贝叶斯</a> <a href="../超平面/" style="font-size: 14px;">超平面</a> <a href="../高数/" style="font-size: 14px;">高数</a>
 	</div>
 </article>
 
@@ -448,10 +444,7 @@
 <script>if(window.navigator && navigator.serviceWorker) {navigator.serviceWorker.getRegistrations().then(function(registrations) {for(let registration of registrations) {registration.unregister()}})}</script>
 
 
-<script async src="../../../../js/allinone.min.js" id="scriptLoad"></script>
-
-
-
+<script async src="../../js/allinone.min.js" id="scriptLoad"></script>
 
 
 
@@ -467,34 +460,11 @@
 
 
 
-<script src="../../../../js/lightgallery.min.js"></script>
-<link rel="stylesheet" href="../../../../css/lightgallery.min.css">
-<script>
-    lightGallery(document.getElementById('lightgallery'), {
-        selector: '.post-img'
-    });
-</script>
 
 
 
 
-<script async src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script async src="https://unpkg.com/valine@1.3.4/dist/Valine.min.js"></script>
-<script>
-    window.addEventListener("load", function() {
-        new Valine({
-            el: '#comment' ,
-            verify: false,
-            notify: true,
-            appId: 'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
-            appKey: 'reWNaUPPWMXJhmx3CYSlF3w9',
-            placeholder: 'Say Something!!!',
-            pageSize: 10,
-            avatar: 'wavatar',
-            visitor: true,
-        })
-    });
-</script>
+
 
 
 
