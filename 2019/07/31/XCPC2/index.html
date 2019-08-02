@@ -203,16 +203,216 @@
             
             <div class="post-full-content">
                 <article id="lightgallery" class="markdown-body">
-                    <h2 id="A-阿卡的萝卜"><a href="#A-阿卡的萝卜" class="headerlink" title="A. 阿卡的萝卜"></a>A. 阿卡的萝卜</h2><p>&nbsp;</p>
-<p>差分+前缀和+dp求最大子段和</p>
+                    <h2 id="A-阿卡的萝卜"><a href="#A-阿卡的萝卜" class="headerlink" title="A. 阿卡的萝卜"></a>A. 阿卡的萝卜</h2><p><strong>单点时限:</strong> 1.0 sec</p>
+<p><strong>内存限制:</strong> 512 MB</p>
+<p><img alt="1" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-1.FUYZaA5p.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-1.FUYZaA5p.png"></p>
+<p><strong>输入：</strong></p>
+<p><img alt="1" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-2.3hKpzWEE.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-2.3hKpzWEE.png"></p>
+<p><strong>输出：</strong></p>
+<p><img alt="1" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-3.GBHnf5Kf.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-3.GBHnf5Kf.png"></p>
+<p><img alt="1" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-4.cREpSy3T.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/1-4.cREpSy3T.png"></p>
+<p>&nbsp;</p>
+<p><strong>差分+前缀和+dp求最大子段和</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e5</span> + <span class="number">5</span>;</span><br><span class="line">ll n, m;</span><br><span class="line">ll a[maxn];</span><br><span class="line">ll cha[maxn];</span><br><span class="line">ll dp[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>.sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n ;</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="keyword">char</span> act;</span><br><span class="line">		ll st, ed;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; act &gt;&gt; st &gt;&gt; ed;</span><br><span class="line">		<span class="keyword">if</span> (act == <span class="string">'J'</span>) &#123;</span><br><span class="line">			cha[st]++;</span><br><span class="line">			cha[ed + <span class="number">1</span>]--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			cha[st]--;</span><br><span class="line">			cha[ed+<span class="number">1</span>]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		cha[i] = cha[i - <span class="number">1</span>] + cha[i];</span><br><span class="line">		a[i] = a[i] + cha[i];</span><br><span class="line">	&#125;</span><br><span class="line">	ll sum1 = <span class="number">0</span>;</span><br><span class="line">	ll ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (sum1 + a[i] &gt; a[i])</span><br><span class="line">			sum1 += a[i];</span><br><span class="line">		<span class="keyword">else</span> sum1 = a[i];</span><br><span class="line">		<span class="keyword">if</span> (sum1 &gt; ans)</span><br><span class="line">			ans = sum1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&nbsp;</p>
-<h2 id="B-烤乐滋逃亡"><a href="#B-烤乐滋逃亡" class="headerlink" title="B. 烤乐滋逃亡"></a>B. 烤乐滋逃亡</h2><p>&nbsp;</p>
-<p>以树为起点bfs</p>
+<h2 id="B-烤乐滋逃亡"><a href="#B-烤乐滋逃亡" class="headerlink" title="B. 烤乐滋逃亡"></a>B. 烤乐滋逃亡</h2><p><strong>单点时限:</strong> 1.0 sec</p>
+<p><strong>内存限制:</strong> 512 MB</p>
+<p><img alt="2" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-1.x32kDrBh.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-1.x32kDrBh.png"></p>
+<p><strong>输入：</strong></p>
+<p><img alt="2" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-2.VMXpCEPa.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-2.VMXpCEPa.png"></p>
+<p><strong>输出：</strong></p>
+<p><img alt="2" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-3.iQXeDCed.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-3.iQXeDCed.png"></p>
+<p><img alt="2" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-4.Rr5bcbp5.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/2-4.Rr5bcbp5.png"></p>
+<p>&nbsp;</p>
+<p><strong>以树为起点bfs</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">char</span> mz[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="keyword">int</span> hah[<span class="number">2</span>]&#123; <span class="number">-1</span>,<span class="number">1</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nd</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x, y, dis;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(nd a, nd b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a.dis &gt; b.dis;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;nd, <span class="built_in">vector</span>&lt;nd&gt;, cmp&gt;que;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; mz[i][j];</span><br><span class="line">			<span class="keyword">if</span> (mz[i][j] == <span class="string">'*'</span>) &#123;</span><br><span class="line">				que.push(nd&#123; i,j,<span class="number">0</span> &#125;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (!que.empty()) &#123;</span><br><span class="line">		nd tp = que.top();</span><br><span class="line">		que.pop();</span><br><span class="line">		<span class="keyword">int</span> x = tp.x, y = tp.y, dis = tp.dis;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">1</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (x + hah[i] &gt;= <span class="number">1</span> &amp;&amp; x + hah[i] &lt;= n&amp;&amp;!vis[x + hah[i]][y]) &#123;</span><br><span class="line">				<span class="keyword">if</span> (mz[x + hah[i]][y] == <span class="string">'.'</span>) &#123;</span><br><span class="line">					ans[x + hah[i]][y] = dis + <span class="number">1</span>;</span><br><span class="line">					que.push(nd&#123; x + hah[i],y,dis + <span class="number">1</span> &#125;);</span><br><span class="line">					vis[x + hah[i]][y] = <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (y + hah[i] &gt;= <span class="number">1</span> &amp;&amp; y + hah[i] &lt;= m&amp;&amp;!vis[x][y + hah[i]]) &#123;</span><br><span class="line">				<span class="keyword">if</span> (mz[x][y + hah[i]] == <span class="string">'.'</span>) &#123;</span><br><span class="line">					ans[x][y + hah[i]] = dis + <span class="number">1</span>;</span><br><span class="line">					que.push(nd&#123; x,y + hah[i],dis + <span class="number">1</span> &#125;);</span><br><span class="line">					vis[x][y + hah[i]] = <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (mz[i][j] == <span class="string">'*'</span>)<span class="built_in">cout</span> &lt;&lt; <span class="number">0</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (mz[i][j] == <span class="string">'#'</span>)<span class="built_in">cout</span> &lt;&lt; <span class="string">"ovo"</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (ans[i][j] == <span class="number">0</span>)<span class="built_in">cout</span> &lt;&lt; <span class="string">"GoDie"</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">				<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; ans[i][j] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&nbsp;</p>
-<h2 id="F-格雷码"><a href="#F-格雷码" class="headerlink" title="F. 格雷码"></a>F. 格雷码</h2><p>&nbsp;</p>
-<p>递归+大数</p>
+<h2 id="C-阿瓦的礼物"><a href="#C-阿瓦的礼物" class="headerlink" title="C. 阿瓦的礼物"></a>C. 阿瓦的礼物</h2><p><strong>单点时限:</strong> 1.0 sec</p>
+<p><strong>内存限制:</strong> 512 MB</p>
+<p><img alt="3" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-1.4YqCGUKH.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-1.4YqCGUKH.png"></p>
+<p><strong>输入：</strong></p>
+<p><img alt="3" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-2.4YmQkgfU.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-2.4YmQkgfU.png"></p>
+<p><strong>输出：</strong></p>
+<p><img alt="3" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-3.nhogqkuu.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-3.nhogqkuu.png"></p>
+<p><img alt="3" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-4.WyAQV4f7.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/3-4.WyAQV4f7.png"></p>
+<p>&nbsp;</p>
+<h2 id="D-Bits"><a href="#D-Bits" class="headerlink" title="D. Bits"></a>D. Bits</h2><p><strong>单点时限:</strong> 1.0 sec</p>
+<p><strong>内存限制:</strong> 256 MB</p>
+<p><img alt="4" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/4-1.CogVcmRS.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/4-1.CogVcmRS.png"></p>
+<p><strong>输入：</strong></p>
+<p><img alt="4" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/4-2.anek25iJ.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/4-2.anek25iJ.png"></p>
+<p><strong>输出：</strong></p>
+<p><img alt="4" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/4-3.cAqYi4jj.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/4-3.cAqYi4jj.png"></p>
+<p>&nbsp;</p>
+<h2 id="E-最短路"><a href="#E-最短路" class="headerlink" title="E. 最短路"></a>E. 最短路</h2><p><strong>单点时限:</strong> 1.0 sec</p>
+<p><strong>内存限制:</strong> 512 MB</p>
+<p>Mark 驾驶特斯拉电动车从 Boston 去 New York。他希望找一条最短驾驶路线，但是他的电动车充满一次电只能开 k 英里。令 Mark 欣慰的是从 Boston 到 New York 的路上有很多强力充电站，能够瞬间给电动车充满电。</p>
+<p>Boston 到 New York 的路上有编号从 1 到 n 共 n 个驿站（包括 Boston 和 New York，其中 Boston 的编号是 1，New York 的编号是 n），其中一些驿站设有强力充电站。一共有 m 条道路，第 i 条道路长度为 wi 并连接两个驿站 ui,vi (1≤ui,vi≤n,ui≠vi)。</p>
+<p>现在 Mark 已经得到了地图，他想知道从 Boston 到 New York 的最短路径的长度是多少。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行三个整数 n,m,k (2≤n≤1000,1≤m≤2000,1≤k≤1018)。</p>
+<p>第二行 n 个整数，第 i 个整数 bi (0≤bi≤1)，bi=1 代表编号为 i 的驿站设有强力充电站，bi=0 代表没有，保证 b1=1 。</p>
+<p>接下来 m 行，每行三个整数 ui,vi,wi (1≤ui,vi≤n,1≤wi≤109)。</p>
+<p>输入保证存在解，没有重边和自环，且 Boston 设有强力充电站。</p>
+<p><strong>输出格式</strong></p>
+<p>一行一个整数，代表最短路径长度。</p>
+<p><strong>数据约定</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>子任务</th>
+<th>n</th>
+<th>分值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>k=1018</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>n≤100,m≤200</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>n≤1000,m≤2000</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>样例的图示为</p>
+<p><img alt="5" class="post-img b-lazy" href="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/123123123.pWoDeaCo.png" data-src="https://woria-1258563987.cos.ap-shanghai.myqcloud.com/123123123.pWoDeaCo.png"></p>
+<p>&nbsp;</p>
+<h2 id="F-格雷码"><a href="#F-格雷码" class="headerlink" title="F. 格雷码"></a>F. 格雷码</h2><p><strong>单点时限:</strong> 1.0 sec</p>
+<p><strong>内存限制:</strong> 256 MB</p>
+<p>格雷码是一种整数编码方式，它使得相邻的两个整数只有一个位置上的位元不同。格雷码有多种编码形式。二进制反射格雷码(Reflected binary Gray code)是使用最广泛的格雷码。</p>
+<p>下表为 1 位， 2 位， 3 位和 4 位的二进制反射格雷码。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>N=1</th>
+<th>N=2</th>
+<th>N=3</th>
+<th>N=4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>00</td>
+<td>000</td>
+<td>0000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>01</td>
+<td>001</td>
+<td>0001</td>
+</tr>
+<tr>
+<td></td>
+<td>11</td>
+<td>011</td>
+<td>0011</td>
+</tr>
+<tr>
+<td></td>
+<td>10</td>
+<td>010</td>
+<td>0010</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>110</td>
+<td>0110</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>111</td>
+<td>0111</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>101</td>
+<td>0101</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>100</td>
+<td>0100</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1100</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1101</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1111</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1110</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1010</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1011</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1001</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以采用下面方法来构建上述表中的 (N+1) 位二进制反射格雷码：</p>
+<p>顺序书写 N 位二进制反射格雷码，然后在前面加上 0 ；</p>
+<p>逆序书写 N 位二进制反射格雷码，然后在前面加上 1 。</p>
+<p>根据上述方法构建的二进制反射格雷码是一种循环格雷码，即最后一项只改动 1 个位元即可得到第一项。</p>
+<p>现给定 N(1≤N≤200) ，输出按照上述方法构建出的 N 位二进制反射格雷码中的第 K(1≤K≤$2^N$) 项。</p>
+<p><strong>输入格式</strong></p>
+<p>输入数据仅包含一行，两个整数 N 和 K （ 1≤N≤200,1≤k≤$2^N$ ） 。</p>
+<p><strong>输出格式</strong></p>
+<p>输出仅包含一行，表示答案，即 N 位二进制反射格雷码中的第 K 的十进制表示。</p>
+<p>&nbsp;</p>
+<p><strong>递归+大数</strong></p>
 <p>python3</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">n,k=input().split()</span><br><span class="line">n=int(n)</span><br><span class="line">k=int(k)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(n,k)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> k==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> k&gt;<span class="number">2</span>**(n<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>**(n<span class="number">-1</span>)+solve(n<span class="number">-1</span>,<span class="number">2</span>**n-k+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> solve(n<span class="number">-1</span>,k)</span><br><span class="line"></span><br><span class="line">print(solve(n,k))</span><br></pre></td></tr></table></figure>
 <p>&nbsp;</p>
@@ -261,7 +461,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-阿卡的萝卜"><span class="toc-text">A. 阿卡的萝卜</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-烤乐滋逃亡"><span class="toc-text">B. 烤乐滋逃亡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-格雷码"><span class="toc-text">F. 格雷码</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-阿卡的萝卜"><span class="toc-text">A. 阿卡的萝卜</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-烤乐滋逃亡"><span class="toc-text">B. 烤乐滋逃亡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-阿瓦的礼物"><span class="toc-text">C. 阿瓦的礼物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Bits"><span class="toc-text">D. Bits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-最短路"><span class="toc-text">E. 最短路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-格雷码"><span class="toc-text">F. 格雷码</span></a></li></ol>
     </div>
 </div>
 
