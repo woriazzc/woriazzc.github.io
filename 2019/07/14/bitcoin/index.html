@@ -1,76 +1,136 @@
-extends includes/layout.pug
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>比特币从入门到入土 | WORIA</title><meta name="description" content="比特币从入门到入土"><meta name="keywords" content="bitcoin"><meta name="author" content="woria"><meta name="copyright" content="woria"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="../../../../img/favicon.ico"><link rel="stylesheet" href="../../../../css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://www.woria.xyz/2019/07/14/bitcoin/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="比特币从入门到入土"><meta name="twitter:description" content="比特币从入门到入土"><meta name="twitter:image" content="https://i.loli.net/2019/07/15/5d2b5954b90a955938.jpeg"><meta property="og:type" content="article"><meta property="og:title" content="比特币从入门到入土"><meta property="og:url" content="https://www.woria.xyz/2019/07/14/bitcoin/"><meta property="og:site_name" content="WORIA"><meta property="og:description" content="比特币从入门到入土"><meta property="og:image" content="https://i.loli.net/2019/07/15/5d2b5954b90a955938.jpeg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="prev" title="EOJ3544 小迷妹在哪儿" href="https://www.woria.xyz/2019/07/15/eoj3544/"><link rel="next" title="逻辑回归与最大熵" href="https://www.woria.xyz/2019/07/12/logistic/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days'
 
-block top_img
-  - var top_img =  page.top_img || page.cover || theme.post_meta.top_img || theme.post_img || theme.top_img || config.top_img
-  - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-  div#top-container(style=bg_img)
-    include ./includes/header.pug
-    #post-info
-      #post-title
-          .posttitle=page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          if (theme.post_meta.date_type === 'both')
-            time.post-meta__date
-              i.fa.fa-calendar(aria-hidden="true")
-              =' '+_p('post.created')+' '+date(page.date, config.date_format)
-              span.post-meta__separator |
-              i.fa.fa-history(aria-hidden="true")
-              =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-          else
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-                  
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator.mobile_hidden |
-          span.mobile_hidden
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right(aria-hidden="true")
-        if (theme.wordcount && theme.wordcount.enable)
-          .post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-            if theme.busuanzi.page_pv
-              span.post-meta__separator |
-              span= _p('post.page_pv') + ': '
-              span#busuanzi_value_page_pv
-
-
-block content
-  article#post(class="")
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable && page.copyright != false)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
   
-  .tag_share
-    if (theme.post_meta.tags)
-      .post-meta__tag-list
-        each item, index in page.tags.data
-          a(href=url_for(item.path)).post-meta__tags #[=item.name]    
-    include includes/share/index.pug
-        
-  if theme.reward.enable
-    include includes/reward.pug
-  include includes/pagination.pug
-  
-  if theme.related_post && theme.related_post.enable
-    != related_posts(page,site.posts)
-  if page.comments !== false
-    include includes/comments/index.pug
+}</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-注册比特币钱包"><span class="toc-number">1.</span> <span class="toc-text">1.注册比特币钱包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-注册矿池"><span class="toc-number">2.</span> <span class="toc-text">2.注册矿池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-配置矿机"><span class="toc-number">3.</span> <span class="toc-text">3.配置矿机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-3-1-下载挖矿软件"><span class="toc-number">3.1.</span> <span class="toc-text"> 3.1 下载挖矿软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-3-2-配置软件"><span class="toc-number">3.2.</span> <span class="toc-text"> 3.2 配置软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emsp-3-3-运行矿机"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.3 运行矿机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-其他"><span class="toc-number">4.</span> <span class="toc-text">4.其他</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/07/15/5d2b5954b90a955938.jpeg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="../../../../index.html">WORIA</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="../../../../archives/"><div class="headline">Articles</div><div class="length_num">51</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="../../../../tags/"><div class="headline">Tags</div><div class="length_num">31</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="../../../../categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">比特币从入门到入土</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-07-14<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2019-09-12</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="../../../../categories/乱搞/">乱搞</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="1-注册比特币钱包"><a href="#1-注册比特币钱包" class="headerlink" title="1.注册比特币钱包"></a>1.注册比特币钱包</h2><p>&nbsp;</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>&emsp;&emsp;<font color="red">注意不要挂VPN，挂了也不要开负载均衡，不然以后要不停的更换IP，每次都要邮件确认！</font></p>
+<p>&emsp;&emsp;1.登陆官网 <a href="https://bitcoin.org/zh_CN/" target="_blank" rel="noopener">https://bitcoin.org/zh_CN/</a>，若是英文网站，在右上角可选语言。</p>
+<p>&emsp;&emsp;2.建议先看完 “比特币入门指南”。</p>
+<p>&emsp;&emsp;3.看完后回到首页，点击 “选择钱包”。</p>
+<p>&emsp;&emsp;4.此时在导航栏中有多个平台可选，有条件的可以选择“桌面”，“硬件”，或“手机”。此处以“网页”为例。</p>
+<p><img alt="1" data-src="https://i.loli.net/2019/07/15/5d2b559a0f26292655.png" class="lozad"></p>
+<p>&emsp;&emsp;5.点击“网页”后，有三个可选项，以 “BitGo” 为例。</p>
+<p>&emsp;&emsp;6.点击“BitGo”后，点击 “访问网站”。进入BitGo官网。</p>
+<p><img alt="2" data-src="https://i.loli.net/2019/07/15/5d2b55d8e225e59688.png" class="lozad"></p>
+<p>&emsp;&emsp;7.点击右上角“SIGNUP”注册账号，已有账号的直接点“LOGIN”登陆即可。注册时密码一定要足够复杂，确保密码框下有绿色直线，否则无法通过。</p>
+<p><img alt="3" data-src="https://i.loli.net/2019/07/15/5d2b55ff38c5790247.png" class="lozad"></p>
+<p>&emsp;&emsp;8.之后邮箱中会收到确认邮件，点进去后登陆，开始认证。</p>
+<p>&emsp;&emsp;9.有三种认证方式，以“Google Authenticator”为例，手机下载该软件，网页上给出了下载链接，可通过App Store或Google Play下载，Google Play要翻墙。</p>
+<p>&emsp;&emsp;10.下载好之后，点击之前的认证页面上的“Next”按钮。出现二维码，用Google Authenticator扫一下，记录下用户。<font color="red">二维码下的一串Code也要记，它的作用是防止更换装有Google Authenticator的设备，而失去认证。</font></p>
+<p>&emsp;&emsp;11.在Code下的输入框中输入Google Authenticator软件中的BitGo下的6位认证码。</p>
+<p>&emsp;&emsp;12.进入用户界面，导航栏中选择Wallet，或者可能进入后已经在Wallet界面下了，反正如果网站要求你“Create a new BTC Wallet”就好。看到如下界面，点击“Next”。</p>
+<p><img alt="4" data-src="https://i.loli.net/2019/07/15/5d2b56370f79363748.png" class="lozad"></p>
+<p>&emsp;&emsp;13.Name your wallet为钱包取个名字。点击“Next”</p>
+<p>&emsp;&emsp;14.设定钱包的密码，此处用BitGo账户密码相同。输入账户密码，点击“Next”。</p>
+<p><img alt="5" data-src="https://i.loli.net/2019/07/15/5d2b566ee8aee42794.png" class="lozad"></p>
+<p>&emsp;&emsp;15.此时需第三方密码保护，选择第一个，点击选项中蓝色的“Coincover”，进入官网，类似方法，注册，扫码加入Google Authenticator，<font color="red">此时Google Authenticator 中有两个用户了，注意分清要用的是哪一个。</font></p>
+<p>&emsp;&emsp;16.注册完成，Coincover 绑定好BitGo账号后，回到BitGo页面，点击“Next”。</p>
+<p><img alt="6" data-src="https://i.loli.net/2019/07/15/5d2b56a27b5be23249.png" class="lozad"></p>
+<p>&emsp;&emsp;17.点击后，系统会自动打印出pdf，有你钱包的信息，若未自动打印，点击蓝色字体“click here”重试，这张pdf右上角有灰色字体6位数字验证码，输入网页下面的输入框。勾选输入框下两个选项。点击“Active Wallet”激活钱包。</p>
+<p>&emsp;&emsp;18.选择要加入钱包的子账号，点击“Done”。接下来会有一些增加安全性的设置，可以不管。至此钱包注册完成。</p>
+<p>&nbsp;</p>
+<h2 id="2-注册矿池"><a href="#2-注册矿池" class="headerlink" title="2.注册矿池"></a>2.注册矿池</h2><p>&nbsp;</p>
+<p>&emsp;<font color="red">同样不要挂VPN！</font></p>
+<p>&emsp;这里选用排名第一的 <a href="https://pool.btc.com/" target="_blank" rel="noopener">BTC</a> 矿池。<a href="https://pool.btc.com/" target="_blank" rel="noopener">https://pool.btc.com/</a></p>
+<p>&emsp;注册账号；</p>
+<p>&emsp;注册账号后添加子账户；</p>
+<font color="red">&emsp;添加时注意币种是“比特币（BTC）”，不是“比特币现金（BCH）”或其他币种。</font>
+
+<p>&emsp;选择地区时选择近的，南方选南方电信，其他地区同理。</p>
+<p><img alt="7" data-src="https://i.loli.net/2019/07/15/5d2b56e4100a718207.png" class="lozad"></p>
+<p>&emsp;接下来要填收款地址，就是钱包地址。回到 BitGo 用户界面，导航栏点击“Wallet”。选择钱包，点击进入。钱包名称下（图中为“test”）有一串代码，这就是钱包地址，点击代码右侧“Copy address”复制。粘贴如BTC矿池页面“填写提币地址”下输入框。点击“创建并挖矿”。</p>
+<p>&emsp;自动转至用户面板，在“算力图标”下，有“挖矿地址”框，有三个地址，冒号后是端口，我们用的矿机用的是第一个地址，端口为1800。</p>
+<p><img alt="8" data-src="https://i.loli.net/2019/07/15/5d2b57125155064040.png" class="lozad"></p>
+<p>&nbsp;</p>
+<h2 id="3-配置矿机"><a href="#3-配置矿机" class="headerlink" title="3.配置矿机"></a>3.配置矿机</h2><p>&nbsp;</p>
+<h3 id="emsp-3-1-下载挖矿软件"><a href="#emsp-3-1-下载挖矿软件" class="headerlink" title="&emsp;3.1 下载挖矿软件"></a>&emsp;3.1 下载挖矿软件</h3><p>&emsp;&emsp;1.官网下载 <a href="http://ck.kolivas.org/apps/cgminer/" target="_blank" rel="noopener">http://ck.kolivas.org/apps/cgminer/</a></p>
+<p>&emsp;&emsp;<font color="blue">但官网似乎没有 4.0 以前的版本了。</font></p>
+<p>&emsp;&emsp;2.下载 3.7.2 版 <a href="https://cryptomining-blog.com/460-download-cgminer-3-7-2-with-gpu-support-for-windows/" target="_blank" rel="noopener">https://cryptomining-blog.com/460-download-cgminer-3-7-2-with-gpu-support-for-windows/</a></p>
+<p>&emsp;&emsp;<font color="red">只有windows版</font></p>
+<p>&emsp;&emsp;下载后解压。</p>
+<p>&nbsp;</p>
+<h3 id="emsp-3-2-配置软件"><a href="#emsp-3-2-配置软件" class="headerlink" title="&emsp;3.2 配置软件"></a>&emsp;3.2 配置软件</h3><p>&nbsp;</p>
+<p>&emsp;&emsp;在”…/cgminer-3.7.2-windows/ “目录下找到 “cgminer.conf ”。<font color="red">这是配置文件，已经创建好了，不需要重新创建。</font></p>
+<p>&emsp;&emsp;配置参考 <a href="http://www.btc126.com/view/39.html" target="_blank" rel="noopener">http://www.btc126.com/view/39.html</a></p>
+<p>&emsp;&emsp;主要是修改 “pools” 中属性，url 是之前记下的带端口号的 “挖矿地址”；user是矿池的子账号用户名，就是可以随机生成的那个，<font color="red">直接复制，不要改!</font> ；pass是矿池密码。</p>
+<p>&emsp;&emsp;还要改 “intensity” 属性。具体见配置参考页面。</p>
+<p>&emsp;&emsp;其他属性都是优化显卡，既然都用个人电脑挖矿了，也不奢求效率，只要不爆炸就好，所以除了风扇属性，其他我也没注意。</p>
+<p>&nbsp;</p>
+<h3 id="emsp-3-3-运行矿机"><a href="#emsp-3-3-运行矿机" class="headerlink" title="&emsp;3.3 运行矿机"></a>&emsp;3.3 运行矿机</h3><p>&nbsp;</p>
+<p>&emsp;&emsp;在”…/cgminer-3.7.2-windows/ “目录下找到 “cgminer.exe”。双击运行。</p>
+<p>&emsp;&emsp;界面各参数意义在 <a href="http://www.btc126.com/view/39.html" target="_blank" rel="noopener">http://www.btc126.com/view/39.html</a> 也有。</p>
+<p>&emsp;&emsp;<strong>这个矿机只是用来示例，更好的矿机挖矿速率更快。在 比特币 或 BTC 官网 <a href="https://m.btc.com/" target="_blank" rel="noopener">https://m.btc.com/</a> 上有矿池和矿机的排行。</strong></p>
+<p>&emsp;&emsp;运行后，在 BTC 矿池用户面板可以看到矿机情况。没有的可能是未更新，再等一会。</p>
+<p><img alt="9" data-src="https://i.loli.net/2019/07/15/5d2b573a6273419265.png" class="lozad"></p>
+<p>&nbsp;</p>
+<h2 id="4-其他"><a href="#4-其他" class="headerlink" title="4.其他"></a>4.其他</h2><p>&nbsp;</p>
+<p>&emsp;挖矿速度主要是和显卡有关，和网速有一丁点关系。</p>
+<p>&emsp;AMD 中端显卡和 N 卡 Titan 差不多，也不知道为什么。</p>
+<p>&emsp;个人挖矿只是为了玩，甚至赚的钱连电费都不如。。</p>
+<p>&emsp;开着矿机用电脑可能会偶尔卡一下，可能就是矿机的问题。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">woria</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://www.woria.xyz/2019/07/14/bitcoin/">https://www.woria.xyz/2019/07/14/bitcoin/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="../../../../tags/bitcoin/">bitcoin    </a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2019/07/15/5d2b5954b90a955938.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-left"><a href="../../15/eoj3544/"><img class="prev_cover lozad" data-src="https://i.loli.net/2019/07/15/5d2c8298cbcc962774.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>EOJ3544 小迷妹在哪儿</span></div></a></div><div class="next-post pull-right"><a href="../../12/logistic/"><img class="next_cover lozad" data-src="https://i.loli.net/2019/07/13/5d28b25b3665849216.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>逻辑回归与最大熵</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
+  appKey:'reWNaUPPWMXJhmx3CYSlF3w9',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></div><footer style="background-image: url(https://i.loli.net/2019/07/15/5d2b5954b90a955938.jpeg)"><div id="footer"><div class="copyright">&copy;2018 - 2019 By woria</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-book" id="readmode" title="Read Mode"> </i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion">2</a><i class="nightshift fa fa-moon-o" id="nightshift" title="Dark Mode"></i></section><div class=" " id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">Catalog</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-注册比特币钱包"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">1.注册比特币钱包</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-注册矿池"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">2.注册矿池</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-配置矿机"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">3.配置矿机</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#emsp-3-1-下载挖矿软件"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text"> 3.1 下载挖矿软件</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#emsp-3-2-配置软件"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text"> 3.2 配置软件</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#emsp-3-3-运行矿机"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text"> 3.3 运行矿机</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-其他"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">4.其他</span></a></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="../../../../js/utils.js"></script><script src="../../../../js/main.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script async src="../../../../js/search/local-search.js"></script><script src="../../../../js/nightshift.js"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script src="../../../../js/activate-power-mode.js"></script><script>POWERMODE.colorful = true; // make power mode colorful
+POWERMODE.shake = true; // turn off shake
+document.body.addEventListener('input', POWERMODE);
+</script><script src="../../../../js/tw_cn.js"></script><script>translateInitilization()
+
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

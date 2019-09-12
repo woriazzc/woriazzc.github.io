@@ -1,76 +1,248 @@
-extends includes/layout.pug
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>高数 | WORIA</title><meta name="description" content="仅为考试复习，非笔记"><meta name="keywords" content="高数"><meta name="author" content="woria"><meta name="copyright" content="woria"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="../../../../img/favicon.ico"><link rel="stylesheet" href="../../../../css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://www.woria.xyz/2019/06/20/高数/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="高数"><meta name="twitter:description" content="仅为考试复习，非笔记"><meta name="twitter:image" content="https://i.loli.net/2019/06/22/5d0de000305b647937.jpg"><meta property="og:type" content="article"><meta property="og:title" content="高数"><meta property="og:url" content="https://www.woria.xyz/2019/06/20/高数/"><meta property="og:site_name" content="WORIA"><meta property="og:description" content="仅为考试复习，非笔记"><meta property="og:image" content="https://i.loli.net/2019/06/22/5d0de000305b647937.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="prev" title="线代" href="https://www.woria.xyz/2019/06/22/线代/"><link rel="next" title="mathjax" href="https://www.woria.xyz/2019/06/20/hexo-casper中插入mathjax/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days'
 
-block top_img
-  - var top_img =  page.top_img || page.cover || theme.post_meta.top_img || theme.post_img || theme.top_img || config.top_img
-  - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-  div#top-container(style=bg_img)
-    include ./includes/header.pug
-    #post-info
-      #post-title
-          .posttitle=page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          if (theme.post_meta.date_type === 'both')
-            time.post-meta__date
-              i.fa.fa-calendar(aria-hidden="true")
-              =' '+_p('post.created')+' '+date(page.date, config.date_format)
-              span.post-meta__separator |
-              i.fa.fa-history(aria-hidden="true")
-              =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-          else
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-                  
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator.mobile_hidden |
-          span.mobile_hidden
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right(aria-hidden="true")
-        if (theme.wordcount && theme.wordcount.enable)
-          .post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-            if theme.busuanzi.page_pv
-              span.post-meta__separator |
-              span= _p('post.page_pv') + ': '
-              span#busuanzi_value_page_pv
-
-
-block content
-  article#post(class="")
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable && page.copyright != false)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
   
-  .tag_share
-    if (theme.post_meta.tags)
-      .post-meta__tag-list
-        each item, index in page.tags.data
-          a(href=url_for(item.path)).post-meta__tags #[=item.name]    
-    include includes/share/index.pug
-        
-  if theme.reward.enable
-    include includes/reward.pug
-  include includes/pagination.pug
-  
-  if theme.related_post && theme.related_post.enable
-    != related_posts(page,site.posts)
-  if page.comments !== false
-    include includes/comments/index.pug
+}</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#曲线积分"><span class="toc-number">1.</span> <span class="toc-text">曲线积分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一型曲线积分-int-L-f-x-y-rm-d-s-："><span class="toc-number">1.1.</span> <span class="toc-text">第一型曲线积分$\int_L f(x,y){\rm d}s$：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解法："><span class="toc-number">1.1.1.</span> <span class="toc-text">解法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数方程：x-phi-t-y-varphi-t"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非参数方程："><span class="toc-number">1.1.1.2.</span> <span class="toc-text">非参数方程：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二型曲线积分-int-L-P-x-y-rm-d-x-Q-x-y-rm-d-y-："><span class="toc-number">1.2.</span> <span class="toc-text">第二型曲线积分$\int_L P(x,y){\rm d}x+Q(x,y){\rm d}y$：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解法：-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">解法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数方程：x-phi-t-y-varphi-t-1"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格林公式：闭合x-y-第二型曲线积分"><span class="toc-number">1.3.</span> <span class="toc-text">格林公式：闭合x,y 第二型曲线积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#斯托克斯公式：闭合x-y-z第二型曲线积分"><span class="toc-number">1.4.</span> <span class="toc-text">斯托克斯公式：闭合x,y,z第二型曲线积分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方向："><span class="toc-number">1.4.1.</span> <span class="toc-text">方向：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#曲面积分"><span class="toc-number">2.</span> <span class="toc-text">曲面积分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一型曲面积分-iint-sum-f-x-y-z-rm-d-S"><span class="toc-number">2.1.</span> <span class="toc-text">第一型曲面积分$\iint_{\sum} f(x,y,z){\rm d}S$:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解法：-2"><span class="toc-number">2.1.1.</span> <span class="toc-text">解法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对称性："><span class="toc-number">2.1.1.1.</span> <span class="toc-text">对称性：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二型曲面积分-iint-sum-P-x-y-z-rm-d-y-rm-d-z-Q-x-y-z-rm-d-z-rm-d-x-R-x-y-z-rm-d-x-rm-d-y"><span class="toc-number">2.2.</span> <span class="toc-text">第二型曲面积分$\iint_{\sum}P(x,y,z){\rm d}y{\rm d}z+Q(x,y,z){\rm d}z{\rm d}x+R(x,y,z){\rm d}x{\rm d}y$:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解法"><span class="toc-number">2.2.1.</span> <span class="toc-text">解法:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对称性"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">对称性:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高斯公式：闭合第二型曲面积分"><span class="toc-number">2.3.</span> <span class="toc-text">高斯公式：闭合第二型曲面积分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#无穷级数"><span class="toc-number">3.</span> <span class="toc-text">无穷级数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断敛散性："><span class="toc-number">3.1.</span> <span class="toc-text">判断敛散性：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正项级数："><span class="toc-number">3.1.1.</span> <span class="toc-text">正项级数：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#比较判别法："><span class="toc-number">3.1.1.1.</span> <span class="toc-text">比较判别法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#比式判别法："><span class="toc-number">3.1.1.2.</span> <span class="toc-text">比式判别法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根式判别法："><span class="toc-number">3.1.1.3.</span> <span class="toc-text">根式判别法：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般项级数："><span class="toc-number">3.1.2.</span> <span class="toc-text">一般项级数：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#莱布尼兹判别法："><span class="toc-number">3.1.2.1.</span> <span class="toc-text">莱布尼兹判别法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#绝对收敛和条件收敛："><span class="toc-number">3.1.2.2.</span> <span class="toc-text">绝对收敛和条件收敛：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#幂级数运算："><span class="toc-number">3.2.</span> <span class="toc-text">幂级数运算：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#求展开式："><span class="toc-number">3.2.1.</span> <span class="toc-text">求展开式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和函数："><span class="toc-number">3.2.2.</span> <span class="toc-text">求和函数：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#傅里叶级数："><span class="toc-number">3.3.</span> <span class="toc-text">傅里叶级数：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#周期为-2-pi"><span class="toc-number">3.3.1.</span> <span class="toc-text">周期为$2\pi$:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#周期为-2l"><span class="toc-number">3.3.2.</span> <span class="toc-text">周期为$2l$:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#周期延拓："><span class="toc-number">3.3.3.</span> <span class="toc-text">周期延拓：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#微分方程"><span class="toc-number">4.</span> <span class="toc-text">微分方程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一阶微分方程："><span class="toc-number">4.1.</span> <span class="toc-text">一阶微分方程：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可分离变量型："><span class="toc-number">4.1.1.</span> <span class="toc-text">可分离变量型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#齐次型微分方程："><span class="toc-number">4.1.2.</span> <span class="toc-text">齐次型微分方程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可化为齐次型的微分方程："><span class="toc-number">4.1.3.</span> <span class="toc-text">可化为齐次型的微分方程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一阶线性齐次微分方程："><span class="toc-number">4.1.4.</span> <span class="toc-text">一阶线性齐次微分方程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一阶线性非齐次微分方程："><span class="toc-number">4.1.5.</span> <span class="toc-text">一阶线性非齐次微分方程：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特：伯努利方程："><span class="toc-number">4.1.5.1.</span> <span class="toc-text">特：伯努利方程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#再特：有时将方程视为-x-关于-y-的方程更容易求解。"><span class="toc-number">4.1.5.2.</span> <span class="toc-text">再特：有时将方程视为 x 关于 y 的方程更容易求解。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全微分方程："><span class="toc-number">4.1.6.</span> <span class="toc-text">全微分方程：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#积分因子："><span class="toc-number">4.1.6.1.</span> <span class="toc-text">积分因子：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高阶微分方程："><span class="toc-number">4.2.</span> <span class="toc-text">高阶微分方程：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解的结构："><span class="toc-number">4.2.1.</span> <span class="toc-text">解的结构：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#齐次通解："><span class="toc-number">4.2.1.1.</span> <span class="toc-text">齐次通解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#若为实数解。"><span class="toc-number">4.2.1.1.1.</span> <span class="toc-text">若为实数解。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#若为虚数解。"><span class="toc-number">4.2.1.1.2.</span> <span class="toc-text">若为虚数解。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非齐次特解："><span class="toc-number">4.2.1.2.</span> <span class="toc-text">非齐次特解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#q-x-e-lambda-x-P-m-x-，其中-P-m-x-为多项式。"><span class="toc-number">4.2.1.2.1.</span> <span class="toc-text">$q(x)=e^{\lambda x}P_m(x)$，其中$P_m(x)$为多项式。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#q-x-e-lambda-x-P-l-x-cos-omega-x-P-n-x-sin-omega-x"><span class="toc-number">4.2.1.2.2.</span> <span class="toc-text">$q(x)=e^{\lambda x}[P_l(x)\cos\omega x+P_n(x)\sin\omega x]$</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/06/22/5d0de000305b647937.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="../../../../index.html">WORIA</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="../../../../archives/"><div class="headline">Articles</div><div class="length_num">51</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="../../../../tags/"><div class="headline">Tags</div><div class="length_num">31</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="../../../../categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">高数</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-06-20<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2019-09-12</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="../../../../categories/考试/">考试</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p><strong>仅为考试复习，非笔记！</strong><br><a id="more"></a></p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><h1 id="曲线积分"><a href="#曲线积分" class="headerlink" title="曲线积分"></a>曲线积分</h1><ol>
+<li><h2 id="第一型曲线积分-int-L-f-x-y-rm-d-s-："><a href="#第一型曲线积分-int-L-f-x-y-rm-d-s-：" class="headerlink" title="第一型曲线积分$\int_L f(x,y){\rm d}s$："></a>第一型曲线积分$\int_L f(x,y){\rm d}s$：</h2><h3 id="解法："><a href="#解法：" class="headerlink" title="解法："></a>解法：</h3><ol>
+<li><h4 id="参数方程：x-phi-t-y-varphi-t"><a href="#参数方程：x-phi-t-y-varphi-t" class="headerlink" title="参数方程：x=$\phi(t)$ , y=$\varphi(t)$."></a>参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</h4></li>
+</ol>
+<p>$=\int ^a_b f(\phi(t),\varphi(t))\sqrt{\phi(t)^2+\varphi(t)^2}{\rm d}t$</p>
+<ol>
+<li><h4 id="非参数方程："><a href="#非参数方程：" class="headerlink" title="非参数方程："></a>非参数方程：</h4><p>将x作为参数，同理。</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><h2 id="第二型曲线积分-int-L-P-x-y-rm-d-x-Q-x-y-rm-d-y-："><a href="#第二型曲线积分-int-L-P-x-y-rm-d-x-Q-x-y-rm-d-y-：" class="headerlink" title="第二型曲线积分$\int_L P(x,y){\rm d}x+Q(x,y){\rm d}y$："></a>第二型曲线积分$\int_L P(x,y){\rm d}x+Q(x,y){\rm d}y$：</h2><h3 id="解法：-1"><a href="#解法：-1" class="headerlink" title="解法："></a>解法：</h3><ol>
+<li><h4 id="参数方程：x-phi-t-y-varphi-t-1"><a href="#参数方程：x-phi-t-y-varphi-t-1" class="headerlink" title="参数方程：x=$\phi(t)$ , y=$\varphi(t)$."></a>参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</h4><p>$=\int ^a_b [P[\phi(t),\varphi(t)]\phi’(t)+Q[\phi(t),\varphi(t)]\varphi’(t)]{\rm d}t$</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><h2 id="格林公式：闭合x-y-第二型曲线积分"><a href="#格林公式：闭合x-y-第二型曲线积分" class="headerlink" title="格林公式：闭合x,y 第二型曲线积分"></a>格林公式：闭合x,y 第二型曲线积分</h2><p><strong>光滑闭合曲线</strong> L，有</p>
+<script type="math/tex; mode=display">\oint_L P{\rm d}x+Q{\rm d}y=\iint_D (\frac{\partial Q}{\partial x }-\frac{\partial P}{\partial y}){\rm d}x{\rm d}y</script></li>
+</ol>
+<ol>
+<li><h2 id="斯托克斯公式：闭合x-y-z第二型曲线积分"><a href="#斯托克斯公式：闭合x-y-z第二型曲线积分" class="headerlink" title="斯托克斯公式：闭合x,y,z第二型曲线积分"></a>斯托克斯公式：闭合x,y,z第二型曲线积分</h2><h3 id="方向："><a href="#方向：" class="headerlink" title="方向："></a>方向：</h3><p>​        右手定则</p>
+<script type="math/tex; mode=display">\oint Pdx+Qdy+Rdz=\iint_{\sum} (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z })dydz+(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx+(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy</script></li>
+</ol>
+<h1 id="曲面积分"><a href="#曲面积分" class="headerlink" title="曲面积分"></a>曲面积分</h1><ol>
+<li><h2 id="第一型曲面积分-iint-sum-f-x-y-z-rm-d-S"><a href="#第一型曲面积分-iint-sum-f-x-y-z-rm-d-S" class="headerlink" title="第一型曲面积分$\iint_{\sum} f(x,y,z){\rm d}S$:"></a>第一型曲面积分$\iint_{\sum} f(x,y,z){\rm d}S$:</h2><h3 id="解法：-2"><a href="#解法：-2" class="headerlink" title="解法："></a>解法：</h3><p>$=\iint_{D_{xy}}f(x,y,z(z,y))\sqrt{1+z’^2_x+z’^2_y} {\rm d}x{\rm d}y$</p>
+<h4 id="对称性："><a href="#对称性：" class="headerlink" title="对称性："></a>对称性：</h4><ol>
+<li><p>如果$\sum$关于yOz平面对称，当$f(x,y,z)$为关于x的奇函数时，</p>
+<script type="math/tex; mode=display">\iint_{\sum} f(x,y,z){\rm d}S=0</script></li>
+<li><p>如果$f(x,y,z)$为关于x的偶函数时，</p>
+<script type="math/tex; mode=display">\iint_{\sum} f(x,y,z){\rm d}S=2\iint_{\sum_1} f(x,y,z){\rm d}S</script></li>
+</ol>
+</li>
+<li><h2 id="第二型曲面积分-iint-sum-P-x-y-z-rm-d-y-rm-d-z-Q-x-y-z-rm-d-z-rm-d-x-R-x-y-z-rm-d-x-rm-d-y"><a href="#第二型曲面积分-iint-sum-P-x-y-z-rm-d-y-rm-d-z-Q-x-y-z-rm-d-z-rm-d-x-R-x-y-z-rm-d-x-rm-d-y" class="headerlink" title="第二型曲面积分$\iint_{\sum}P(x,y,z){\rm d}y{\rm d}z+Q(x,y,z){\rm d}z{\rm d}x+R(x,y,z){\rm d}x{\rm d}y$:"></a>第二型曲面积分$\iint_{\sum}P(x,y,z){\rm d}y{\rm d}z+Q(x,y,z){\rm d}z{\rm d}x+R(x,y,z){\rm d}x{\rm d}y$:</h2><h3 id="解法"><a href="#解法" class="headerlink" title="解法:"></a>解法:</h3><p>$=\pm [P(x,y,z(x,y))(-z’_x)+Q(x,y,z(x,y))(-z’_y)+R(x,y,z(x,y))]{\rm d}x{\rm d}y$</p>
+<p>与第二型曲线积分类似，将z替换掉，并加入z关于x,y的导数，只是要在导数前加负号，并判断曲面方向。</p>
+<h4 id="对称性"><a href="#对称性" class="headerlink" title="对称性:"></a>对称性:</h4><p>​    曲面（包括方向）关于平面对称，与第一型曲线积分类似。</p>
+</li>
+</ol>
+<ol>
+<li><h2 id="高斯公式：闭合第二型曲面积分"><a href="#高斯公式：闭合第二型曲面积分" class="headerlink" title="高斯公式：闭合第二型曲面积分"></a>高斯公式：闭合第二型曲面积分</h2><script type="math/tex; mode=display">\oint_{\sum}Pdydz+Qdzdx+Pdxdy=\iiint_{\Omega}(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})</script><p>注意P，Q，R</p>
+</li>
+</ol>
+<h1 id="无穷级数"><a href="#无穷级数" class="headerlink" title="无穷级数"></a>无穷级数</h1><ol>
+<li><h2 id="判断敛散性："><a href="#判断敛散性：" class="headerlink" title="判断敛散性："></a>判断敛散性：</h2><ol>
+<li><h3 id="正项级数："><a href="#正项级数：" class="headerlink" title="正项级数："></a>正项级数：</h3><ol>
+<li><h4 id="比较判别法："><a href="#比较判别法：" class="headerlink" title="比较判别法："></a>比较判别法：</h4><p>​    如果$\lim_{n \to +\infty}\frac{u_n}{v_n}=0$，则$u_n&lt;v_n$</p>
+<p>​    如果$\lim_{n \to +\infty}\frac{u_n}{v_n}=\infty$，则$u_n&gt;v_n$</p>
+<p>​    else：$u_n=v_n$，有相同敛散性。</p>
+</li>
+<li><h4 id="比式判别法："><a href="#比式判别法：" class="headerlink" title="比式判别法："></a>比式判别法：</h4><p>​    如果$\lim_{n \to \infty}\frac{u_{n+1}}{u_n}&lt;1$，则 $u_n$ 收敛</p>
+<p>​    如果$\lim_{n \to \infty}\frac{u_{n+1}}{u_n}&gt;1$，则 $u_n$ 发散</p>
+</li>
+<li><h4 id="根式判别法："><a href="#根式判别法：" class="headerlink" title="根式判别法："></a>根式判别法：</h4><p>​    如果 $\lim_{n\to \infty}\sqrt[n]{u_n}&lt;1$，则$u_n$收敛</p>
+<p>​    如果 $\lim_{n\to \infty}\sqrt[n]{u_n}&gt;1$，则$u_n$发散</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>     **注意：当 =1时，需具体判断。**
+</code></pre><ol>
+<li><h3 id="一般项级数："><a href="#一般项级数：" class="headerlink" title="一般项级数："></a>一般项级数：</h3><ol>
+<li><h4 id="莱布尼兹判别法："><a href="#莱布尼兹判别法：" class="headerlink" title="莱布尼兹判别法："></a>莱布尼兹判别法：</h4><p>​    若满足：</p>
+<p>​        (i)  $u_n\geq u_{n+1}$；</p>
+<p>​        (ii) $\lim_{n\to \infty}u_n=0$；</p>
+<p>​    则  $u_n$  收敛。</p>
+</li>
+<li><h4 id="绝对收敛和条件收敛："><a href="#绝对收敛和条件收敛：" class="headerlink" title="绝对收敛和条件收敛："></a>绝对收敛和条件收敛：</h4><p>在一般项级数收敛的条件下，根据对应的取绝对值后的正项级数是否收敛。</p>
+<p>正项级数收敛则绝对收敛，反之条件收敛。</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><h2 id="幂级数运算："><a href="#幂级数运算：" class="headerlink" title="幂级数运算："></a>幂级数运算：</h2><ol>
+<li><h3 id="求展开式："><a href="#求展开式：" class="headerlink" title="求展开式："></a>求展开式：</h3><p>几个常用的级数：</p>
+<ul>
+<li><p>$\frac{1}{1-x}=\sum_{n=0}^{\infty}x^n,(-1&lt;x&lt;1)$</p>
+</li>
+<li><p>$e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}, x\in(-\infty,+\infty)$</p>
+</li>
+<li><p>$\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots$</p>
+</li>
+<li><p>$\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots$</p>
+</li>
+</ul>
+</li>
+<li><h3 id="求和函数："><a href="#求和函数：" class="headerlink" title="求和函数："></a>求和函数：</h3><p>求导，积分后化为几个常用级数即可。</p>
+</li>
+</ol>
+</li>
+<li><h2 id="傅里叶级数："><a href="#傅里叶级数：" class="headerlink" title="傅里叶级数："></a>傅里叶级数：</h2><ol>
+<li><h3 id="周期为-2-pi"><a href="#周期为-2-pi" class="headerlink" title="周期为$2\pi$:"></a>周期为$2\pi$:</h3><script type="math/tex; mode=display">f(x)=\frac{a_n}{2}+\sum_{n=1}^{\infty}(a_n\cos nx+b_n\sin nx)</script><p>其中：</p>
+<script type="math/tex; mode=display">a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)(\cos nx) dx</script><script type="math/tex; mode=display">b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)(\sin nx) dx</script></li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><h3 id="周期为-2l"><a href="#周期为-2l" class="headerlink" title="周期为$2l$:"></a>周期为$2l$:</h3><script type="math/tex; mode=display">f(x)=\frac{a_n}{2}+\sum_{n=1}^{\infty}(a_n\cos \frac{n\pi x}{l}+b_n\sin \frac{n\pi x}{l})</script><p>其中：</p>
+<script type="math/tex; mode=display">a_n=\frac{1}{l}\int_{-l}^{l}f(x)(\cos \frac{n\pi x}{l}) dx</script><script type="math/tex; mode=display">b_n=\frac{1}{l}\int_{-l}^{l}f(x)(\sin \frac{n\pi x}{l}) dx</script></li>
+</ol>
+<ol>
+<li><h3 id="周期延拓："><a href="#周期延拓：" class="headerlink" title="周期延拓："></a>周期延拓：</h3><ol>
+<li><p>奇周期延拓则$a_n=0$；</p>
+</li>
+<li><p>偶周期延拓则$b_n=0$；</p>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="微分方程"><a href="#微分方程" class="headerlink" title="微分方程"></a>微分方程</h1><ol>
+<li><h2 id="一阶微分方程："><a href="#一阶微分方程：" class="headerlink" title="一阶微分方程："></a>一阶微分方程：</h2><ol>
+<li><h3 id="可分离变量型："><a href="#可分离变量型：" class="headerlink" title="可分离变量型："></a>可分离变量型：</h3><p>直接分离x,y，两边分别积分。</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><h3 id="齐次型微分方程："><a href="#齐次型微分方程：" class="headerlink" title="齐次型微分方程："></a>齐次型微分方程：</h3><p>令$u=\frac{x}{y}$，则$\frac{dy}{dx}=u+x\frac{du}{dx}$，代入原方程，化为u，x的可分离变量方程，最后把 u 代回 y 。</p>
+</li>
+</ol>
+<ol>
+<li><h3 id="可化为齐次型的微分方程："><a href="#可化为齐次型的微分方程：" class="headerlink" title="可化为齐次型的微分方程："></a>可化为齐次型的微分方程：</h3><p>形如</p>
+<script type="math/tex; mode=display">\frac{dy}{dx}=\frac{a_1x+b_1y+c_1}{a_2x+b_2y+c_2}</script><p>设 $x=\xi+\alpha, y=\eta+\beta$</p>
+<p>将x，y换为 $\xi,\eta$，解方程化为关于 $\xi,\eta$ 的齐次型微分方程。最后把 x，y 代回来。</p>
+</li>
+</ol>
+<ol>
+<li><h3 id="一阶线性齐次微分方程："><a href="#一阶线性齐次微分方程：" class="headerlink" title="一阶线性齐次微分方程："></a>一阶线性齐次微分方程：</h3><p>同下一阶线性非齐次。</p>
+</li>
+</ol>
+<ol>
+<li><h3 id="一阶线性非齐次微分方程："><a href="#一阶线性非齐次微分方程：" class="headerlink" title="一阶线性非齐次微分方程："></a>一阶线性非齐次微分方程：</h3><script type="math/tex; mode=display">y'+P(x)y=Q(x)</script><p>左右同乘，凑微分。</p>
+<p>化为<script type="math/tex">(ye^{\int P(x)dx})'=e^{\int P(x)dx}Q(x)</script></p>
+<p>两边积分。</p>
+<h4 id="特：伯努利方程："><a href="#特：伯努利方程：" class="headerlink" title="特：伯努利方程："></a>特：伯努利方程：</h4><script type="math/tex; mode=display">\frac{dy}{dx}+p(x)y=q(x)y^{\alpha}</script><p>同除 $y^{\alpha}$ ，令 $z=y^{1-\alpha}$，求解。</p>
+<h4 id="再特：有时将方程视为-x-关于-y-的方程更容易求解。"><a href="#再特：有时将方程视为-x-关于-y-的方程更容易求解。" class="headerlink" title="再特：有时将方程视为 x 关于 y 的方程更容易求解。"></a>再特：有时将方程视为 x 关于 y 的方程更容易求解。</h4></li>
+</ol>
+<ol>
+<li><h3 id="全微分方程："><a href="#全微分方程：" class="headerlink" title="全微分方程："></a>全微分方程：</h3><p>理论上最容易的一种。</p>
+<script type="math/tex; mode=display">P(x,y)dx+Q(x,y)dy=0</script><p>沿路径积分：</p>
+<script type="math/tex; mode=display">u(x,y)=\int_{x_0}^xP(x,y_0)dx+\int_{y_0}^yQ(x,y)dy=C</script><p>其中 $x_0,y_0$ 一般取 0 。</p>
+<h4 id="积分因子："><a href="#积分因子：" class="headerlink" title="积分因子："></a>积分因子：</h4><p>有时，微分方程不是全微分，但可以通过两边乘某一个积分因子化为全微分方程。</p>
+<p>观察法。</p>
+</li>
+</ol>
+<ol>
+<li><h2 id="高阶微分方程："><a href="#高阶微分方程：" class="headerlink" title="高阶微分方程："></a>高阶微分方程：</h2><p><strong>同样只讲非齐次方程</strong></p>
+<script type="math/tex; mode=display">y^{(n)}+p_1y^{(n-1)}+\cdots+p_ny=q(x)</script><h3 id="解的结构："><a href="#解的结构：" class="headerlink" title="解的结构："></a>解的结构：</h3><p>非齐次通解 = 齐次通解 + 非齐次特解。</p>
+</li>
+</ol>
+<ol>
+<li><h4 id="齐次通解："><a href="#齐次通解：" class="headerlink" title="齐次通解："></a>齐次通解：</h4><p>特征方程 $r^n+p_1 r^{n-1}+\cdots+p_n=0$</p>
+<ol>
+<li><h5 id="若为实数解。"><a href="#若为实数解。" class="headerlink" title="若为实数解。"></a>若为实数解。</h5><p>$y=C_1e^{r_1x}+C_2e^{r_2x}+\cdots$</p>
+<p>或根据有重根，改变</p>
+</li>
+<li><h5 id="若为虚数解。"><a href="#若为虚数解。" class="headerlink" title="若为虚数解。"></a>若为虚数解。</h5><p>根为 $r=\alpha \pm\beta i$</p>
+<script type="math/tex; mode=display">y=e^{\alpha x}(C_1 \cos\beta x+C_2 \sin\beta x)</script></li>
+</ol>
+</li>
+<li><h4 id="非齐次特解："><a href="#非齐次特解：" class="headerlink" title="非齐次特解："></a>非齐次特解：</h4><p>只学了两种情况：</p>
+<ol>
+<li><h5 id="q-x-e-lambda-x-P-m-x-，其中-P-m-x-为多项式。"><a href="#q-x-e-lambda-x-P-m-x-，其中-P-m-x-为多项式。" class="headerlink" title="$q(x)=e^{\lambda x}P_m(x)$，其中$P_m(x)$为多项式。"></a>$q(x)=e^{\lambda x}P_m(x)$，其中$P_m(x)$为多项式。</h5><p>设 $\tilde{y}=e^{\lambda x}k(x)Q_m(x)$</p>
+<p>其中，$k(x)$ 根据 $\lambda$ 是否为齐次通解,是否为重根 取 1 或  $x$ 或 $x^2$</p>
+<p>$Q_m(x)$为待定系数的 m 次多项式。</p>
+<p>代入原微分方程，确定系数。</p>
+</li>
+<li><h5 id="q-x-e-lambda-x-P-l-x-cos-omega-x-P-n-x-sin-omega-x"><a href="#q-x-e-lambda-x-P-l-x-cos-omega-x-P-n-x-sin-omega-x" class="headerlink" title="$q(x)=e^{\lambda x}[P_l(x)\cos\omega x+P_n(x)\sin\omega x]$"></a>$q(x)=e^{\lambda x}[P_l(x)\cos\omega x+P_n(x)\sin\omega x]$</h5><p>设 $\tilde{y}=e^{\lambda x}k(x)[A_m(x)\cos\omega x+B_m(x)\sin\omega x]$</p>
+<p>其中 k(x) 根据 $\lambda+i\omega$ 是否为 r ，取 1 或 $x$ ，$A_m, B_m$ 为 m 次多项式，$m=max(l, n)$.</p>
+</li>
+</ol>
+</li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">woria</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://www.woria.xyz/2019/06/20/高数/">https://www.woria.xyz/2019/06/20/高数/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="../../../../tags/高数/">高数    </a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2019/06/22/5d0de000305b647937.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-left"><a href="../../22/线代/"><img class="prev_cover lozad" data-src="https://i.loli.net/2019/06/22/5d0de1335fcfc75658.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>线代</span></div></a></div><div class="next-post pull-right"><a href="../hexo-casper中插入mathjax/"><img class="next_cover lozad" data-src="https://images.unsplash.com/photo-1558470570-c9a5a5ade867?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>mathjax</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
+  appKey:'reWNaUPPWMXJhmx3CYSlF3w9',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></div><footer style="background-image: url(https://i.loli.net/2019/06/22/5d0de000305b647937.jpg)"><div id="footer"><div class="copyright">&copy;2018 - 2019 By woria</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-book" id="readmode" title="Read Mode"> </i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion">2</a><i class="nightshift fa fa-moon-o" id="nightshift" title="Dark Mode"></i></section><div class=" " id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">Catalog</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#曲线积分"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">曲线积分</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第一型曲线积分-int-L-f-x-y-rm-d-s-："><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">第一型曲线积分$\int_L f(x,y){\rm d}s$：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#解法："><span class="toc_mobile_items-number">1.1.1.</span> <span class="toc_mobile_items-text">解法：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#参数方程：x-phi-t-y-varphi-t"><span class="toc_mobile_items-number">1.1.1.1.</span> <span class="toc_mobile_items-text">参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#非参数方程："><span class="toc_mobile_items-number">1.1.1.2.</span> <span class="toc_mobile_items-text">非参数方程：</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第二型曲线积分-int-L-P-x-y-rm-d-x-Q-x-y-rm-d-y-："><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">第二型曲线积分$\int_L P(x,y){\rm d}x+Q(x,y){\rm d}y$：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#解法：-1"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">解法：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#参数方程：x-phi-t-y-varphi-t-1"><span class="toc_mobile_items-number">1.2.1.1.</span> <span class="toc_mobile_items-text">参数方程：x=$\phi(t)$ , y=$\varphi(t)$.</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#格林公式：闭合x-y-第二型曲线积分"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">格林公式：闭合x,y 第二型曲线积分</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#斯托克斯公式：闭合x-y-z第二型曲线积分"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">斯托克斯公式：闭合x,y,z第二型曲线积分</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#方向："><span class="toc_mobile_items-number">1.4.1.</span> <span class="toc_mobile_items-text">方向：</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#曲面积分"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">曲面积分</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第一型曲面积分-iint-sum-f-x-y-z-rm-d-S"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">第一型曲面积分$\iint_{\sum} f(x,y,z){\rm d}S$:</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#解法：-2"><span class="toc_mobile_items-number">2.1.1.</span> <span class="toc_mobile_items-text">解法：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#对称性："><span class="toc_mobile_items-number">2.1.1.1.</span> <span class="toc_mobile_items-text">对称性：</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第二型曲面积分-iint-sum-P-x-y-z-rm-d-y-rm-d-z-Q-x-y-z-rm-d-z-rm-d-x-R-x-y-z-rm-d-x-rm-d-y"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">第二型曲面积分$\iint_{\sum}P(x,y,z){\rm d}y{\rm d}z+Q(x,y,z){\rm d}z{\rm d}x+R(x,y,z){\rm d}x{\rm d}y$:</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#解法"><span class="toc_mobile_items-number">2.2.1.</span> <span class="toc_mobile_items-text">解法:</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#对称性"><span class="toc_mobile_items-number">2.2.1.1.</span> <span class="toc_mobile_items-text">对称性:</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#高斯公式：闭合第二型曲面积分"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">高斯公式：闭合第二型曲面积分</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#无穷级数"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">无穷级数</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#判断敛散性："><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">判断敛散性：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#正项级数："><span class="toc_mobile_items-number">3.1.1.</span> <span class="toc_mobile_items-text">正项级数：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#比较判别法："><span class="toc_mobile_items-number">3.1.1.1.</span> <span class="toc_mobile_items-text">比较判别法：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#比式判别法："><span class="toc_mobile_items-number">3.1.1.2.</span> <span class="toc_mobile_items-text">比式判别法：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#根式判别法："><span class="toc_mobile_items-number">3.1.1.3.</span> <span class="toc_mobile_items-text">根式判别法：</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#一般项级数："><span class="toc_mobile_items-number">3.1.2.</span> <span class="toc_mobile_items-text">一般项级数：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#莱布尼兹判别法："><span class="toc_mobile_items-number">3.1.2.1.</span> <span class="toc_mobile_items-text">莱布尼兹判别法：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#绝对收敛和条件收敛："><span class="toc_mobile_items-number">3.1.2.2.</span> <span class="toc_mobile_items-text">绝对收敛和条件收敛：</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#幂级数运算："><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">幂级数运算：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#求展开式："><span class="toc_mobile_items-number">3.2.1.</span> <span class="toc_mobile_items-text">求展开式：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#求和函数："><span class="toc_mobile_items-number">3.2.2.</span> <span class="toc_mobile_items-text">求和函数：</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#傅里叶级数："><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">傅里叶级数：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#周期为-2-pi"><span class="toc_mobile_items-number">3.3.1.</span> <span class="toc_mobile_items-text">周期为$2\pi$:</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#周期为-2l"><span class="toc_mobile_items-number">3.3.2.</span> <span class="toc_mobile_items-text">周期为$2l$:</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#周期延拓："><span class="toc_mobile_items-number">3.3.3.</span> <span class="toc_mobile_items-text">周期延拓：</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#微分方程"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">微分方程</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#一阶微分方程："><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">一阶微分方程：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#可分离变量型："><span class="toc_mobile_items-number">4.1.1.</span> <span class="toc_mobile_items-text">可分离变量型：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#齐次型微分方程："><span class="toc_mobile_items-number">4.1.2.</span> <span class="toc_mobile_items-text">齐次型微分方程：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#可化为齐次型的微分方程："><span class="toc_mobile_items-number">4.1.3.</span> <span class="toc_mobile_items-text">可化为齐次型的微分方程：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#一阶线性齐次微分方程："><span class="toc_mobile_items-number">4.1.4.</span> <span class="toc_mobile_items-text">一阶线性齐次微分方程：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#一阶线性非齐次微分方程："><span class="toc_mobile_items-number">4.1.5.</span> <span class="toc_mobile_items-text">一阶线性非齐次微分方程：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#特：伯努利方程："><span class="toc_mobile_items-number">4.1.5.1.</span> <span class="toc_mobile_items-text">特：伯努利方程：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#再特：有时将方程视为-x-关于-y-的方程更容易求解。"><span class="toc_mobile_items-number">4.1.5.2.</span> <span class="toc_mobile_items-text">再特：有时将方程视为 x 关于 y 的方程更容易求解。</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#全微分方程："><span class="toc_mobile_items-number">4.1.6.</span> <span class="toc_mobile_items-text">全微分方程：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#积分因子："><span class="toc_mobile_items-number">4.1.6.1.</span> <span class="toc_mobile_items-text">积分因子：</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#高阶微分方程："><span class="toc_mobile_items-number">4.2.</span> <span class="toc_mobile_items-text">高阶微分方程：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#解的结构："><span class="toc_mobile_items-number">4.2.1.</span> <span class="toc_mobile_items-text">解的结构：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#齐次通解："><span class="toc_mobile_items-number">4.2.1.1.</span> <span class="toc_mobile_items-text">齐次通解：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#若为实数解。"><span class="toc_mobile_items-number">4.2.1.1.1.</span> <span class="toc_mobile_items-text">若为实数解。</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#若为虚数解。"><span class="toc_mobile_items-number">4.2.1.1.2.</span> <span class="toc_mobile_items-text">若为虚数解。</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#非齐次特解："><span class="toc_mobile_items-number">4.2.1.2.</span> <span class="toc_mobile_items-text">非齐次特解：</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#q-x-e-lambda-x-P-m-x-，其中-P-m-x-为多项式。"><span class="toc_mobile_items-number">4.2.1.2.1.</span> <span class="toc_mobile_items-text">$q(x)=e^{\lambda x}P_m(x)$，其中$P_m(x)$为多项式。</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#q-x-e-lambda-x-P-l-x-cos-omega-x-P-n-x-sin-omega-x"><span class="toc_mobile_items-number">4.2.1.2.2.</span> <span class="toc_mobile_items-text">$q(x)=e^{\lambda x}[P_l(x)\cos\omega x+P_n(x)\sin\omega x]$</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="../../../../js/utils.js"></script><script src="../../../../js/main.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script async src="../../../../js/search/local-search.js"></script><script src="../../../../js/nightshift.js"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script src="../../../../js/activate-power-mode.js"></script><script>POWERMODE.colorful = true; // make power mode colorful
+POWERMODE.shake = true; // turn off shake
+document.body.addEventListener('input', POWERMODE);
+</script><script src="../../../../js/tw_cn.js"></script><script>translateInitilization()
+
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
