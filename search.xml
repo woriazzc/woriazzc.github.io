@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>1451 - Average</title>
+      <title>UVa1451 - Average</title>
       <link href="/2019/09/21/Uva1451/"/>
       <url>/2019/09/21/Uva1451/</url>
       
@@ -997,6 +997,33 @@
     
     
     <entry>
+      <title>空间中一点到超平面的距离推导</title>
+      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
+      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 超平面 </tag>
+            
+            <tag> 感知机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>决策树</title>
       <link href="/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/"/>
       <url>/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
@@ -1041,33 +1068,6 @@
         <tags>
             
             <tag> 贝叶斯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>空间中一点到超平面的距离推导</title>
-      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
-      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
-      
-        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 超平面 </tag>
-            
-            <tag> 感知机 </tag>
             
         </tags>
       
