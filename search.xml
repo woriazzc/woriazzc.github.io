@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>UVa714 - Copying Books</title>
+      <link href="/2019/09/23/UVa714/"/>
+      <url>/2019/09/23/UVa714/</url>
+      
+        <content type="html"><![CDATA[<p><img alt="p714_page-0001.jpg" data-src="https://i.loli.net/2019/09/23/eOuNs2qo6EdVytZ.jpg" class="lozad"></p><p>&nbsp;</p><p><strong>二分+贪心</strong></p><p>二分确定最终每个人分到的最大值。</p><p>接着从后往前分配页数，由于贪心地使后面大，所以前面有可能分到0，所以，还需要从后往前使没分到的人从分到的人处拿出一张。</p><p>输出格式可能有点坑。WA了很多发。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line">ll t, m, k;</span><br><span class="line">ll a[<span class="number">505</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(ll x)</span> </span>&#123;</span><br><span class="line">ll sum = <span class="number">0</span>;</span><br><span class="line">ll cnt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (ll i = m; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line"><span class="keyword">if</span> (sum + a[i] &lt;= x)sum += a[i];</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">cnt++;</span><br><span class="line">sum = a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (cnt &gt; k)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">stack</span>&lt;ll&gt;vc[<span class="number">505</span>], st;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">cin</span>.tie(<span class="number">0</span>); <span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line"><span class="keyword">while</span> (t--) &#123;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; m &gt;&gt; k;</span><br><span class="line">ll maxa = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">maxa = max(maxa, a[i]);</span><br><span class="line">&#125;</span><br><span class="line">ll L = maxa, R = <span class="number">5e9</span> + <span class="number">10</span>, mid;</span><br><span class="line"><span class="keyword">while</span> (L &lt; R) &#123;</span><br><span class="line">mid = (L + R) &gt;&gt; <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (check(mid)) &#123;</span><br><span class="line">R = mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">L = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">ll sum = <span class="number">0</span>;</span><br><span class="line">ll cnt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (ll i = m; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line"><span class="keyword">if</span> (sum + a[i] &lt;= L) &#123;</span><br><span class="line">sum += a[i];</span><br><span class="line">vc[k - cnt + <span class="number">1</span>].push(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">sum = a[i];</span><br><span class="line">cnt++;</span><br><span class="line">vc[k - cnt + <span class="number">1</span>].push(a[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">ll now = k - cnt + <span class="number">1</span>;</span><br><span class="line">ll rest = k - cnt;</span><br><span class="line"><span class="keyword">while</span> (rest) &#123;</span><br><span class="line"><span class="keyword">if</span> (!vc[now].empty()) &#123;</span><br><span class="line">st.push(vc[now].top());</span><br><span class="line">vc[now].pop();</span><br><span class="line">rest--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (vc[now].empty()) &#123;</span><br><span class="line">rest++;</span><br><span class="line">now++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">ll p = st.size();</span><br><span class="line"><span class="keyword">while</span> (!st.empty()) &#123;</span><br><span class="line">vc[p].push(st.top());</span><br><span class="line">st.pop();</span><br><span class="line">p--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line"><span class="keyword">while</span> (!vc[i].empty()) &#123;</span><br><span class="line">ll ans = vc[i].top();</span><br><span class="line">vc[i].pop();</span><br><span class="line"><span class="keyword">if</span> (i == k &amp;&amp; vc[i].empty())<span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (i != k)<span class="built_in">cout</span> &lt;&lt; <span class="string">"/ "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> O J </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 紫书 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UVa1451 - Average</title>
       <link href="/2019/09/21/Uva1451/"/>
       <url>/2019/09/21/Uva1451/</url>
@@ -997,6 +1022,31 @@
     
     
     <entry>
+      <title>贝叶斯估计</title>
+      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
+      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
+      
+        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 贝叶斯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>空间中一点到超平面的距离推导</title>
       <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
       <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
@@ -1024,6 +1074,31 @@
     
     
     <entry>
+      <title>validation</title>
+      <link href="/2019/06/30/validation/"/>
+      <url>/2019/06/30/validation/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a>Cross Validation</h2><ol><li><h3 id="什么是Cross-Validation？"><a href="#什么是Cross-Validation？" class="headerlink" title="什么是Cross Validation？"></a>什么是Cross Validation？</h3><p>假设目前已有的数据集全集为D，从中选出一部分作为交叉验证集。</p><p>其余集作为训练集，将已有的模型$A_1$在训练集上训练，在验证集上得到$Error_1$，再轮换选出另一部分作为验证集，重复。得到$\overline{E(A_1)}$，对模型$A_2$同样操作，得到$\overline{E(A_2)}$，最终选出$\overline{E}$最小的模型A，在全集上训练，得到最终的矩 g 。</p></li></ol><ol><li><h3 id="为什么需要Cross-Validation？"><a href="#为什么需要Cross-Validation？" class="headerlink" title="为什么需要Cross Validation？"></a>为什么需要Cross Validation？</h3><p>我们已经有了很多的机器学习模型，linear regression，PLA，Pocket，Logistic，同时每种模型又有各种超参数，是否加regularization，learning-rate，Logistic的维数，从中如何选择合适的模型成了重点，因此需要一种评判优劣的标准，如果都在全集上训练，测试，可能无法做到泛化。而留出一部分未被污染的数据作为测试，更客观。</p></li><li><h3 id="如何使用Cross-Validation"><a href="#如何使用Cross-Validation" class="headerlink" title="如何使用Cross Validation?"></a>如何使用Cross Validation?</h3><ol><li>将全集分为几部分，常常分为5或10.</li><li>选出一部分作为验证集，取一个模型在其余数据上训练。</li><li>在验证集上得到 $Error_1$</li><li>轮流去其余部分作为验证集，重复 b，c</li><li>得到对应于该模型的 $\overline {E(A_i)}=\frac{1}{N}\sum_{n=1}^N Error_n$</li><li>对于其余模型，重复a, b, c, d, e</li><li>比较所有模型的 $\overline {E(A)}$ 选出最小的作为最终模型 $A^*$.</li><li>在全集上训练$A^*$，得到合适的参数。确定最终的矩 g .</li></ol></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> validation </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>决策树</title>
       <link href="/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/"/>
       <url>/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
@@ -1043,56 +1118,6 @@
             <tag> model </tag>
             
             <tag> 决策树 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>贝叶斯估计</title>
-      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
-      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
-      
-        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 贝叶斯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>validation</title>
-      <link href="/2019/06/30/validation/"/>
-      <url>/2019/06/30/validation/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a>Cross Validation</h2><ol><li><h3 id="什么是Cross-Validation？"><a href="#什么是Cross-Validation？" class="headerlink" title="什么是Cross Validation？"></a>什么是Cross Validation？</h3><p>假设目前已有的数据集全集为D，从中选出一部分作为交叉验证集。</p><p>其余集作为训练集，将已有的模型$A_1$在训练集上训练，在验证集上得到$Error_1$，再轮换选出另一部分作为验证集，重复。得到$\overline{E(A_1)}$，对模型$A_2$同样操作，得到$\overline{E(A_2)}$，最终选出$\overline{E}$最小的模型A，在全集上训练，得到最终的矩 g 。</p></li></ol><ol><li><h3 id="为什么需要Cross-Validation？"><a href="#为什么需要Cross-Validation？" class="headerlink" title="为什么需要Cross Validation？"></a>为什么需要Cross Validation？</h3><p>我们已经有了很多的机器学习模型，linear regression，PLA，Pocket，Logistic，同时每种模型又有各种超参数，是否加regularization，learning-rate，Logistic的维数，从中如何选择合适的模型成了重点，因此需要一种评判优劣的标准，如果都在全集上训练，测试，可能无法做到泛化。而留出一部分未被污染的数据作为测试，更客观。</p></li><li><h3 id="如何使用Cross-Validation"><a href="#如何使用Cross-Validation" class="headerlink" title="如何使用Cross Validation?"></a>如何使用Cross Validation?</h3><ol><li>将全集分为几部分，常常分为5或10.</li><li>选出一部分作为验证集，取一个模型在其余数据上训练。</li><li>在验证集上得到 $Error_1$</li><li>轮流去其余部分作为验证集，重复 b，c</li><li>得到对应于该模型的 $\overline {E(A_i)}=\frac{1}{N}\sum_{n=1}^N Error_n$</li><li>对于其余模型，重复a, b, c, d, e</li><li>比较所有模型的 $\overline {E(A)}$ 选出最小的作为最终模型 $A^*$.</li><li>在全集上训练$A^*$，得到合适的参数。确定最终的矩 g .</li></ol></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> validation </tag>
             
         </tags>
       
@@ -1130,7 +1155,7 @@
       <link href="/2019/06/22/None/"/>
       <url>/2019/06/22/None/</url>
       
-        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">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</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">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</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
       
       
