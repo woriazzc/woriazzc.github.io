@@ -33,7 +33,7 @@
 <p><strong>接下来用fit函数进行分类</strong></p>
 <p><strong>用predict函数评估模型好坏</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">clf.fit(X_train,y_train)</span><br><span class="line">print(clf.predict(X_test))</span><br><span class="line"><span class="comment">#记录训练集精度</span></span><br><span class="line">print(clf.score(X_train,y_train))</span><br><span class="line"><span class="comment">#记录泛化精度</span></span><br><span class="line">print(clf.score(X_test,y_test))</span><br></pre></td></tr></table></figure>
-<h3 id="train-test-split参数说明"><a href="#train-test-split参数说明" class="headerlink" title="train_test_split参数说明"></a>train_test_split参数说明</h3><p>数据集划分：sklearn.model_selection.train_test_split(<em>arrays, *</em>options)</p>
+<h3 id="train-test-split参数说明"><a href="#train-test-split参数说明" class="headerlink" title="train_test_split参数说明"></a>train_test_split参数说明</h3><p>数据集划分：sklearn.model_selection.train_test_split(*arrays, *options)</p>
 <p>主要参数说明：</p>
 <p>*arrays：可以是列表、numpy数组、scipy稀疏矩阵或pandas的数据框</p>
 <ul>
