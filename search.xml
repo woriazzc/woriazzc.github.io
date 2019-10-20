@@ -1474,11 +1474,11 @@
     
     
     <entry>
-      <title>空间中一点到超平面的距离推导</title>
-      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
-      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
+      <title>贝叶斯估计</title>
+      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
+      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
       
-        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
       
       
       <categories>
@@ -1490,9 +1490,7 @@
       
         <tags>
             
-            <tag> 超平面 </tag>
-            
-            <tag> 感知机 </tag>
+            <tag> 贝叶斯 </tag>
             
         </tags>
       
@@ -1528,11 +1526,11 @@
     
     
     <entry>
-      <title>贝叶斯估计</title>
-      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
-      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
+      <title>空间中一点到超平面的距离推导</title>
+      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
+      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
       
-        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
+        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
       
       
       <categories>
@@ -1544,7 +1542,9 @@
       
         <tags>
             
-            <tag> 贝叶斯 </tag>
+            <tag> 超平面 </tag>
+            
+            <tag> 感知机 </tag>
             
         </tags>
       
