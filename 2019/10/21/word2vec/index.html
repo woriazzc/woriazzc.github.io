@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>对word2vec模型的理解 | WORIA</title><meta name="description" content="对word2vec模型的理解"><meta name="keywords" content="NLP"><meta name="author" content="woria"><meta name="copyright" content="woria"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="../../../../img/favicon.ico"><link rel="stylesheet" href="../../../../css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://www.woria.xyz/2019/10/21/word2vec/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="对word2vec模型的理解"><meta name="twitter:description" content="对word2vec模型的理解"><meta name="twitter:image" content="https://i.loli.net/2019/10/21/RkXrupBMWbjaGeI.jpg"><meta property="og:type" content="article"><meta property="og:title" content="对word2vec模型的理解"><meta property="og:url" content="https://www.woria.xyz/2019/10/21/word2vec/"><meta property="og:site_name" content="WORIA"><meta property="og:description" content="对word2vec模型的理解"><meta property="og:image" content="https://i.loli.net/2019/10/21/RkXrupBMWbjaGeI.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="next" title="2018-2019 ACM-ICPC, Asia Nakhon Pathom Regional Contest" href="https://www.woria.xyz/2019/10/18/icpc泰国/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://www.woria.xyz/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days'
+
+  
+}</script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#One-hot"><span class="toc-number">1.</span> <span class="toc-text">One-hot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#词嵌入"><span class="toc-number">2.</span> <span class="toc-text">词嵌入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Word2Vec模型"><span class="toc-number">3.</span> <span class="toc-text">Word2Vec模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CBOW-Continuous-Bag-of-Words"><span class="toc-number">3.1.</span> <span class="toc-text">CBOW(Continuous Bag-of-Words)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Skip-Gram模型"><span class="toc-number">3.2.</span> <span class="toc-text">Skip-Gram模型</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.loli.net/2019/10/21/RkXrupBMWbjaGeI.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="../../../../index.html">WORIA</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="https://i.loli.net/2019/09/12/5NSB3v87UMLJwVH.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="../../../../archives/"><div class="headline">Articles</div><div class="length_num">80</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="../../../../tags/"><div class="headline">Tags</div><div class="length_num">32</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="../../../../categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fa fa-camera"></i><span> Gallery</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">对word2vec模型的理解</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-10-21<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2019-10-21</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="../../../../categories/M-L/">M L</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p><strong>这篇文章只是针对像我这种初学者大致理解word2vec模型的引导，并无数学推导！！</strong></p>
+<h2 id="One-hot"><a href="#One-hot" class="headerlink" title="One-hot"></a>One-hot</h2><p>对于一个词汇量为 V 的语料库，现在需要给每一个词分配一个向量，使得每个词汇的向量之间不会相互冲突。</p>
+<p>One-hot 给出了一个 V 维的向量（V 为语料库的词汇数），每一个单词在向量中占一个位置，则每个单词的向量中有且仅有1位是1，其它都是0.</p>
+<h2 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h2><p>One-hot给出的词向量尽管两两不冲突，但实在是太过浪费，并且对于词汇来说，每个词汇都不应该是独立的，例如<strong>“我，和，你”</strong>，这三个词常常会出现在一起，则我们只要看到<strong>“我，？，你”</strong>，都能够推出中间那个词应该是<strong>“和”</strong>，而One-hot却将每个词汇独立出来，即<strong>“我”，“和”，“你”</strong>之间变得毫无关系，这在文本情感分析中是致命的。</p>
+<p><strong>现在我们的任务是找出一种词汇的向量表示法，使得：</strong></p>
+<ol>
+<li>不同词汇的表示不会产生冲突。</li>
+<li>词向量的维度尽可能地小。</li>
+<li>对于有上下文关联的词汇，它们的词向量也应该有某种关系。</li>
+</ol>
+<p><strong>将One-hot所表示的高维度词向量嵌入低维度的空间，这样的方式叫做词嵌入。</strong></p>
+<h2 id="Word2Vec模型"><a href="#Word2Vec模型" class="headerlink" title="Word2Vec模型"></a>Word2Vec模型</h2><p>Word2Vec就是一种词嵌入模型。</p>
+<p>Word2Vec有两种类型：CBOW 和 Skip-Gram</p>
+<h3 id="CBOW-Continuous-Bag-of-Words"><a href="#CBOW-Continuous-Bag-of-Words" class="headerlink" title="CBOW(Continuous Bag-of-Words)"></a>CBOW(Continuous Bag-of-Words)</h3><p>对于每一个词 $Word_i$，我们假设现在需要它受到 m 个上下文单词的影响。则$Word_{i - m},Word_{i - m + 1},\cdots ,Word_{i - 1}, Word_{i + 1},\cdots,Word_{i + m - 1},Word_{i + m}$都应该被列为我们的考虑范围（注意，上述的 m 是指上下文范围的半径）。</p>
+<p>先给出CBOW的模型图，再来理解</p>
+<p><img alt="354ac337e2992318a61d4a597034f4fb.jpg" data-src="https://i.loli.net/2019/10/21/zvb9RhsfnV7CumK.jpg" class="lozad"></p>
+<p>可以看到，输入层为 $Word_{i-m}$ 到 $Word_{i+m}$ 在语料库中的 One-hot 向量，而输出层是某一个词汇的 One-hot 向量，在这里给出CBOW模型的目的。</p>
+<p><strong>CBOW模型根据上下文推测‘当前位置应该是什么单词。</strong></p>
+<p>上文说过V是语料库的词汇数，那么输出的是每一个词汇应该出现在当前位置的概率。</p>
+<p>&nbsp;</p>
+<p><strong>但是，得到输出并不是CBOW模型的最终目的！！</strong></p>
+<p><strong>还记得上文说我们的目的是要的到一个词汇的向量表示法，满足以上给出的三个条件吗？</strong></p>
+<p>我们需要的是从输出层到隐藏层的权重矩阵 $W_{V\cdot N}$，这里的 $N$，就是我们最终得到的词向量的维度，由于有 $V$ 行，所以每一行对应一个单词的词向量，每个词向量有N维。</p>
+<p>则这个权重矩阵 $W_{V\cdot N}$ 就相当于一个字典，我们把一个单词的One-hot乘以这的权重矩阵 $W_{V\cdot N}$ ，就得到了这个单词的词向量。实际上这个权重矩阵也就叫”Look Up Table”.</p>
+<p>&nbsp;</p>
+<p><strong>接下来，要怎么求解得到这个权重矩阵？</strong></p>
+<p>先初始化一个权重矩阵。</p>
+<p>接着如图上所示，对于每一个单词输入它的上下文单词在语料库中的One-hot向量，乘以权重矩阵，得到一个 $2m\cdot N$ 维的矩阵，或者说得到 $2m$ 个 $N$ 维的向量，则对这 $2m$ 个向量相加，求均值，再用Softmax，乘以输出矩阵，得到输出层。对照实际值Label，根据Softmax的<strong>交叉熵损失函数</strong>，修正权重矩阵。</p>
+<p>附交叉熵损失函数：$H(p,q)=-\sum_x p(x)\log (q(x))$</p>
+<p>其中 $p(x)$ 是真实分布概率，$q(x)$ 是模型计算出的概率。</p>
+<p>上述过程一定不陌生，因为这就是训练神经网络的普遍方法，实际上也正是如此，CBOW模型就是一个有1层隐藏层的神经网络。</p>
+<p>&nbsp;</p>
+<p><strong>最终我们得到了权重矩阵 $W_{V\cdot N}$ ，再次强调，输出层只是副产物，我们的主要目的是得到 $W_{V\cdot N}$这个”Look Up Table”。</strong></p>
+<h3 id="Skip-Gram模型"><a href="#Skip-Gram模型" class="headerlink" title="Skip-Gram模型"></a>Skip-Gram模型</h3><p><img alt="833fa25be15f684b57e26360f121bfe9.jpg" data-src="https://i.loli.net/2019/10/21/VEKxIckORiUWZzQ.jpg" class="lozad"></p>
+<p>Skip-Gram模型与CBOW模型相反，是根据当前位置的单词，猜测它的上下文单词。</p>
+<p>由于本文主要为了得到词向量，所以对这个模型不再解释。</p>
+<p><del>因为我也不会</del></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">woria</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://www.woria.xyz/2019/10/21/word2vec/">https://www.woria.xyz/2019/10/21/word2vec/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="../../../../tags/NLP/">NLP    </a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2019/10/21/RkXrupBMWbjaGeI.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="../../18/icpc泰国/"><img class="next_cover lozad" data-src="https://i.loli.net/2019/10/16/tsbMBCY3vRw4N6i.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>2018-2019 ACM-ICPC, Asia Nakhon Pathom Regional Contest</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'Tb5lbGw6UGatxYPTMl2hv1Ls-gzGzoHsz',
+  appKey:'reWNaUPPWMXJhmx3CYSlF3w9',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></div><footer style="background-image: url(https://i.loli.net/2019/10/21/RkXrupBMWbjaGeI.jpg)"><div id="footer"><div class="copyright">&copy;2018 - 2019 By woria</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-book" id="readmode" title="Read Mode"> </i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion">繁</a><i class="nightshift fa fa-moon-o" id="nightshift" title="Dark Mode"></i></section><div class=" " id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">Catalog</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#One-hot"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">One-hot</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#词嵌入"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">词嵌入</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Word2Vec模型"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">Word2Vec模型</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#CBOW-Continuous-Bag-of-Words"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">CBOW(Continuous Bag-of-Words)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Skip-Gram模型"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">Skip-Gram模型</span></a></li></ol></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="../../../../js/utils.js"></script><script src="../../../../js/main.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script async src="../../../../js/search/local-search.js"></script><script src="../../../../js/nightshift.js"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script color="0,0,255" opacity="0.7" zindex="-1" count="99" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN/js/canvas-nest.js"></script><script src="../../../../js/activate-power-mode.js"></script><script>POWERMODE.colorful = true; // make power mode colorful
+POWERMODE.shake = true; // turn off shake
+document.body.addEventListener('input', POWERMODE);
+</script><script src="../../../../js/tw_cn.js"></script><script>translateInitilization()
+
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

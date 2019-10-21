@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>对word2vec模型的理解</title>
+      <link href="/2019/10/21/word2vec/"/>
+      <url>/2019/10/21/word2vec/</url>
+      
+        <content type="html"><![CDATA[<p><strong>这篇文章只是针对像我这种初学者大致理解word2vec模型的引导，并无数学推导！！</strong></p><h2 id="One-hot"><a href="#One-hot" class="headerlink" title="One-hot"></a>One-hot</h2><p>对于一个词汇量为 V 的语料库，现在需要给每一个词分配一个向量，使得每个词汇的向量之间不会相互冲突。</p><p>One-hot 给出了一个 V 维的向量（V 为语料库的词汇数），每一个单词在向量中占一个位置，则每个单词的向量中有且仅有1位是1，其它都是0.</p><h2 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h2><p>One-hot给出的词向量尽管两两不冲突，但实在是太过浪费，并且对于词汇来说，每个词汇都不应该是独立的，例如<strong>“我，和，你”</strong>，这三个词常常会出现在一起，则我们只要看到<strong>“我，？，你”</strong>，都能够推出中间那个词应该是<strong>“和”</strong>，而One-hot却将每个词汇独立出来，即<strong>“我”，“和”，“你”</strong>之间变得毫无关系，这在文本情感分析中是致命的。</p><p><strong>现在我们的任务是找出一种词汇的向量表示法，使得：</strong></p><ol><li>不同词汇的表示不会产生冲突。</li><li>词向量的维度尽可能地小。</li><li>对于有上下文关联的词汇，它们的词向量也应该有某种关系。</li></ol><p><strong>将One-hot所表示的高维度词向量嵌入低维度的空间，这样的方式叫做词嵌入。</strong></p><h2 id="Word2Vec模型"><a href="#Word2Vec模型" class="headerlink" title="Word2Vec模型"></a>Word2Vec模型</h2><p>Word2Vec就是一种词嵌入模型。</p><p>Word2Vec有两种类型：CBOW 和 Skip-Gram</p><h3 id="CBOW-Continuous-Bag-of-Words"><a href="#CBOW-Continuous-Bag-of-Words" class="headerlink" title="CBOW(Continuous Bag-of-Words)"></a>CBOW(Continuous Bag-of-Words)</h3><p>对于每一个词 $Word_i$，我们假设现在需要它受到 m 个上下文单词的影响。则$Word_{i - m},Word_{i - m + 1},\cdots ,Word_{i - 1}, Word_{i + 1},\cdots,Word_{i + m - 1},Word_{i + m}$都应该被列为我们的考虑范围（注意，上述的 m 是指上下文范围的半径）。</p><p>先给出CBOW的模型图，再来理解</p><p><img alt="354ac337e2992318a61d4a597034f4fb.jpg" data-src="https://i.loli.net/2019/10/21/zvb9RhsfnV7CumK.jpg" class="lozad"></p><p>可以看到，输入层为 $Word_{i-m}$ 到 $Word_{i+m}$ 在语料库中的 One-hot 向量，而输出层是某一个词汇的 One-hot 向量，在这里给出CBOW模型的目的。</p><p><strong>CBOW模型根据上下文推测‘当前位置应该是什么单词。</strong></p><p>上文说过V是语料库的词汇数，那么输出的是每一个词汇应该出现在当前位置的概率。</p><p>&nbsp;</p><p><strong>但是，得到输出并不是CBOW模型的最终目的！！</strong></p><p><strong>还记得上文说我们的目的是要的到一个词汇的向量表示法，满足以上给出的三个条件吗？</strong></p><p>我们需要的是从输出层到隐藏层的权重矩阵 $W_{V\cdot N}$，这里的 $N$，就是我们最终得到的词向量的维度，由于有 $V$ 行，所以每一行对应一个单词的词向量，每个词向量有N维。</p><p>则这个权重矩阵 $W_{V\cdot N}$ 就相当于一个字典，我们把一个单词的One-hot乘以这的权重矩阵 $W_{V\cdot N}$ ，就得到了这个单词的词向量。实际上这个权重矩阵也就叫”Look Up Table”.</p><p>&nbsp;</p><p><strong>接下来，要怎么求解得到这个权重矩阵？</strong></p><p>先初始化一个权重矩阵。</p><p>接着如图上所示，对于每一个单词输入它的上下文单词在语料库中的One-hot向量，乘以权重矩阵，得到一个 $2m\cdot N$ 维的矩阵，或者说得到 $2m$ 个 $N$ 维的向量，则对这 $2m$ 个向量相加，求均值，再用Softmax，乘以输出矩阵，得到输出层。对照实际值Label，根据Softmax的<strong>交叉熵损失函数</strong>，修正权重矩阵。</p><p>附交叉熵损失函数：$H(p,q)=-\sum_x p(x)\log (q(x))$</p><p>其中 $p(x)$ 是真实分布概率，$q(x)$ 是模型计算出的概率。</p><p>上述过程一定不陌生，因为这就是训练神经网络的普遍方法，实际上也正是如此，CBOW模型就是一个有1层隐藏层的神经网络。</p><p>&nbsp;</p><p><strong>最终我们得到了权重矩阵 $W_{V\cdot N}$ ，再次强调，输出层只是副产物，我们的主要目的是得到 $W_{V\cdot N}$这个”Look Up Table”。</strong></p><h3 id="Skip-Gram模型"><a href="#Skip-Gram模型" class="headerlink" title="Skip-Gram模型"></a>Skip-Gram模型</h3><p><img alt="833fa25be15f684b57e26360f121bfe9.jpg" data-src="https://i.loli.net/2019/10/21/VEKxIckORiUWZzQ.jpg" class="lozad"></p><p>Skip-Gram模型与CBOW模型相反，是根据当前位置的单词，猜测它的上下文单词。</p><p>由于本文主要为了得到词向量，所以对这个模型不再解释。</p><p><del>因为我也不会</del></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2018-2019 ACM-ICPC, Asia Nakhon Pathom Regional Contest</title>
       <link href="/2019/10/18/icpc%E6%B3%B0%E5%9B%BD/"/>
       <url>/2019/10/18/icpc%E6%B3%B0%E5%9B%BD/</url>
@@ -1474,31 +1499,6 @@
     
     
     <entry>
-      <title>贝叶斯估计</title>
-      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
-      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
-      
-        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 贝叶斯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>决策树</title>
       <link href="/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/"/>
       <url>/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
@@ -1518,6 +1518,31 @@
             <tag> model </tag>
             
             <tag> 决策树 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>贝叶斯估计</title>
+      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
+      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
+      
+        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 贝叶斯 </tag>
             
         </tags>
       
@@ -1607,7 +1632,7 @@
       <link href="/2019/06/22/None/"/>
       <url>/2019/06/22/None/</url>
       
-        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">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</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">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</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
       
       
