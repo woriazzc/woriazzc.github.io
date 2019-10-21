@@ -35,7 +35,7 @@
 <h3 id="CBOW-Continuous-Bag-of-Words"><a href="#CBOW-Continuous-Bag-of-Words" class="headerlink" title="CBOW(Continuous Bag-of-Words)"></a>CBOW(Continuous Bag-of-Words)</h3><p>对于每一个词 $Word_i$，我们假设现在需要它受到 m 个上下文单词的影响。则$Word_{i - m},Word_{i - m + 1},\cdots ,Word_{i - 1}, Word_{i + 1},\cdots,Word_{i + m - 1},Word_{i + m}$都应该被列为我们的考虑范围（注意，上述的 m 是指上下文范围的半径）。</p>
 <p>先给出CBOW的模型图，再来理解</p>
 <p><img alt="354ac337e2992318a61d4a597034f4fb.jpg" data-src="https://i.loli.net/2019/10/21/zvb9RhsfnV7CumK.jpg" class="lozad"></p>
-<p>可以看到，输入层为 $Word_{i-m}$ 到 $Word_{i+m}$ 在语料库中的 One-hot 向量，而输出层是某一个词汇的 One-hot 向量，在这里给出CBOW模型的目的。</p>
+<p>可以看到，输入层为 $Word_{i-m}$ 到 $Word_{i+m}$ 在语料库中的 One-hot 向量，而输出层是 V 个单词的在此位置的出现概率，在这里给出CBOW模型的目的。</p>
 <p><strong>CBOW模型根据上下文推测‘当前位置应该是什么单词。</strong></p>
 <p>上文说过V是语料库的词汇数，那么输出的是每一个词汇应该出现在当前位置的概率。</p>
 <p>&nbsp;</p>
