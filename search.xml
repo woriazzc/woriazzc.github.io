@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>PC与Android百度云不限速下载</title>
+      <link href="/2019/11/12/baiduyun/"/>
+      <url>/2019/11/12/baiduyun/</url>
+      
+        <content type="html"><![CDATA[<p>刚刚发现Pandownload的下载功能又被限速了，咋办，<del>你们都没有会员的吗？</del>，会员是不可能冲的，钱还要留着孝敬G胖。</p><p>以下介绍PC端和Android端方法，至于IOS端，由于我用的少所以还没研究过。</p><p>&nbsp;&nbsp;</p><p>这次要用到<strong>aria2</strong>和<strong>Pandownload网页版</strong>。</p><p><strong>[aria2下载地址][<a href="https://www.lanzous.com/i7b4hcb" target="_blank" rel="noopener">https://www.lanzous.com/i7b4hcb</a>]</strong></p><p><strong>[Pandownload网页版][<a href="https://www.baiduwp.com/" target="_blank" rel="noopener">https://www.baiduwp.com/</a>]</strong></p><p>&nbsp;</p><ol><li>下载完<strong>aria2</strong>后解压。在<strong>Aria2 Tools</strong>文件夹中找到”<strong>aria2c_Run.exe</strong>“，双击打开。有防火墙警告的全都允许。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/HlG5bsWFQhDtkMV.png" class="lozad"></p><ol><li>会自动打开浏览器跳转，看到左下角有如下标记，即连接成功。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/nxpXLZsKdqgO4c9.png" class="lozad"></p><ol><li>接着打开<strong>Pandownload网页版</strong>，输入下载链接和提取码.</li></ol><p><img alt="捕获.PNG" data-src="https://i.loli.net/2019/11/12/iUO6Qc38Nl1JKp5.png" class="lozad"></p><p><img alt="捕获.PNG" data-src="https://i.loli.net/2019/11/12/7BGHaEcRxnzvdgX.png" class="lozad"></p><ol><li>点击链接打开。</li></ol><p><img alt="捕获.PNG" data-src="https://i.loli.net/2019/11/12/yBqlfzJw1oCsm5X.png" class="lozad"></p><ol><li>点击最后面的“<strong>使用Aria2下载</strong>”。</li></ol><p>自动跳出配置界面。如下填入。</p><p><img alt="捕获.PNG" data-src="https://i.loli.net/2019/11/12/GB8LPyqMi3xICvT.png" class="lozad"></p><p>其中的“<strong>下载路径</strong>”可以自己改，自己记着，其它保持不变，“<strong>密钥</strong>”就空着。</p><p>点击确定。</p><ol><li>打开之前的<strong>Aria2</strong>的网页。</li></ol><p>可以看到在“<strong>正在下载</strong>”页面中已经创建好了任务，并进行下载了。</p><p><img alt="捕获.PNG" data-src="https://i.loli.net/2019/11/12/3x56TlyeGMQqZ8w.png" class="lozad"></p><p>下载完成后会存在之前设置的“<strong>下载路径</strong>”下。</p><p>&nbsp;</p><p>以上是PC端。</p><p><strong>安卓端也类似。有aria2安卓端，配合Pandownload网页版。</strong></p><font color="blue">**[aria2安卓端][https://www.lanzous.com/i7b4y9a]**</font>]]></content>
+      
+      
+      <categories>
+          
+          <category> 乱搞 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2018-2019 ACM-ICPC, Asia Shenyang Regional Contest E题解</title>
       <link href="/2019/11/09/2018icpc%E6%B2%88%E9%98%B3/"/>
       <url>/2019/11/09/2018icpc%E6%B2%88%E9%98%B3/</url>
@@ -1699,6 +1718,33 @@
     
     
     <entry>
+      <title>空间中一点到超平面的距离推导</title>
+      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
+      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 超平面 </tag>
+            
+            <tag> 感知机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>贝叶斯估计</title>
       <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
       <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
@@ -1743,33 +1789,6 @@
             <tag> model </tag>
             
             <tag> 决策树 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>空间中一点到超平面的距离推导</title>
-      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
-      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
-      
-        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 超平面 </tag>
-            
-            <tag> 感知机 </tag>
             
         </tags>
       
@@ -1832,7 +1851,7 @@
       <link href="/2019/06/22/None/"/>
       <url>/2019/06/22/None/</url>
       
-        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">U2FsdGVkX19pCGvpw0jNTPMHHxpp17N41JkLbB/jt25DgBs04kbiy8T87ZcZIAUqOMtWPVT20kriEJ6hmdk0juLMGAJJpqtcZ632VkJZS8PT9PQXtbJv4s3LnlO1mYo+r+UKaJOgsuuFxh7pIOOz0gRsq48MWibLsPO/JqD+IKfZYQjUijIYyo+lpdSbUqO63RT8vjyiRviC8y3N+9OOkpFeR2TaHVV4ZjAINbBhfNdFp9VnlliLVr96YnPx953PAXs3RN1naljoKJLnADHHb6hdzHjeM7wwx0hf9VRdWaJjzdWDDUmhL53qNvZDk1c3pjesFlzCRcgQ4NOA/LmyOJ+PvxPlcUnvjtsv4oLAdewFvEVcmIM04lF81qAmW+eF4sYC5waLRI1Bv8Y9xmRKCD60bBnDwjoYBou9p6k9MK6Yqnc+Sk9j4+p91Ky8EXRx0emWejv6u2trHgUEfxPGPh5eeizkSA5siK4sIOnecSs1eG8FbsSqtbmcUrOXeAD7RmXQ53stEvMTMDV5B2atn87CIOb5fcW2LXf5klFO4sLU6zSiMTvoWdMynx9OSeTD2m1SZmqZzajV2tfEVKIhIDWQR7OxCxgcjkF55x7axq8tb9tZkVEbvprEdRR0ubDfnSPMALlhD+bCkdQGpNYO24nN26Li39pZR3erk//kWEQOs0PaUU5JO9ot+iqI4USlDWFwMrCr+9tQ4s8VDdM/AoXHwNFAhm5JnNzxUs9gjglibElXN6jHCfoVTJ0r9D+gr+DwpGyNwendz+zIMPuitd0UFwnIyud5LNWSp3AX/W+nxp40sMPDY2WTz7XDrxQYV0mkL20wsIayY73pdLHaZqAEAw2fkrywjXBq99Ppi0TonSLIyDe9PvUfYVACuyzy5QszhH39omV5S4Fck8lXj/Wkd4EAPoO06LNq+3tmeZfaWC0wakSW+zZqnfhyOc+cprkx11rXun/zRsppavO0py+mHdkSeTW4VmECwCVSwo/kx6BfA6KQywaEMMnGlpkNE8uALdpDVI3tfpNDSCfFREXlruhRNFF9o5bAzQ/jzs4QuT9rMERsjLlt8Q1IClXg1xpdNfpGJJRZ7xsG0n5ObDsfi5kmOoyhgYmK8qnGqSvomc7E4X8rgztMaFa+T5rijRmb7vgQzGMWXQUjdK3Twrsggts+WskNVydSxO52qE5Apd+8sN+quUTMBDeG1iX6u2SDJ6RvKkKwPLJK1swlhlg9JdmDy8iJDNFuFzCoox63VPR0gZC+Lim7ZtUqe27+YJxK9ncjbaDpYGeDZUoGehnAjDoJ11VYI4TbYDtUbZILaaELJxra7PEPer0W2gnhKBcYMxDjbkwxoe9BPg+S9T0GJqt6DRM2VMmQKTWFVZ0GFAMg6Axf+8WegyIAOEXuUdITKkalDMolMf/lVWFeuUnh6dIPI9kE4v05y/wQMIlTzcEO2IDvgkd+o6Xj2h3K+Da1fO3Y/zdSxo0sKPsOQ+GehNkbEGPyDrm3k/bSOicIte7pnh4tqmDpID56SxkZHxbyLNjL4rmIaWSX0WuPv1wLtwXevXX38phNZiySeP+lPcnfamNIX+OiHO8bN62Z7n7gwmt7Bdp0wzu2S0phTWsM97m4+39lUld++oM4L2faaitmbyNVEUUQGI4kZaEG0LKK43Y4FIMBxIUFoVKQ3SNg6MdWI/h5EEKgql/5mYyawDmw7hkGsieWPl0eQED9HePhJVFdS+r89JCcdq3gvE7Qekf6Gvtgy8yohSEw0KKUJlzeAbRK5gHf67axdbUZMVwrdjkAzWpqkUSYJQh0teVLoQFj4oAGH/hDdL3sGUHNrMZnOkiWWJtgVPOoC7xq2ZJkLDk89zvPpO1v3+UHXAo2MaSiY13e8MDhllT2AEQtqOsdT2qNE03KYyVd1IuHz4v7e5iUhYKpMQuy0aMnTlVu1Lh6L3Ll1CPUZSuVrkTm/27vYAEIUz1nnDGArAWVypblVLrEoGi0EMB/76TYPwjvqTKKo6P8j9VPEHQxUOl6oQtBx4cYFAlmxLJqcCiQ4M5+qOILXN+SFqhDXhbJxWM2AL/y1ETVk9ugrwBaIkxIoMjLyFMQ2PxglJ9p0wzyzhjIcmwsF1JwoCl+6gG3DtXrJa4KdV5XnmZ6xujLKzEOit9sqcKEaiTHciEkM6s93/4Fu0HHlOwZ8AI0/a/sDd4nEgiWos9mjVhVCQurVvSaD5jdAFs+AywYH0u3OsMe6d9y3FWXA+YD/f+AsYaiqHovoYEwH5xHfHzbK5oYuI5DgDzQrww3W0+qk7RBDPk/4V9GotAjEH9XuQFXsBZr+H58x3czr6+LeTyt0ydGPXQ0Wm0D2ASRlBLa45d9ZjooAhsKLNEg3qmyEjTTXXChmgsN63fa3pleU0pjlPVS8ymOeLtDeA+DMcycRMOvv7Tch8AP0OJowt3rtvdVDFIj4xr5pMo4ivV5v009WqAp/hSEniTi4S+kDxEUxx3RNjxeEAgFCaAAYG/QQ7HanrCi4QT9ZLWM9v5Ok1A8sV6w8LIA4RdH86cO7xD4fQDriQIJNncQdYvz90mayiUjH8pPr4YiKrZoVaB5sXL+elpKsoFcFF/xK1wXI8IkskvPf1jcY5rynu3w8D5XVimMukiP7fR2Dj2lL/4z6nJR7HTII9mgMSgHichuZYz/6G7AZMnqSz1AjURQMuCktTy459xlv4q5mpfX/28uPNrmOC8g/PcfS5uP+9hkssnVgPVC0JZa2QOafFMPx8NlWvqgtASELra99StBGx9F4BKJsbEliREUVt4pzYKUjOw+XZWCxoOWO9bBhawGG98dDvQJeT5NvMdQ8eafUn3xlU5UFt8FZ2tJiGrCD/o9RNZ2Iqcmi69CMpvUheMU25SLHLfT73QaaTln4Wl8DNQeBOZuXXOckkd+1TUTnHGcI/p19yD2IdEPpdwPLHk48+U3Fk2uvewV270urkHKaMgfr6GiQ9RWnkY9uKAni08hEDAIV/MJbyV29DZD1wdcXmHBdAPFmWFvc+Qv09spmL6fhp9lMP4Bkow0GKsqIZ1UJ1Nkqwp6ENSZozujldqTre+jewgIzv2oKWE+1I0ibJ1VrBeERO+EtTMvd4aUBdYUyMxPbUMsr25dObkIVriISXotIazil+TYRqCZ8INysRf/T8fmqyWd1L1kDNTynx9A7g/sxip3InpIQO/gY+It8SJVcNhhDsYgL5HqmeoGgKvtMr2fzc+S+5T8LLKledTxaLm0ZXEgeUPb0Yymb7Q9KZ0/iCPyggZNq+cNn/SGIEpCXv+whXsdonH9IuzDsE73YGG7su69/lfFnBJpM5CtjhRL87NgB+tdty8EyJny0l3TNJ4kQTvKAxA6OvbVS8XpYy5ma1tBMACC9ipPUWtBcqxpW7kdKLuJWgvsDPyvzd0mbnBaHhbcMre51CPmQ2OF08wBAf2Scj4ybUvqVVqEBynpiHdi0hnKOhdftjWExNT7rVrbOOG4kmJmjjy0OTcUEPnEpirlOYVU0cwdwdVA+09qgUMh6KJjuWmlf4d8Ok5Ac8G6cx3dqTPuvlAIkQ8W0XTp9Oy5hZYb7UIaYLE14HIYmpIhTm7EK3UAsCEt/7cFzsjJh45IDxLwzaI8HfCtDi7I3h4651KTaTyoU2k7CWrlVjAZnef+UF2X1clUlKBdANT7yiKFJzFfGQN0YvBdFbPVSr/4yXenGgnP/xJQJi5wUdfTnxJxeHytne27zzoj5UfqpH9LbleJKMhoRWAok81Xd5tWWUCuyOphDtxhBrNLNg3J3tumNKttp+ESrtK2HvkjUEHpjKfah+WEaVjwTrznOQfVIBKj7txddXHDMfOqLeMrXCdIqC7i8TaJIWxw//2Jtpo1prhOR6wGmU8ycfvJHJJASARHScx8MkWAo60atVu5Bl9HjGIISXRIBGEiiTMxMMRJVJvGbh5K9sPHIhgRAv1CqmSdEtOnV7H66UxFYEtjoT1PL9ZWLujvfrPPgMK3DcR44PmdjYLZpqCHOBhQKdoC2Rsa/GtDvTrDGsdmlDMXufg6erumFlV5KDiFUv5MwiAIHeCHs/uotFNb8x6ha1qmCU8bkFiFv1xPxtnSJJXWJ9nverYZyhEftM493GBzPLSrZHnsngP6/ARsQiB1ctYWXjD5TyIdkiFqqVvUVE7JV/i5oYUl4tOtR7M3XwRXfKPLu2sgq5KXu+BG3zCgjoY/AYbmKraS6ddDu7SPT0pwqD8pdz3rNngSUMHFa8pE3uN5i2VqyPuaVN8NZ4r8N9+LC3cIrirYBu/QfhVLOISZPdJQoGjlUtE5WOa4q+vol5mSnBtKOUDT4v7Gv7AJSTRN9TCFfG8V6r6QK5FGrGP7zgK8SeeKzIwE4Wny+Tl7n/gH8ATlWHpGluleLhnFlfAk6IbNW5fhhjG4TYQB3LcWeURj/seWlmzPjxYrgtOvAOOErZ5hgHWQfnt8owz/8Q+5xz4r05qU6TyqWAPV/N7f79hIQiS7TxMWC8Jn5s/MYelPBbM6WiH7etGOcpndWQr24JxIvSEOUT/ZRutfkCsptOmz2VhJz0Fd+k36aoohgRMcEiEewJ+sjEmyctYVar+Uo3g9S2SMskNm7VK/VvOrA1GB/lHQPLipd44mPMUkwuw4QsmjPivZK1/7Rs6Y3xeIHKjAP25pMEyCLY8IavtNVTShBKwpoE0B+0mjSCXjU1V2WjUs6+2UYbmz1olsOw9vcUxOjIvlKanDQ5yoDb7z2iAKw77usWQfOYFyJPap7F8eCQQaZ/o5AU3FfZgKgMjGHAe+83cvQZQ8hyMFr2rT6OxfWUUmSXpt/zFjJj6xVjBFvpnIYfPi5NeuTZPvWfbFVo1q/a6/7GC5CeTCA1HssRuaEoYW7ayfjNjLBqXscTqGTdTLaa0ApnBYPMfUr0hkdc91qtYicW7C4QS8vh4jIfIyzLOHVMghWCmeFhydrYfW8quzYMCPszHle1idzxbEBEiybeRxt3ZRwIh/yEX4Iyl5B0AE5S7POeWpcHabl/92z5BovLfl4i+fV64THt+m2i+H+kugexQSea/TVtVmqU97Vn0mw4U6YWUxT2BOh4vSoMmw/StbLAeiZqAEjbqAF/yeQUTpn6NGS9M1nQK3MeKTbLZTtObkz/uxj75n7LAiN+c=</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">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</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
       
       
