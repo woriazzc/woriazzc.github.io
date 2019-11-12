@@ -8,7 +8,7 @@
       <link href="/2019/11/12/baiduyun/"/>
       <url>/2019/11/12/baiduyun/</url>
       
-        <content type="html"><![CDATA[<p>刚刚发现Pandownload的下载功能又被限速了，咋办，<del>你们都没有会员的吗？</del>，会员是不可能冲的，钱还要留着孝敬G胖。</p><p>以下介绍PC端和Android端方法，至于IOS端，由于我用的少所以还没研究过。</p><p>&nbsp;&nbsp;</p><p>这次要用到<strong>aria2</strong>和<strong>Pandownload网页版</strong>。</p><p><strong>[aria2下载地址][<a href="https://www.lanzous.com/i7b4hcb" target="_blank" rel="noopener">https://www.lanzous.com/i7b4hcb</a>]</strong></p><p><strong>[Pandownload网页版][<a href="https://www.baiduwp.com/" target="_blank" rel="noopener">https://www.baiduwp.com/</a>]</strong></p><p>&nbsp;</p><ol><li>下载完<strong>aria2</strong>后解压。在<strong>Aria2 Tools</strong>文件夹中找到”<strong>aria2c_Run.exe</strong>“，双击打开。有防火墙警告的全都允许。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/HlG5bsWFQhDtkMV.png" class="lozad"></p><ol><li>会自动打开浏览器跳转，看到左下角有如下标记，即连接成功。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/nxpXLZsKdqgO4c9.png" class="lozad"></p><ol><li>接着打开<strong>Pandownload网页版</strong>，输入下载链接和提取码.</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/iUO6Qc38Nl1JKp5.png" class="lozad"></p><p><img alt data-src="https://i.loli.net/2019/11/12/7BGHaEcRxnzvdgX.png" class="lozad"></p><ol><li>点击链接打开。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/yBqlfzJw1oCsm5X.png" class="lozad"></p><ol><li>点击最后面的“<strong>使用Aria2下载</strong>”。</li></ol><p>自动跳出配置界面。如下填入。</p><p><img alt data-src="https://i.loli.net/2019/11/12/GB8LPyqMi3xICvT.png" class="lozad"></p><p>其中的“<strong>下载路径</strong>”可以自己改，自己记着，其它保持不变，“<strong>密钥</strong>”就空着。</p><p>点击确定。</p><ol><li>打开之前的<strong>Aria2</strong>的网页。</li></ol><p>可以看到在“<strong>正在下载</strong>”页面中已经创建好了任务，并进行下载了。</p><p><img alt data-src="https://i.loli.net/2019/11/12/3x56TlyeGMQqZ8w.png" class="lozad"></p><p>下载完成后会存在之前设置的“<strong>下载路径</strong>”下。</p><p>&nbsp;</p><p>以上是PC端。</p><p><strong>安卓端也类似。有aria2安卓端，配合Pandownload网页版。</strong></p><p><strong>[aria2安卓端下载地址][<a href="https://www.lanzous.com/i7b4y9a" target="_blank" rel="noopener">https://www.lanzous.com/i7b4y9a</a>]</strong></p>]]></content>
+        <content type="html"><![CDATA[<p>刚刚发现Pandownload的下载功能又被限速了，咋办，<del>你们都没有会员的吗？</del>，会员是不可能冲的，钱还要留着孝敬G胖。</p><p>以下介绍PC端和Android端方法，至于IOS端，由于我用的少所以还没研究过。</p><p>&nbsp;&nbsp;</p><p>这次要用到<strong>aria2</strong>和<strong>Pandownload网页版</strong>。</p><p><strong>[aria2下载地址][<a href="https://www.lanzous.com/i7b4hcb" target="_blank" rel="noopener">https://www.lanzous.com/i7b4hcb</a>]</strong></p><p><strong>[Pandownload网页版][<a href="https://www.baiduwp.com/" target="_blank" rel="noopener">https://www.baiduwp.com/</a>]</strong></p><p>&nbsp;</p><ol><li>下载完<strong>aria2</strong>后解压。在<strong>Aria2 Tools</strong>文件夹中找到”<strong>aria2c_Run.exe</strong>“，双击打开。有防火墙警告的全都允许。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/HlG5bsWFQhDtkMV.png" class="lozad"></p><ol><li>会自动打开浏览器跳转，看到左下角有如下标记，即连接成功。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/nxpXLZsKdqgO4c9.png" class="lozad"></p><ol><li>接着打开<strong>Pandownload网页版</strong>，输入下载链接和提取码.</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/iUO6Qc38Nl1JKp5.png" class="lozad"></p><p><img alt data-src="https://i.loli.net/2019/11/12/7BGHaEcRxnzvdgX.png" class="lozad"></p><ol><li>点击链接打开。</li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/yBqlfzJw1oCsm5X.png" class="lozad"></p><ol><li><p>点击最后面的“<strong>使用Aria2下载</strong>”。</p><p>自动跳出配置界面。如下填入。</p></li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/GB8LPyqMi3xICvT.png" class="lozad"></p><p>其中的“<strong>下载路径</strong>”可以自己改，自己记着，其它保持不变，“<strong>密钥</strong>”就空着。</p><p>点击确定。</p><ol><li><p>打开之前的<strong>Aria2</strong>的网页。</p><p>可以看到在“<strong>正在下载</strong>”页面中已经创建好了任务，并进行下载了。</p></li></ol><p><img alt data-src="https://i.loli.net/2019/11/12/3x56TlyeGMQqZ8w.png" class="lozad"></p><p>下载完成后会存在之前设置的“<strong>下载路径</strong>”下。</p><ol><li><p>如果不小心关掉了Aria2网页也没关系。</p><p>右键单击任务栏中一个不断闪烁的小电脑图标</p><p><img alt data-src="https://i.loli.net/2019/11/12/8KWiFCBgdOPQjxA.png" class="lozad"></p><p>再点击“打开主页面”就会自动跳转。</p><p><img alt data-src="https://i.loli.net/2019/11/12/miM3JzjIXk5VF1p.png" class="lozad"></p></li></ol><p>&nbsp;</p><p>以上是PC端。</p><p><strong>安卓端也类似。有aria2安卓端，配合Pandownload网页版。</strong></p><p><strong>[aria2安卓端下载地址][<a href="https://www.lanzous.com/i7b4y9a" target="_blank" rel="noopener">https://www.lanzous.com/i7b4y9a</a>]</strong></p>]]></content>
       
       
       <categories>
@@ -1718,6 +1718,58 @@
     
     
     <entry>
+      <title>空间中一点到超平面的距离推导</title>
+      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
+      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 超平面 </tag>
+            
+            <tag> 感知机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>贝叶斯估计</title>
+      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
+      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
+      
+        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 贝叶斯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>决策树</title>
       <link href="/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/"/>
       <url>/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
@@ -1762,58 +1814,6 @@
         <tags>
             
             <tag> validation </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>贝叶斯估计</title>
-      <link href="/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
-      <url>/2019/06/30/%E8%B4%9D%E5%8F%B6%E6%96%AF/</url>
-      
-        <content type="html"><![CDATA[<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$</p><p>或$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$</p><p>$P(B|A)$：发生A的条件下发生B的概率。</p><p>先验概率越小，误判可能性越大。</p><p>似然性：由结果推出规律的可能性。</p><p>1）先验——根据若干年的统计（经验）或者气候（常识），某地方下雨的概率；</p><p>2）似然——下雨（果）的时候有乌云（因/证据/观察的数据）的概率，即已经有了果，对证据发生的可能性描述；</p><p>3）后验——根据天上有乌云（原因或者证据/观察数据），下雨（结果）的概率；</p><p>后验 ~ 先验*似然 ： 存在下雨的可能（先验），下雨之前会有乌云（似然）~ 通过现在有乌云推断下雨概率（后验）；</p><p>条件概率——在条件A的基础上，发生B的概率。</p><p>条件概率：$P(X|Y)=\frac{P(X,Y)}{P(Y)}$</p><p>先验概率通常是我们通过已有数据已知的。</p><p>后验概率一般是我们需要求的结果。</p><p>联合概率-》条件概率-》条件概率+先验概率-》后验概率</p><h2 id="朴素贝叶斯算法的极大似然估计"><a href="#朴素贝叶斯算法的极大似然估计" class="headerlink" title="朴素贝叶斯算法的极大似然估计"></a>朴素贝叶斯算法的极大似然估计</h2><script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{P(X)}</script><p>其中 $P(X)=\sum_Y P(X,Y)=\sum_Y P(Y)P(X|Y)$</p><script type="math/tex; mode=display">∴ P(Y|X)=\frac{P(Y)P(X|Y)}{\sum_YP(Y)P(X|Y)}</script><p>由于分母对所有 $x_i$ 相同，故取分子最大。</p><script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^nP(X_j=x^{(j)}|Y=c_k)</script><h2 id="贝叶斯估计（拉普拉斯平滑）"><a href="#贝叶斯估计（拉普拉斯平滑）" class="headerlink" title="贝叶斯估计（拉普拉斯平滑）"></a>贝叶斯估计（拉普拉斯平滑）</h2><font color="red">为减少后验概率为 0 的情况，采用贝叶斯估计。</font><script type="math/tex; mode=display">P_\lambda(X^{(j)}=a_{jl})|Y=c_k)=\frac{\sum_{i=1}^N I(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N I(y_i=c_k)+S_j \lambda}</script><p>其中 $\lambda \geq 0$，$S_j$ 为特征 $x$ 的第 $j$ 项可选种类数。</p><p>$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</p><p>其中 $\lambda \geq 0$，$K$ 为 $y$ 的种类数。</p><p>常取 $\lambda=1$ ，称为拉普拉斯平滑。 </p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：高效，易于实现</p><p>缺点：分类性能不一定很高</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 贝叶斯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>空间中一点到超平面的距离推导</title>
-      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
-      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
-      
-        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 超平面 </tag>
-            
-            <tag> 感知机 </tag>
             
         </tags>
       
