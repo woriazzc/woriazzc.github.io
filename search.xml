@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>单链表找环</title>
+      <link href="/2019/11/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <url>/2019/11/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[<p>数据结构考试题</p><p>上课没听导致做不出来。。</p><p><img alt data-src="https://i.loli.net/2019/11/15/7HmsJKyfZ8wGMnQ.png" class="lozad"></p><p><strong>快慢指针</strong></p><p>设指针 <strong>slow，fast</strong> 的步长分别为 $1$ 和 $2$，且都从头节点出发。</p><p><strong><font color="red">结论1：最终两个指针会在环中相遇，且此时慢指针 slow 还未走完环一圈。</font></strong></p><p>&nbsp;</p><p><strong>证明：</strong></p><p>设整个链表的线性部分长度为 $x$，环的长度为 $n$，相遇时 <strong>slow</strong> 指针在环中走了 $S$ 步。</p><p><img alt data-src="https://i.loli.net/2019/11/15/NWBKMts8jmTczVY.png" class="lozad"></p><p><strong>假设 $S\geq n$</strong></p><p>则 <strong>slow</strong> 指针总共走了 $x+S$ 步，由于 <strong>fast</strong> 指针速度为 <strong>slow</strong> 指针2倍，所以 <strong>fast</strong> 指针走了$2x+2S$ 步。</p><p>则 <strong>slow</strong> 指针在环中走了 $L(slow)=S$ 步，<strong>fast</strong> 指针在环中走了 $L(fast)=x+2S$ 步。</p><script type="math/tex; mode=display">L(fast)-L(slow)=(x+2S)-S=x+S>S</script><p>若 $S\geq n$，则 $L(fast)-L(slow)&gt;n$</p><p>由常识可知若两指针经过路程差大于环的长度，则两指针必定已经相遇过。</p><p>与假设矛盾，故 $S&lt;n$。</p><p>&nbsp;</p><p>那么现在已知两指针会在环中相遇，且此时慢指针还未走完一圈。</p><p>问题只剩下怎么确定环的入口。</p><p>&nbsp;</p><p>设现在两指针相遇位置为 $P$，则我们把 <strong>slow</strong> 指针指向链表头节点，<strong>fast</strong> 指针保持在 $P$ 点，但设置 <strong>fast</strong> 指针步长为 $1$ ，即<strong>现在两指针速度相等</strong>。</p><p>&nbsp;</p><p><strong><font color="red">结论2：两指针同时出发，当两个指针相遇时，相遇点即环的入口。</font></strong></p><p>&nbsp;</p><p><strong>证明：</strong></p><p><img alt data-src="https://i.loli.net/2019/11/15/NWBKMts8jmTczVY.png" class="lozad"></p><p>由结论1的证明可知，从环的起点走 $S$ 步到达 $P$ 点。</p><p>同样，由结论1的证明过程已知 当两指针相遇时 $L(fast)-L(slow)=(x+2S)-S=x+S$</p><p>由常识得当两指针第一次相遇时 <strong>fast</strong> 恰好超过 <strong>slow</strong> 一圈，即 $L(fast)-L(slow)=n$。</p><p>则 $x+S=n————————————①$</p><p><strong>slow</strong> 指针走到环的入口处需要 $x$ 步，故当 <strong>slow</strong> 指针在环的入口处时，<strong>fast</strong> 指针距离环的入口 $S+x$ 步（<strong>fast</strong> 指针步长已经被调为1)，</p><p>由式①可知此时 <strong>fast</strong> 也绕完了一圈，到达环的入口。两环在环的入口处相遇。</p><p>&nbsp;</p><p>代码实现（返回环的入口指针）：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node *<span class="title">detectCycle</span><span class="params">(Node *head)</span> </span>&#123;</span><br><span class="line">Node *slow = head, *fast = head;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line"><span class="keyword">if</span> ((fast == <span class="number">0</span>) || (fast-&gt;next == <span class="literal">NULL</span>)) &#123;      <span class="comment">//链表是有限长度的，已经走到链表尾部了，说明没有环</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">slow = slow-&gt;next;<span class="comment">//slow一次走一步</span></span><br><span class="line">fast = fast-&gt;next-&gt;next;         <span class="comment">//fast一次走两步</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">while</span> (slow != fast)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (slow  = head; slow != fast; slow = slow-&gt;next, fast = fast-&gt;next);  <span class="comment">//slow拉回起点，fast从相遇点开始走都是每次直走一步直到再次相遇</span></span><br><span class="line"><span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>至于要环的长度，就新建一个tmp指向入口，一直往下走，再次走到入口返回计数器即可。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 考试 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PC与Android百度云不限速下载</title>
       <link href="/2019/11/12/baiduyun/"/>
       <url>/2019/11/12/baiduyun/</url>
@@ -1718,11 +1737,11 @@
     
     
     <entry>
-      <title>空间中一点到超平面的距离推导</title>
-      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
-      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
+      <title>validation</title>
+      <link href="/2019/06/30/validation/"/>
+      <url>/2019/06/30/validation/</url>
       
-        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a>Cross Validation</h2><ol><li><h3 id="什么是Cross-Validation？"><a href="#什么是Cross-Validation？" class="headerlink" title="什么是Cross Validation？"></a>什么是Cross Validation？</h3><p>假设目前已有的数据集全集为D，从中选出一部分作为交叉验证集。</p><p>其余集作为训练集，将已有的模型$A_1$在训练集上训练，在验证集上得到$Error_1$，再轮换选出另一部分作为验证集，重复。得到$\overline{E(A_1)}$，对模型$A_2$同样操作，得到$\overline{E(A_2)}$，最终选出$\overline{E}$最小的模型A，在全集上训练，得到最终的矩 g 。</p></li></ol><ol><li><h3 id="为什么需要Cross-Validation？"><a href="#为什么需要Cross-Validation？" class="headerlink" title="为什么需要Cross Validation？"></a>为什么需要Cross Validation？</h3><p>我们已经有了很多的机器学习模型，linear regression，PLA，Pocket，Logistic，同时每种模型又有各种超参数，是否加regularization，learning-rate，Logistic的维数，从中如何选择合适的模型成了重点，因此需要一种评判优劣的标准，如果都在全集上训练，测试，可能无法做到泛化。而留出一部分未被污染的数据作为测试，更客观。</p></li><li><h3 id="如何使用Cross-Validation"><a href="#如何使用Cross-Validation" class="headerlink" title="如何使用Cross Validation?"></a>如何使用Cross Validation?</h3><ol><li>将全集分为几部分，常常分为5或10.</li><li>选出一部分作为验证集，取一个模型在其余数据上训练。</li><li>在验证集上得到 $Error_1$</li><li>轮流去其余部分作为验证集，重复 b，c</li><li>得到对应于该模型的 $\overline {E(A_i)}=\frac{1}{N}\sum_{n=1}^N Error_n$</li><li>对于其余模型，重复a, b, c, d, e</li><li>比较所有模型的 $\overline {E(A)}$ 选出最小的作为最终模型 $A^*$.</li><li>在全集上训练$A^*$，得到合适的参数。确定最终的矩 g .</li></ol></li></ol>]]></content>
       
       
       <categories>
@@ -1734,9 +1753,7 @@
       
         <tags>
             
-            <tag> 超平面 </tag>
-            
-            <tag> 感知机 </tag>
+            <tag> validation </tag>
             
         </tags>
       
@@ -1770,6 +1787,33 @@
     
     
     <entry>
+      <title>空间中一点到超平面的距离推导</title>
+      <link href="/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/"/>
+      <url>/2019/06/30/%E7%82%B9%E5%88%B0%E5%B9%B3%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<p>空间中一点$x_0$到超平面$wx+b=0$的距离推导。</p><p>$w$为超平面的法向量，b为截距。</p><p>作$\vec{x_0x_1}$垂直于平面，则$\vec{x_0x_1}$平行于$\vec{w}$.</p><p>则有$x_1$在平面上，即 $w\cdot x_1+b=0$</p><p>则 $|\vec{w}\cdot \vec{x_0x_1}|=||\vec{w}||\cdot ||\vec{x_0x_1}||=||\vec{w}||\cdot h$</p><p>又 $\vec{w}\cdot \vec{x_0x_1}=w\cdot(x_0-x_1)=w\cdot x_0-w\cdot x_1=w\cdot x_0-(-b)=w\cdot x_0+b$</p><p>∴ $|w\cdot x_0+b|=|\vec{w}|\cdot h$</p><p>∴ $h=\frac{|w\cdot x_0+b|}{||\vec{w}||}$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> M L </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 超平面 </tag>
+            
+            <tag> 感知机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>决策树</title>
       <link href="/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/"/>
       <url>/2019/06/30/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
@@ -1789,31 +1833,6 @@
             <tag> model </tag>
             
             <tag> 决策树 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>validation</title>
-      <link href="/2019/06/30/validation/"/>
-      <url>/2019/06/30/validation/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a>Cross Validation</h2><ol><li><h3 id="什么是Cross-Validation？"><a href="#什么是Cross-Validation？" class="headerlink" title="什么是Cross Validation？"></a>什么是Cross Validation？</h3><p>假设目前已有的数据集全集为D，从中选出一部分作为交叉验证集。</p><p>其余集作为训练集，将已有的模型$A_1$在训练集上训练，在验证集上得到$Error_1$，再轮换选出另一部分作为验证集，重复。得到$\overline{E(A_1)}$，对模型$A_2$同样操作，得到$\overline{E(A_2)}$，最终选出$\overline{E}$最小的模型A，在全集上训练，得到最终的矩 g 。</p></li></ol><ol><li><h3 id="为什么需要Cross-Validation？"><a href="#为什么需要Cross-Validation？" class="headerlink" title="为什么需要Cross Validation？"></a>为什么需要Cross Validation？</h3><p>我们已经有了很多的机器学习模型，linear regression，PLA，Pocket，Logistic，同时每种模型又有各种超参数，是否加regularization，learning-rate，Logistic的维数，从中如何选择合适的模型成了重点，因此需要一种评判优劣的标准，如果都在全集上训练，测试，可能无法做到泛化。而留出一部分未被污染的数据作为测试，更客观。</p></li><li><h3 id="如何使用Cross-Validation"><a href="#如何使用Cross-Validation" class="headerlink" title="如何使用Cross Validation?"></a>如何使用Cross Validation?</h3><ol><li>将全集分为几部分，常常分为5或10.</li><li>选出一部分作为验证集，取一个模型在其余数据上训练。</li><li>在验证集上得到 $Error_1$</li><li>轮流去其余部分作为验证集，重复 b，c</li><li>得到对应于该模型的 $\overline {E(A_i)}=\frac{1}{N}\sum_{n=1}^N Error_n$</li><li>对于其余模型，重复a, b, c, d, e</li><li>比较所有模型的 $\overline {E(A)}$ 选出最小的作为最终模型 $A^*$.</li><li>在全集上训练$A^*$，得到合适的参数。确定最终的矩 g .</li></ol></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> M L </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> validation </tag>
             
         </tags>
       
@@ -1851,7 +1870,7 @@
       <link href="/2019/06/22/None/"/>
       <url>/2019/06/22/None/</url>
       
-        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">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</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div id="hbe-security">  <div class="hbe-input-container">  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读文章。" />    <label for="pass">请输入密码以阅读文章。</label>    <div class="bottom-line"></div>  </div></div><div id="decryptionError" style="display: none;">Incorrect Password!</div><div id="noContentError" style="display: none;">No content to display!</div><div id="encrypt-blog" style="display:none">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</div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
       
       
