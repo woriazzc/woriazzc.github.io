@@ -46,7 +46,7 @@
       <link href="/2020/01/05/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/"/>
       <url>/2020/01/05/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/</url>
       
-        <content type="html"><![CDATA[<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>&nbsp;</p><script type="math/tex; mode=display">自反 \iff I_x\subseteq R\\反自反 \iff R\bigcap I_x=\emptyset\\对称 \iff R^{-1}=R\\反对称 \iff R\bigcap R^{-1}\subseteq I_x\\传递\iff R^2\subseteq R\\传递 \iff \forall n\in N,R^n\subseteq R</script><p>&nbsp;</p><script type="math/tex; mode=display">\forall n\in N,\forall x,y\in X,(x,y)\in R^n \\\iff\\\exists (x_0,x_1,x_2,\dots ,x_n)\in X^{n+1},x_0=x,x_n=y\bigwedge \forall i \in [0,k],(x_i,x_{i+1})\in R</script>]]></content>
+        <content type="html"><![CDATA[<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>&nbsp;</p><script type="math/tex; mode=display">自反 \iff I_x\subseteq R\\反自反 \iff R\bigcap I_x=\emptyset\\对称 \iff R^{-1}=R\\反对称 \iff R\bigcap R^{-1}\subseteq I_x\\传递\iff R^2\subseteq R\\传递 \iff \forall n\in N,R^n\subseteq R</script><p>&nbsp;</p><script type="math/tex; mode=display">\forall n\in N,\forall x,y\in X,(x,y)\in R^n \\\iff\\\exists (x_0,x_1,x_2,\dots ,x_n)\in X^{n+1},x_0=x,x_n=y\bigwedge \forall i \in [0,k],(x_i,x_{i+1})\in R</script><p>&nbsp;</p><p>G是平面图 $\iff$ G中不存在与 $K_{3,3}$ 或 $K_5$ 同胚的子图 $\iff$ G中不存在可收缩到 $K_{3,3}$ 或 $K_5$ 的子图。</p>]]></content>
       
       
       <categories>
