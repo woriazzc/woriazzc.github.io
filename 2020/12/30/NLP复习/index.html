@@ -465,7 +465,7 @@ P(Y_v|X,Y_w,w\neq v)=P(Y_v|X,Y_w,w\backsim v)\\</script><p>其中 $w\backsim v$ 
 <script type="math/tex; mode=display">
 P(Y_i|X,Y_1,\cdots Y_{i-1},Y_{i+1},\cdots ,Y_n)=P(Y_i|X,Y_{i-1},Y_{i+1})\\</script><h5 id="参数形式"><a href="#参数形式" class="headerlink" title="参数形式"></a>参数形式</h5><p>上面说过，条件随机场是马尔可夫随机场，而马尔可夫随机场可以因式分解为最大团上的乘积。</p>
 <p>在线性链条件随机场中，每一个相邻的点对都是一个最大团，所以条件概率分布可以表示为所有相邻点对上的函数的乘积。</p>
-<p>下面取的函数为 $\exp$ 函数，所以相当于exp的和。</p>
+<p>下面取的函数为 $\exp$ 函数，所以相当于exp中指数的和。</p>
 <script type="math/tex; mode=display">
 P(y|x)=\frac{1}{Z(x)}\exp(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))\\</script><script type="math/tex; mode=display">
 Z(x)=\sum_y\exp(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))\\</script><p>其中 $x$ 为可观察样本的任意特征（例如：词本身，大小写，词性等），这里假设有 $k$ 个特征，特征的重要程度由 $\lambda$ 控制，训练得到。</p>
@@ -493,7 +493,7 @@ P(y_1=1,y_2=2,y_3=3|x)\propto \exp(3.2)\\</script><p>&nbsp;</p>
 <p>上下文无关文法中的产生式左侧的非终结符一定只能有一个符号。在每一个出现了产生式左侧的符号的地方都可以通过这个产生式替换为右侧的符号串，而不用考虑这个符号的上下文。</p>
 <h3 id="括号表示法"><a href="#括号表示法" class="headerlink" title="括号表示法"></a>括号表示法</h3><p>子树在一个括号里，终结符不需要再分隔。</p>
 <p><img style="zoom: 50%;" data-src="https://i.loli.net/2021/01/11/FD2Qs61p9EuxqBY.png" class="lozad"></p>
-<h3 id="评估-1"><a href="#评估-1" class="headerlink" title="评估"></a>评估</h3><p>先表示为 $<label_1,l_1,r_1>,\cdots,<label_n,l_n,r_n>$ 的集合形式，$label_i$ 为标签，$l_i$ 为第一个单词的下标，$r_i$ 为最后一个单词的下标。</label_n,l_n,r_n></label_1,l_1,r_1></p>
+<h3 id="评估-1"><a href="#评估-1" class="headerlink" title="评估"></a>评估</h3><p>先表示为 $\{(label_1,l_1,r_1),\cdots,(label_n,l_n,r_n)\}$ 的元组的集合形式，$label_i$ 为标签，$l_i$ 为第一个单词的下标，$r_i$ 为最后一个单词的下标。</p>
 <p><img style="zoom:50%;" data-src="https://i.loli.net/2021/01/11/UDvrkCmyYKntPjw.png" class="lozad"></p>
 <p>假设现在有2棵树，则</p>
 <p>第一棵树的精确率Precision为  既在第一棵树中又在第二棵树中的元组个数 / 第一棵树中的元组个数。</p>
