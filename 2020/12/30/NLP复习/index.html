@@ -121,7 +121,7 @@
 </div>
 <ul>
 <li>| 匹配左右任一个表达式。yours|mine|his</li>
-<li>[\^] \^在方括号内表示非后面的字符。[\^A-Z]</li>
+<li>$[\text{^}]$ $\text{^}$在方括号内表示非后面的字符。$[\text{^A-Z}]$</li>
 </ul>
 <p>pat = re.compile(pattern)，创建模式对象pat，以后只要用 pat.match 等自己的方法。</p>
 <p>match(pattern,string)，从字符串<strong>开始处</strong>匹配模式，返回第一个匹配上的。</p>
