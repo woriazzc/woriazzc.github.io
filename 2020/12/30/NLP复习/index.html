@@ -119,6 +119,19 @@
 </tbody>
 </table>
 </div>
+<ul>
+<li>| 匹配左右任一个表达式。yours|mine|his</li>
+<li>[\^] \^在方括号内表示非后面的字符。[\^A-Z]</li>
+</ul>
+<p>pat = re.compile(pattern)，创建模式对象pat，以后只要用 pat.match 等自己的方法。</p>
+<p>match(pattern,string)，从字符串<strong>开始处</strong>匹配模式，返回第一个匹配上的。</p>
+<p>group(i)。匹配分组，group(0) 为整个匹配上的串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">s = <span class="string">"bdsbfhsa121321"</span></span><br><span class="line">print(re.search(<span class="string">r"(\D+)(\d+)"</span>, s).group(<span class="number">0</span>))</span><br><span class="line"><span class="comment">#group(0):bdsbfhsa121321</span></span><br><span class="line"><span class="comment">#group(1):bdsbfhsa</span></span><br><span class="line"><span class="comment">#group(2):121321</span></span><br></pre></td></tr></table></figure>
+<p>search(pattern,string)，从字符串<strong>每个位置</strong>开始，返回第一个匹配上的。</p>
+<p>由于match和search返回的是_sre.SRE_Match格式，所以要配合group使用。</p>
+<p>split(pattern,string)，把string用pattern分割，返回列表。</p>
+<p>sub(pat,repl,string)，把string中所有pat的匹配项替换为repl，返回新字符串。</p>
+<p>findall(pattern,string)，找到所有匹配，返回列表。</p>
 <p>&nbsp;</p>
 <h2 id="词干提取和词形还原"><a href="#词干提取和词形还原" class="headerlink" title="词干提取和词形还原"></a>词干提取和词形还原</h2><p><strong>词干提取</strong>是去词的前后缀，抽取词的词干或词根，不一定能表达完整的语义，方法较为简单，例如 leave - leav。</p>
 <p><strong>词形还原</strong>是把一个词汇还原为一般形式，能够表达完整语义，例如 leave - leaf，方法较为复杂，需要词性标注标签。</p>
