@@ -1,0 +1,243 @@
+<!DOCTYPE html><html data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Codeforces Global Round 6 | WORIA</title><meta name="keywords" content="思维,构造"><meta name="author" content="woria"><meta name="copyright" content="woria"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="http:&#x2F;&#x2F;codeforces.com&#x2F;contest&#x2F;1266 这场就是纯思维场啊！！ C. Diverse Matrix   题意：构造一个nm矩阵，使得每行的gcd和每列的gcd都不相等，且最大值最小。 增量构造 nm的矩阵可以由22矩阵构造出，先确定每列gcd，再确定行的gcd即可。 123456789101112131415161718192021222324252627282930">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Global Round 6">
+<meta property="og:url" content="https://www.woria.xyz/2021/11/02/cfglobal6/index.html">
+<meta property="og:site_name" content="WORIA">
+<meta property="og:description" content="http:&#x2F;&#x2F;codeforces.com&#x2F;contest&#x2F;1266 这场就是纯思维场啊！！ C. Diverse Matrix   题意：构造一个nm矩阵，使得每行的gcd和每列的gcd都不相等，且最大值最小。 增量构造 nm的矩阵可以由22矩阵构造出，先确定每列gcd，再确定行的gcd即可。 123456789101112131415161718192021222324252627282930">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2020/03/07/olBAMHxuv4fkzLb.jpg">
+<meta property="article:published_time" content="2021-11-02T09:01:09.176Z">
+<meta property="article:modified_time" content="2020-03-06T16:43:54.000Z">
+<meta property="article:author" content="woria">
+<meta property="article:tag" content="思维">
+<meta property="article:tag" content="构造">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/07/olBAMHxuv4fkzLb.jpg"><link rel="shortcut icon" href="/img/favicon11.ico"><link rel="canonical" href="https://www.woria.xyz/2021/11/02/cfglobal6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Codeforces Global Round 6',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-03-07 00:43:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="WORIA" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2019/09/12/5NSB3v87UMLJwVH.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">358</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">99</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://cloud.woria.xyz/"><i class="fa-fw fas fa-cloud-upload-alt"></i><span> Cloud</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://emby.woria.xyz/"><i class="fa-fw fas fa-photo-video"></i><span> Emby</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/03/07/olBAMHxuv4fkzLb.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WORIA</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://cloud.woria.xyz/"><i class="fa-fw fas fa-cloud-upload-alt"></i><span> Cloud</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://emby.woria.xyz/"><i class="fa-fw fas fa-photo-video"></i><span> Emby</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Codeforces Global Round 6</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-11-02T09:01:09.176Z" title="Created 2021-11-02 17:01:09">2021-11-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-03-06T16:43:54.000Z" title="Updated 2020-03-07 00:43:54">2020-03-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/O-J/">O J</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Codeforces Global Round 6"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong><a target="_blank" rel="noopener" href="http://codeforces.com/contest/1266">http://codeforces.com/contest/1266</a></strong></p>
+<p><strong>这场就是纯思维场啊！！</strong></p>
+<h2 id="C-Diverse-Matrix">C. Diverse Matrix</h2>
+<p> </p>
+<p>题意：构造一个nm矩阵，使得每行的gcd和每列的gcd都不相等，且最大值最小。</p>
+<p><strong>增量构造</strong></p>
+<p>nm的矩阵可以由22矩阵构造出，先确定每列gcd，再确定行的gcd即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">510</span>][<span class="number">510</span>];</span><br><span class="line"><span class="keyword">int</span> gr[<span class="number">510</span>], gc[<span class="number">510</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span> &amp;&amp; m == <span class="number">1</span>) &#123; <span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>); <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)ans[<span class="number">1</span>][i] = i + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (m == <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)ans[i][<span class="number">1</span>] = i + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		ans[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">4</span>, ans[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">12</span>, ans[<span class="number">2</span>][<span class="number">1</span>] = <span class="number">2</span>, ans[<span class="number">2</span>][<span class="number">2</span>] = <span class="number">9</span>;</span><br><span class="line">		gr[<span class="number">1</span>] = <span class="number">4</span>, gr[<span class="number">2</span>] = <span class="number">1</span>, gc[<span class="number">1</span>] = <span class="number">2</span>, gc[<span class="number">2</span>] = <span class="number">3</span>;</span><br><span class="line">		<span class="keyword">int</span> tot = <span class="number">4</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= m; i++) &#123;</span><br><span class="line">			tot++;</span><br><span class="line">			gc[i] = tot;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>; j++) &#123;</span><br><span class="line">				ans[j][i] = tot * gr[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">			tot++;</span><br><span class="line">			gr[i] = tot;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">				ans[i][j] = tot * gc[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d%s&quot;</span>, ans[i][j], j == m ? <span class="string">&quot;\n&quot;</span> : <span class="string">&quot; &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="D-Decreasing-Debts">D. Decreasing Debts</h2>
+<p> </p>
+<p>题意：有m份债务关系，u欠v x元💴，账面总和为所有债务关系的x之和，要求减小账面总和。</p>
+<p>看着像是图论，画图发现就是把强连通分量所有边都减去分量里的最短边之后把链提出来，然后维护链上区间最小值，再分治改边，最终得到菊花图。但是这样的复杂度始终是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<p>但是换个角度看这题。</p>
+<p>和实际情况一样，就是要尽量简化债务关系，那么就是A欠B钱，那么A就要尽量替B还💴，且要保证每个人不能多付少付，多拿少拿。</p>
+<p>但是本题和实际情况又不太一样，本题1欠4了5元钱，2欠3了5元钱，1可以还给3钱，而2可以还4钱，（虽然他们可能都不认识）。</p>
+<p>发现这点之后就简单了，只要保证每个人的收支总和不变，就可以随便给钱。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, ans;</span><br><span class="line"><span class="keyword">int</span> u[N], v[N]; ll w[N], c[N];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;vc;</span><br><span class="line">queue&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> u, v; ll w;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">		c[u] += w, c[v] -= w;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (c[i] &gt; <span class="number">0</span>)vc.<span class="built_in">push_back</span>(i);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (c[i] &lt; <span class="number">0</span>)q.<span class="built_in">push</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i : vc) &#123;</span><br><span class="line">		<span class="keyword">while</span> (c[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			ll tmp = <span class="built_in">min</span>(c[i], -c[q.<span class="built_in">front</span>()]);</span><br><span class="line">			c[i] -= tmp; c[q.<span class="built_in">front</span>()] += tmp;</span><br><span class="line">			u[++ans] = i; v[ans] = q.<span class="built_in">front</span>(); w[ans] = tmp;</span><br><span class="line">			<span class="keyword">if</span> (c[q.<span class="built_in">front</span>()] == <span class="number">0</span>)q.<span class="built_in">pop</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= ans; i++)<span class="built_in">printf</span>(<span class="string">&quot;%d %d %lld\n&quot;</span>, u[i], v[i], w[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="E-Spaceship-Solitaire">E. Spaceship Solitaire</h2>
+<p> </p>
+<p>题意：星际挖矿，有n种矿，速度都一样，每秒挖1克，但是有m个任务，拥有 t[i] 克 s[i] 的矿就可以得到 1 克 u[i] 的矿。完成任务不会消耗矿。问每增加一个任务，最少每种矿达到需求量 a[i] 要多久。</p>
+<p>由于任务不会消耗矿，所以每个任务只能完成一次，且由于题目规定任务一定可以完成，所以每个任务奖励一定能且只能得到1次。</p>
+<p>以上就是本题的关键了。</p>
+<p>接下来可以每增加一个任务就修改一次答案，初始时答案就是所有矿的需求量之和。增加一个任务后，由于奖励一定能拿到，所以只要考虑奖励对结果是否有影响即可，而又由于每个任务奖励只能拿一次，所以总的奖励数就是所有该矿的任务数，如果之前的所有这种矿的奖励已经满足需求了，再奖励也没用了，所以对结果没影响，否则有影响。</p>
+<p>删除对答案的影响也类似。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n, q, a[N], t[N];</span><br><span class="line">ll ans;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;pii;</span><br><span class="line">map&lt;pii, <span class="keyword">int</span>&gt;mp;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123; <span class="keyword">if</span> (u &amp;&amp; ++t[u] &lt;= a[u])ans--; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123; <span class="keyword">if</span> (--t[u] &lt; a[u])ans++; &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]), ans += a[i];</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q);</span><br><span class="line">	<span class="keyword">while</span> (q--) &#123;</span><br><span class="line">		<span class="keyword">int</span> s, t, u;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;s, &amp;t, &amp;u);</span><br><span class="line">		pii p = <span class="built_in">pii</span>(s, t);</span><br><span class="line">		<span class="keyword">if</span> (!mp[p])<span class="built_in">add</span>(mp[p] = u);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">del</span>(mp[p]), <span class="built_in">add</span>(mp[p] = u);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">woria</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://www.woria.xyz/2021/11/02/cfglobal6/">https://www.woria.xyz/2021/11/02/cfglobal6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%80%9D%E7%BB%B4/">思维</a><a class="post-meta__tags" href="/tags/%E6%9E%84%E9%80%A0/">构造</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/03/07/olBAMHxuv4fkzLb.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/02/cfglobal7/"><img class="prev-cover" src="https://i.loli.net/2020/03/21/u6ewgLAdY72Nzn5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Codeforces Global Round 7</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/02/cfglobal12/"><img class="next-cover" src="https://i.loli.net/2020/12/11/Qiac4bdWfIgXUGn.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Codeforces Global Round 12</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/11/02/2020winter1/" title="ECNU 2020 XCPC Winter Training \#1"><img class="cover" src="https://i.loli.net/2020/02/01/yhrb2gHswVBn1xd.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-02</div><div class="title">ECNU 2020 XCPC Winter Training \#1</div></div></a></div><div><a href="/2021/11/02/cfglobal12/" title="Codeforces Global Round 12"><img class="cover" src="https://i.loli.net/2020/12/11/Qiac4bdWfIgXUGn.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-02</div><div class="title">Codeforces Global Round 12</div></div></a></div><div><a href="/2021/11/02/cfglobal7/" title="Codeforces Global Round 7"><img class="cover" src="https://i.loli.net/2020/03/21/u6ewgLAdY72Nzn5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-02</div><div class="title">Codeforces Global Round 7</div></div></a></div><div><a href="/2021/11/02/cfglobal9/" title="Codeforces Global Round 9"><img class="cover" src="https://imgur.com/VFaytTm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-02</div><div class="title">Codeforces Global Round 9</div></div></a></div><div><a href="/2021/11/02/cfozon2020/" title="Ozon Tech Challenge 2020 (Div. 1 + Div. 2)"><img class="cover" src="https://i.loli.net/2020/03/04/OCnTEhxJqc47Ype.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-02</div><div class="title">Ozon Tech Challenge 2020 (Div. 1 + Div. 2)</div></div></a></div><div><a href="/2021/11/02/cfround563d2/" title="Codeforces Round 563 (Div. 2)"><img class="cover" src="https://i.loli.net/2020/06/07/dfvxNQcOHsBM5ET.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-02</div><div class="title">Codeforces Round 563 (Div. 2)</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Diverse-Matrix"><span class="toc-number">1.</span> <span class="toc-text">C. Diverse Matrix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Decreasing-Debts"><span class="toc-number">2.</span> <span class="toc-text">D. Decreasing Debts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-Spaceship-Solitaire"><span class="toc-number">3.</span> <span class="toc-text">E. Spaceship Solitaire</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By woria</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '7c425de6b2cc7a2b78a2',
+      clientSecret: '7ec01d91eebbd7b2172f59d75894efd1f2277f2e',
+      repo: 'Gitalk',
+      owner: 'woriazzc',
+      admin: ['woriazzc'],
+      id: '0ca6b84ec651d38b662998255161cb03',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
